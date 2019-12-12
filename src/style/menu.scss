@@ -31,14 +31,13 @@
   
           .bar-active {
               background-color: $CUSTOM_LIGHTBLUE;
-              color: gray;
+              color: #ffffff;
           }
       }
   
       &-body {
           height: 265px;
           display: flex;
-          // justify-content: space-between;
           flex-wrap: wrap;
           
           .element {
