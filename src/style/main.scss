@@ -1,0 +1,23 @@
+.main {
+
+    * {
+        box-sizing: border-box;
+    }
+
+    padding: 5px;
+    border: 1px dashed red;
+    width: 60%;
+    margin: auto;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+
+    
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+}

@@ -1,0 +1,31 @@
+.dashboard {
+    background-color: grey;
+    flex: 0.5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-main {
+        background-color: #ffff;
+        width: 90%;
+        height: 90%;
+        border-radius: 10px;
+        text-align: center;
+        
+
+        display: flex;
+        flex-direction: column;
+
+
+
+        &-body {
+            height: 90%;
+            border-bottom: 1px dashed gray;
+            border-top: 1px dashed gray;
+        }
+
+    }
+}
+
+
