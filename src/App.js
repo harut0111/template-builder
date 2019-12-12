@@ -1,13 +1,13 @@
 import React from "react";
-import './style/index.scss';
+import "./style/index.scss";
 import { StateProvider } from "./context";
 import { initialState, reducer } from "./context/reducer";
-import Routes from "./routes/main";
+import Main from "./components/Main";
 
 function App() {
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Routes />
+      <Main />
     </StateProvider>
   );
 }
