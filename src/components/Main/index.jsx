@@ -1,5 +1,4 @@
 import React from 'react'
-import './Style/index.scss'
 import Dashboard from '../Dashboard'
 import Menu from '../Menu'
 
