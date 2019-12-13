@@ -43,7 +43,7 @@ const Dashboard = () => {
         <div className="dashboard-main-body">
           {
             layout.elements.map(el => (
-              <div className='element' key={uuid.v4()}>{el.data}</div>
+              <div style={{border: '1px solid gray', padding: '5px'}} className='element' key={uuid.v4()}>{el.elData}</div>
             ))
           }
         </div>
