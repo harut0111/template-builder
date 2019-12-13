@@ -2,7 +2,7 @@ import React from 'react'
 
 const Audio = () => {
     return (
-        <div className='Audio'>
+        <div className='audtioEl'>
             Audio element
         </div>
     )

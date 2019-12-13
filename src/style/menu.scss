@@ -1,4 +1,6 @@
 .menu {
+
+  
     flex: 1;
   
     &-main {
@@ -36,14 +38,21 @@
       }
   
       &-body {
+
+        
           height: 265px;
           display: flex;
           flex-wrap: wrap;
+
+          .textEditor {
+            width: 100%;
+            height: 100%;
+          }
           
           .element {
 
               user-select: none;
-  
+
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -56,15 +65,10 @@
               margin: 10px 13px;
               cursor: pointer;
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
-
-              &-active {
-                color: $CUSTOM_LIGHTBLUE
-              }
               
-  
               &:hover {
                   border: 1px solid lightblue;
-                  
+                  color: $CUSTOM_LIGHTBLUE
               }
               
           }

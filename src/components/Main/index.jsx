@@ -3,6 +3,7 @@ import Dashboard from '../Dashboard'
 import Menu from '../Menu'
 
 const Main = () => {
+
     return (
         <div className='main'>
             <Dashboard />
