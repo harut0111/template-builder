@@ -1,16 +1,10 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT_DATA } from "../../context/reducer";
+import { UPDATE_ELEMENT } from "../../context/reducer";
+import { getActiveEl } from "../Constants";
 
 const TextSettings = () => {
   const [{ layout }, dispatch] = useStateValue();
-
-
-  const getActiveEl = layout => {
-    const filteredItem = layout.elements.filter(el => el.elId === layout.activeEl.id)
-    return filteredItem[0];
-  };
-
 
 
   // const [content, setContent] = React.useState(
@@ -26,7 +20,7 @@ const TextSettings = () => {
       }
     });
 
-    dispatch({ type: UPDATE_ELEMENT_DATA, payload: elements });
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   return (
@@ -37,6 +31,7 @@ const TextSettings = () => {
         value={getActiveEl(layout) || RichTextEditor.createEmptyValue()}
         onChange={val => handleOnChange(val)}
       /> */}
+
 
       <input
         type="text"

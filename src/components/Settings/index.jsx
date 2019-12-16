@@ -1,17 +1,12 @@
 import React from "react";
 import { useStateValue } from "../../context";
-// import uuid from "uuid";
+import { getActiveEl } from "../Constants";
 
 const Settings = () => {
   const [{ layout }] = useStateValue();
 
 
   console.log('layout from settings', layout);
-
-  const getActiveEl = layout => {
-    const filteredItem = layout.elements.filter(el => el.elId === layout.activeEl.id)
-    return filteredItem[0];
-  };
 
   return (
     <div className="settings">

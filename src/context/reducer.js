@@ -1,17 +1,7 @@
-// export const ADD_LAYOUT = 'ADD_LAYOUT';
 export const ADD_NEW_ELEMENT = "ADD_NEW_ELEMENT";
-export const UPDATE_ELEMENT_DATA = "UPDATE_ACTIVE_ELEMENT_DATA";
+export const UPDATE_ELEMENT = "UPDATE_ACTIVE_ELEMENT_DATA";
 export const SET_BAR_INDEX = "SET_BAR_INDEX";
-// export const INITIAL_TEXT_DATA = "<p>type some text</p>";
-
-// layout: {
-//     elemens: [{
-//         label: 'Text', setting: {
-
-//         }}
-//     ],
-//     activeElId: ''
-// }
+export const REMOVE_ELEMENT = "REMOVE_ELEMENT";
 
 export const initialState = {
   layout: {
@@ -37,7 +27,21 @@ export const reducer = (state, { type, payload }) => {
           activeBarIndex: 1
         }
       };
-    case UPDATE_ELEMENT_DATA: {
+
+    case REMOVE_ELEMENT: {
+      return {
+        ...state,
+        layout: {
+          ...state.layout,
+          elements: payload,
+          activeEl: {
+            id: payload.length && payload[payload.length - 1].elId
+          },
+          activeBarIndex: 0
+        }
+      };
+    }
+    case UPDATE_ELEMENT: {
       return {
         ...state,
         layout: { ...state.layout, elements: payload }

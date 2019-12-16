@@ -1,6 +1,6 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT_DATA } from "../../context/reducer";
+import { UPDATE_ELEMENT } from "../../context/reducer";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -22,7 +22,7 @@ const Video = () => {
       }
     });
 
-    dispatch({ type: UPDATE_ELEMENT_DATA, payload: elements });
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   return (

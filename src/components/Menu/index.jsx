@@ -1,44 +1,12 @@
 import React from "react";
-import { MdTextFields } from "react-icons/md";
-import { TiDivideOutline } from "react-icons/ti";
-import { FaRegPlayCircle, FaImage } from "react-icons/fa";
-import { IoIosImages, IoMdShare } from "react-icons/io";
-import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
 import uuid from "uuid";
-
-import { useStateValue } from "../../context";
-
-import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/reducer";
 import Settings from "../Settings";
-
-import Text from "../Settings/Text";
-import Video from "../Settings/Video";
-import Image from "../Settings/Image";
-import Slider from "../Settings/Slider";
-import SocialMedia from "../Settings/SocialMedia";
-import Audio from "../Settings/Audio";
-import Map from "../Settings/Map";
-import LinkButton from "../Settings/LinkButton";
-import Divider from "../Settings/Divider";
-
-export const EL_LIST = [
-  { label: "Text", Icon: MdTextFields, Settings: Text },
-  { label: "Video", Icon: FaRegPlayCircle, Settings: Video },
-  { label: "Image", Icon: FaImage, Settings: Image },
-  { label: "Slider", Icon: IoIosImages, Settings: Slider },
-  { label: "Social Media", Icon: IoMdShare, Settings: SocialMedia },
-  { label: "Audio", Icon: FiHeadphones, Settings: Audio },
-  { label: "Map", Icon: FiMapPin, Settings: Map },
-  { label: "Link/Button", Icon: FiLink2, Settings: LinkButton },
-  { label: "Divider", Icon: TiDivideOutline, Settings: Divider }
-];
+import { useStateValue } from "../../context";
+import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/reducer";
+import { EL_LIST, BAR_LIST } from "../Constants";
 
 const Menu = () => {
-
-  const barList = ["Elements", "Component Settings"];
   const [{ layout }, dispatchLayouts] = useStateValue();
-
-  // console.log("layout.activeEl", layout.activeEl);
 
   const handleOnClick = el => {
     dispatchLayouts({
@@ -57,7 +25,7 @@ const Menu = () => {
         <div className="menu-main-navbar">
           <nav>
             <ul>
-              {barList.map((text, i) => (
+              {BAR_LIST.map((text, i) => (
                 <li
                   key={uuid.v4()}
                   className={`bar ${

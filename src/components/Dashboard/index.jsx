@@ -1,18 +1,18 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { ADD_NEW_ELEMENT } from "../../context/reducer";
-import { EL_LIST } from "../Menu";
+import { ADD_NEW_ELEMENT, REMOVE_ELEMENT } from "../../context/reducer";
 import uuid from "uuid";
+import { EL_LIST, filterElement } from "../Constants";
+import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
-  const [{ layout }, dispatchLayouts] = useStateValue();
+  const [{ layout }, dispatch] = useStateValue();
 
   const handleOnDrop = e => {
-    
     const elLabel = e.dataTransfer.getData("text/plain");
-    const Settings = EL_LIST.filter(el => elLabel === el.label)[0].Settings;
+    const Settings = EL_LIST.filter(el => el.label === elLabel )[0].Settings;
 
-    dispatchLayouts({
+    dispatch({
       type: ADD_NEW_ELEMENT,
       payload: {
         elId: uuid.v4(),
@@ -20,6 +20,11 @@ const Dashboard = () => {
         elData: null
       }
     });
+  };
+
+  const handleOnClick = id => {
+    const filteredEls = filterElement(layout, id);
+    dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
 
   return (
@@ -38,6 +43,10 @@ const Dashboard = () => {
                 className="element"
                 key={el.elId}
               >
+                <Toolbar
+                  className={"textSettings-toolbar"}
+                  onClick={() => handleOnClick(el.elId)}
+                />
                 {el.elData}
               </div>
             ) : (
@@ -46,6 +55,10 @@ const Dashboard = () => {
                 className="element"
                 key={el.elId}
               >
+                <Toolbar
+                  className={"textSettings-toolbar"}
+                  onClick={() => handleOnClick(el.elId)}
+                />
                 {el.elData}
               </div>
             )
