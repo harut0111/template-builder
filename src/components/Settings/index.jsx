@@ -7,20 +7,25 @@ import uuid from "uuid";
 const Settings = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  const settingsList = [TextSettings, VideoSettings];
 
-  // console.log('layout from settings', layout);
-  console.log("layout.activeEl.label", layout.activeEl.label);
+  console.log('layout from settings', layout);
 
+  const getActiveEl = layout => {
+    const filteredItem = layout.elements.filter(el => el.elId === layout.activeEl.id)
+    return filteredItem[0];
+  };
+
+  // console.log('getActiveEl()', getActiveEl(layout));
   return (
     <div className="settings">
-      {layout.elements.map(item =>
+      {/* {layout.elements.map(item =>
         layout.activeEl.label === item.elLabel ? (
-          <div key={uuid}>
-            {item.ElSettings}
+          <div key={uuid.v4()}>
+            {filteredItem.ElSettings}
           </div>
         ) : null
-      )}
+      )} */}
+      {getActiveEl(layout).ElSettings}
     </div>
   );
 };

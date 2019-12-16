@@ -1,16 +1,10 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import uuid from 'uuid';
-
-// import ResponsiveGrid from "../components/ResponsiveGrid";
-// import { ADD_LAYOUT } from "..";
-// import { CARD_LIST } from "../constants";
 
 const Dashboard = () => {
   const [{ layout }, dispatchLayouts] = useStateValue();
 
 
-      console.log(layout.elements)
 
 //   const handleDropping = ev => {
 //     const data = ev.evt.dataTransfer.getData("text/plain");
@@ -36,6 +30,7 @@ const Dashboard = () => {
 //     });
 //   };
 
+
   return (
     <div className="dashboard">
       <div className="dashboard-main">
@@ -43,7 +38,7 @@ const Dashboard = () => {
         <div className="dashboard-main-body">
           {
             layout.elements.map(el => (
-              <div style={{border: '1px solid gray', padding: '5px'}} className='element' key={uuid.v4()}>{el.elData}</div>
+              <div style={{border: '1px solid gray', padding: '5px'}} className='element' key={el.elId}>{el.elData === null ? '' : el.elData}</div>
             ))
           }
         </div>

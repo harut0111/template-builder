@@ -4,8 +4,7 @@ import { TiDivideOutline } from "react-icons/ti";
 import { FaRegPlayCircle, FaImage } from "react-icons/fa";
 import { IoIosImages, IoMdShare } from "react-icons/io";
 import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
-import uuid from 'uuid'
-
+import uuid from "uuid";
 
 import { useStateValue } from "../../context";
 
@@ -14,25 +13,25 @@ import Settings from "../Settings";
 
 import Text from "../Settings/Text";
 import Video from "../Settings/Video";
-import Image from '../Settings/Image'
-import Slider from '../Settings/Slider'
+import Image from "../Settings/Image";
+import Slider from "../Settings/Slider";
 import SocialMedia from "../Settings/SocialMedia";
-import Audio from '../Settings/Audio'
-import Map from '../Settings/Map'
-import LinkButton from '../Settings/LinkButton'
-import Divider from '../Settings/Divider'
+import Audio from "../Settings/Audio";
+import Map from "../Settings/Map";
+import LinkButton from "../Settings/LinkButton";
+import Divider from "../Settings/Divider";
 
 export const EL_LIST = [
-    { label: "Text", icon: MdTextFields, settings: Text, },
-    { label: "Video", icon: FaRegPlayCircle,settings: Video, },
-    { label: "Image", icon: FaImage, settings: Image,  },
-    { label: "Slider", icon: IoIosImages, settings: Slider,  },
-    { label: "Social Media", icon: IoMdShare, settingscard: SocialMedia,  },
-    { label: "Audio", icon: FiHeadphones, settings: Audio,  },
-    { label: "Map",icon: FiMapPin, settings: Map,  },
-    { label: "Link/Button", icon: FiLink2, settings: LinkButton,  },
-    { label: "Divider", icon: TiDivideOutline, settings: Divider,  }
-  ];
+  { label: "Text", icon: MdTextFields, Settings: Text },
+  { label: "Video", icon: FaRegPlayCircle, Settings: Video },
+  { label: "Image", icon: FaImage, Settings: Image },
+  { label: "Slider", icon: IoIosImages, Settings: Slider },
+  { label: "Social Media", icon: IoMdShare, Settingscard: SocialMedia },
+  { label: "Audio", icon: FiHeadphones, Settings: Audio },
+  { label: "Map", icon: FiMapPin, Settings: Map },
+  { label: "Link/Button", icon: FiLink2, Settings: LinkButton },
+  { label: "Divider", icon: TiDivideOutline, Settings: Divider }
+];
 
 const Menu = () => {
   const [barIndex, setBarIndex] = useState(0);
@@ -52,8 +51,6 @@ const Menu = () => {
   //   { icon: FiLink2, text: "Link/Button" },
   //   { icon: TiDivideOutline, text: "Divider" }
   // ];
-
-
 
   // const addLayout = type => {
   //   CARD_LIST.forEach(item => {
@@ -78,15 +75,21 @@ const Menu = () => {
   //   });
   // };
 
-
   // console.log('layout', layout);
 
-  const handleOnClick = (el) => {
+  const handleOnClick = el => {
     // console.log('el', el);
     setBarIndex(1);
-    dispatchLayouts({type: ADD_NEW_ELEMENT, payload: {elLabel: el.label, elId: uuid.v4(), ElSettings: <el.settings />, elData: 'asd' }})
-  }
-  
+    dispatchLayouts({
+      type: ADD_NEW_ELEMENT,
+      payload: {
+        // elLabel: el.label,
+        elId: uuid.v4(),
+        ElSettings: <el.Settings />,
+        elData: null
+      }
+    });
+  };
 
   return (
     <div className="menu">
