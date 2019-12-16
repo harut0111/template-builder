@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdTextFields } from "react-icons/md";
 import { TiDivideOutline } from "react-icons/ti";
 import { FaRegPlayCircle, FaImage } from "react-icons/fa";
@@ -26,7 +26,7 @@ export const EL_LIST = [
   { label: "Video", Icon: FaRegPlayCircle, Settings: Video },
   { label: "Image", Icon: FaImage, Settings: Image },
   { label: "Slider", Icon: IoIosImages, Settings: Slider },
-  { label: "Social Media", Icon: IoMdShare, Settingscard: SocialMedia },
+  { label: "Social Media", Icon: IoMdShare, Settings: SocialMedia },
   { label: "Audio", Icon: FiHeadphones, Settings: Audio },
   { label: "Map", Icon: FiMapPin, Settings: Map },
   { label: "Link/Button", Icon: FiLink2, Settings: LinkButton },

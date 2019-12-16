@@ -1,11 +1,9 @@
 import React from "react";
-import TextSettings from "./Text";
-import VideoSettings from "./Video";
 import { useStateValue } from "../../context";
-import uuid from "uuid";
+// import uuid from "uuid";
 
 const Settings = () => {
-  const [{ layout }, dispatch] = useStateValue();
+  const [{ layout }] = useStateValue();
 
 
   console.log('layout from settings', layout);
@@ -15,7 +13,6 @@ const Settings = () => {
     return filteredItem[0];
   };
 
-  // console.log('getActiveEl()', getActiveEl(layout));
   return (
     <div className="settings">
       {/* {layout.elements.map(item =>
