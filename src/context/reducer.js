@@ -2,11 +2,12 @@ export const ADD_NEW_ELEMENT = "ADD_NEW_ELEMENT";
 export const UPDATE_ELEMENT = "UPDATE_ACTIVE_ELEMENT_DATA";
 export const SET_BAR_INDEX = "SET_BAR_INDEX";
 export const REMOVE_ELEMENT = "REMOVE_ELEMENT";
+export const CHANGE_ACTIVE_ELEMENT = "CHANGE_ACTIVE_ELEMENT";
 
 export const initialState = {
   layout: {
     elements: [],
-    activeEl: {},
+    activeEl: { id: null },
     activeBarIndex: 0
   }
 };
@@ -45,6 +46,12 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         layout: { ...state.layout, elements: payload }
+      };
+    }
+    case CHANGE_ACTIVE_ELEMENT: {
+      return {
+        ...state,
+        layout: { ...state.layout, activeEl: { id: payload } }
       };
     }
     case SET_BAR_INDEX: {

@@ -5,7 +5,7 @@ const Toolbar = ({className, onClick}) => {
     return (
         <div className={className} >
             {/* <MdModeEdit /> */}
-            <MdDeleteForever onClick={onClick} style={{cursor: 'pointer', color: 'red'}}/>
+            <MdDeleteForever onClick={onClick} style={{cursor: 'pointer', color: 'red', float: "right"}}/>
         </div>
     )
 }
