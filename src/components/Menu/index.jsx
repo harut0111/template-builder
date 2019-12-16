@@ -8,7 +8,7 @@ import uuid from "uuid";
 
 import { useStateValue } from "../../context";
 
-import { ADD_NEW_ELEMENT } from "../../context/reducer";
+import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/reducer";
 import Settings from "../Settings";
 
 import Text from "../Settings/Text";
@@ -22,68 +22,28 @@ import LinkButton from "../Settings/LinkButton";
 import Divider from "../Settings/Divider";
 
 export const EL_LIST = [
-  { label: "Text", icon: MdTextFields, Settings: Text },
-  { label: "Video", icon: FaRegPlayCircle, Settings: Video },
-  { label: "Image", icon: FaImage, Settings: Image },
-  { label: "Slider", icon: IoIosImages, Settings: Slider },
-  { label: "Social Media", icon: IoMdShare, Settingscard: SocialMedia },
-  { label: "Audio", icon: FiHeadphones, Settings: Audio },
-  { label: "Map", icon: FiMapPin, Settings: Map },
-  { label: "Link/Button", icon: FiLink2, Settings: LinkButton },
-  { label: "Divider", icon: TiDivideOutline, Settings: Divider }
+  { label: "Text", Icon: MdTextFields, Settings: Text },
+  { label: "Video", Icon: FaRegPlayCircle, Settings: Video },
+  { label: "Image", Icon: FaImage, Settings: Image },
+  { label: "Slider", Icon: IoIosImages, Settings: Slider },
+  { label: "Social Media", Icon: IoMdShare, Settingscard: SocialMedia },
+  { label: "Audio", Icon: FiHeadphones, Settings: Audio },
+  { label: "Map", Icon: FiMapPin, Settings: Map },
+  { label: "Link/Button", Icon: FiLink2, Settings: LinkButton },
+  { label: "Divider", Icon: TiDivideOutline, Settings: Divider }
 ];
 
 const Menu = () => {
-  const [barIndex, setBarIndex] = useState(0);
-  const [elementIndex, setElementIndex] = useState(null);
-  const barList = ["Elements", "Component Settings"];
 
+  const barList = ["Elements", "Component Settings"];
   const [{ layout }, dispatchLayouts] = useStateValue();
 
-  // const elements = [
-  //   { icon: MdTextFields, text: "Text" },
-  //   { icon: FaRegPlayCircle, text: "Video" },
-  //   { icon: FaImage, text: "Image" },
-  //   { icon: IoIosImages, text: "Slider" },
-  //   { icon: IoMdShare, text: "Social Media" },
-  //   { icon: FiHeadphones, text: "Audio" },
-  //   { icon: FiMapPin, text: "Map" },
-  //   { icon: FiLink2, text: "Link/Button" },
-  //   { icon: TiDivideOutline, text: "Divider" }
-  // ];
-
-  // const addLayout = type => {
-  //   CARD_LIST.forEach(item => {
-  //     if (item.name === type) {
-  //       dispatchLayouts({
-  //         type: ADD_LAYOUT,
-  //         payload: Object.assign({}, layouts, {
-  //           items: [
-  //             ...layouts.items,
-  //             {
-  //               i: `${type}-${layouts.newCounter}`,
-  //               x: (layouts.items.length * 2) % (layouts.cols || 12),
-  //               y: Infinity, // puts it at the bottom
-  //               w: 1,
-  //               h: 1
-  //             }
-  //           ],
-  //           newCounter: layouts.newCounter + 1
-  //         })
-  //       });
-  //     }
-  //   });
-  // };
-
-  // console.log('layout', layout);
+  // console.log("layout.activeEl", layout.activeEl);
 
   const handleOnClick = el => {
-    // console.log('el', el);
-    setBarIndex(1);
     dispatchLayouts({
       type: ADD_NEW_ELEMENT,
       payload: {
-        // elLabel: el.label,
         elId: uuid.v4(),
         ElSettings: <el.Settings />,
         elData: null
@@ -100,8 +60,14 @@ const Menu = () => {
               {barList.map((text, i) => (
                 <li
                   key={uuid.v4()}
-                  className={`bar ${barIndex === i ? "bar-active" : ""}`}
-                  onClick={() => setBarIndex(i)}
+                  className={`bar ${
+                    layout.activeBarIndex === i ? "bar-active" : ""
+                  }`}
+                  onClick={() =>
+                    layout.activeEl.id
+                      ? dispatchLayouts({ type: SET_BAR_INDEX, payload: i })
+                      : null
+                  }
                 >
                   {text}
                 </li>
@@ -111,24 +77,22 @@ const Menu = () => {
         </div>
 
         <div className="menu-main-body">
-          {barIndex ? (
+          {layout.activeBarIndex ? (
             <Settings />
           ) : (
             EL_LIST.map((el, i) => (
               <div
                 key={uuid.v4()}
-                className={`element ${
-                  elementIndex === i ? "element-active" : ""
-                }`}
+                className="element"
                 draggable={true}
                 unselectable="on"
                 onDragStart={e =>
                   e.dataTransfer.setData("text/plain", el.label)
                 }
-                onClick={() => handleOnClick(el)}
                 id={el.label}
+                onClick={() => handleOnClick(el)}
               >
-                {<el.icon size="22px" />}
+                {<el.Icon size="22px" />}
                 <span>{el.label}</span>
               </div>
             ))

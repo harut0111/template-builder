@@ -2,7 +2,7 @@ import React from 'react'
 
 const SocialMedia = () => {
     return (
-        <div className='SocialMedia'>
+        <div className='socialMedia'>
             SocialMedia element
         </div>
     )
