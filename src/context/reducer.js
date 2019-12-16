@@ -51,7 +51,7 @@ export const reducer = (state, { type, payload }) => {
     case CHANGE_ACTIVE_ELEMENT: {
       return {
         ...state,
-        layout: { ...state.layout, activeEl: { id: payload } }
+        layout: { ...state.layout, activeEl: { id: payload }, activeBarIndex: 1 }
       };
     }
     case SET_BAR_INDEX: {
