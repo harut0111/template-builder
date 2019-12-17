@@ -50,15 +50,7 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              style={{
-                border: `${
-                  el.elId === layout.activeEl.id
-                    ? "2px solid lightgreen"
-                    : "1px solid gray"
-                }`,
-                padding: "5px"
-              }}
-              className="element"
+              className={`element ${el.elId === layout.activeEl.id ? 'element-active': ''}`}
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >

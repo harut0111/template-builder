@@ -1,6 +1,6 @@
 .dashboard {
     background-color: grey;
-    flex: 0.5;
+    flex: 0.7;
 
     display: flex;
     justify-content: center;
@@ -23,6 +23,12 @@
 
             .element {
                 min-height: 40px;
+                border-bottom: 1px solid gray;
+
+                &-active {
+                    // border-color: rgb(0, 255, 0);
+                    background: rgb(238, 238, 238);
+                }
             }
         }
 

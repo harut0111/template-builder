@@ -27,6 +27,7 @@ const TextSettings = () => {
 
   return (
     <div className="textSettings">
+      <h3>TEXT</h3>
       <RichTextEditor
         className="textEditor"
         autoFocus

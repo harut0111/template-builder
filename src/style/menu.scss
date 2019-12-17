@@ -1,84 +1,85 @@
 .menu {
+  flex: 1;
 
-  
-    flex: 1;
-  
-    &-main {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      height: 300px;
-      // width: 500px;
-  
-      display: flex;
-      flex-direction: column;
-  
-      &-navbar {
-          height: 35px;
-  
-  
-          ul {
-              border-bottom: 0.5px solid rgba(128, 128, 128, 0.541);
-              display: flex;
-              align-items: center;
-              flex-wrap: wrap;
-  
-              li {
-                  flex: 1;
-                  text-align: center;
-                  padding: 5px 0;
-                  cursor: pointer;
-                  color: rgb(6, 88, 155);
-                  font-weight: 900;
-              }
-          }
-  
-          .bar-active {
-              background-color: $CUSTOM_LIGHTBLUE;
-              color: #ffffff;
-          }
+  &-main {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 300px;
+    // width: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    &-navbar {
+      height: 35px;
+
+      ul {
+        border-bottom: 0.5px solid rgba(128, 128, 128, 0.541);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        li {
+          flex: 1;
+          text-align: center;
+          padding: 5px 0;
+          cursor: pointer;
+          color: rgb(6, 88, 155);
+          font-weight: 900;
+        }
       }
-  
-      &-body {
 
-        
-          height: 265px;
-          display: flex;
-          flex-wrap: wrap;
+      .bar-active {
+        background-color: $CUSTOM_LIGHTBLUE;
+        color: #ffffff;
+      }
+    }
 
-         
-          .element {
+    &-body {
+      height: 265px;
+      display: flex;
+      flex-wrap: wrap;
 
-              user-select: none;
+      .element {
+        user-select: none;
 
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-  
-              font-size: 12px;
-              border: 1px solid rgba(128, 128, 128, 0.493);
-              width: 80px;
-              height: 60px;
-              margin: 10px 13px;
-              cursor: pointer;
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
-              
-              &:hover {
-                  border: 1px solid lightblue;
-                  color: $CUSTOM_LIGHTBLUE
-              }
-              
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 12px;
+        border: 1px solid rgba(128, 128, 128, 0.493);
+        width: 80px;
+        height: 60px;
+        margin: 10px 13px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 2px 20px 0 rgba(0, 0, 0, 0.19);
+
+        &:hover {
+          border: 1px solid lightblue;
+          color: $CUSTOM_LIGHTBLUE;
+        }
+      }
+
+      .settings {
+        width: 100%;
+        padding: 10px;
+
+        h3 {
+          margin-top: 5px;
+          color: black;
+          text-transform: uppercase;
+        }
+        .textSettings {
+          height: 100%;
+          width: 100%;
+          .textEditor {
+            width: 100%;
+            height: 75%;
           }
-
-
-          .settings {
-              .textSettings {
-                  height: 100%;
-                  .textEditor {
-                    width: 100%;
-                    height: 100%;
-                  }
-              }
-          }
+        }
       }
     }
   }
+}

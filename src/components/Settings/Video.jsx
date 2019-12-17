@@ -26,8 +26,8 @@ const Video = () => {
   };
 
   return (
-    <div className="video">
-      VideoSettings
+    <div className="videoSettings">
+      <h3>Video</h3>
       <input
         type="number"
         value={getActiveEl(layout).elData || ''}
