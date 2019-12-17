@@ -24,11 +24,6 @@ import SocialMediaData from "../Dashboard/SocialMediaData";
 import AudioData from "../Dashboard/AudioData";
 import LinkButtonData from "../Dashboard/LinkButtonData";
 
-
-
-
-
-
 export const EL_LIST = [
   { label: "Text", Icon: MdTextFields, Settings: Text },
   { label: "Video", Icon: FaRegPlayCircle, Settings: Video },
@@ -62,12 +57,7 @@ export const getActiveEl = layout => {
   return filteredItem[0];
 };
 
-
 export const filterElement = (layout, id) => {
-  const filteredItem = layout.elements.filter(
-    el => el.elId !== id
-  );
+  const filteredItem = layout.elements.filter(el => el.elId !== id);
   return filteredItem;
 };
-
-
