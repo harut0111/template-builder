@@ -1,7 +1,8 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/reducer";
+import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
+import RichTextEditor from 'react-rte';
 
 const TextSettings = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -19,26 +20,26 @@ const TextSettings = () => {
         elements[i].elData = val;
       }
     });
-
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
+ 
+
   return (
     <div className="textSettings">
-      {/* <RichTextEditor
+      <RichTextEditor
         className="textEditor"
         autoFocus
-        value={getActiveEl(layout) || RichTextEditor.createEmptyValue()}
+        value={getActiveEl(layout).elData || RichTextEditor.createEmptyValue()}
         onChange={val => handleOnChange(val)}
-      /> */}
+      />
 
-
-      <input
+      {/* <input
         type="text"
         placeholder='type some text'
         value={getActiveEl(layout).elData || ''}
         onChange={ev => handleOnChange(ev.target.value)}
-      />
+      /> */}
     </div>
   );
 };

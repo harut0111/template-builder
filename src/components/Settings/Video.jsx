@@ -1,6 +1,6 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/reducer";
+import { UPDATE_ELEMENT } from "../../context/actions";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();

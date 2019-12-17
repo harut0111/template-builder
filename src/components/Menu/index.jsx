@@ -2,7 +2,10 @@ import React from "react";
 import uuid from "uuid";
 import Settings from "../Settings";
 import { useStateValue } from "../../context";
-import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/reducer";
+import {
+  ADD_NEW_ELEMENT,
+  SET_BAR_INDEX,
+} from "../../context/actions";
 import { EL_LIST, BAR_LIST } from "../Constants";
 
 const Menu = () => {
@@ -12,6 +15,7 @@ const Menu = () => {
     dispatchLayouts({
       type: ADD_NEW_ELEMENT,
       payload: {
+        elLabel: el.label,
         elId: uuid.v4(),
         ElSettings: <el.Settings />,
         elData: null
@@ -48,7 +52,7 @@ const Menu = () => {
           {layout.activeBarIndex ? (
             <Settings />
           ) : (
-            EL_LIST.map((el, i) => (
+            EL_LIST.map(el => (
               <div
                 key={uuid.v4()}
                 className="element"

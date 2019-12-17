@@ -1,8 +1,16 @@
-export const ADD_NEW_ELEMENT = "ADD_NEW_ELEMENT";
-export const UPDATE_ELEMENT = "UPDATE_ACTIVE_ELEMENT_DATA";
-export const SET_BAR_INDEX = "SET_BAR_INDEX";
-export const REMOVE_ELEMENT = "REMOVE_ELEMENT";
-export const CHANGE_ACTIVE_ELEMENT = "CHANGE_ACTIVE_ELEMENT";
+import {
+  ADD_NEW_ELEMENT,
+  REMOVE_ELEMENT,
+  UPDATE_ELEMENT,
+  CHANGE_ACTIVE_ELEMENT,
+  SET_BAR_INDEX
+} from "./actions";
+
+// export const ADD_NEW_ELEMENT = "ADD_NEW_ELEMENT";
+// export const UPDATE_ELEMENT = "UPDATE_ACTIVE_ELEMENT_DATA";
+// export const SET_BAR_INDEX = "SET_BAR_INDEX";
+// export const REMOVE_ELEMENT = "REMOVE_ELEMENT";
+// export const CHANGE_ACTIVE_ELEMENT = "CHANGE_ACTIVE_ELEMENT";
 
 export const initialState = {
   layout: {
@@ -51,7 +59,11 @@ export const reducer = (state, { type, payload }) => {
     case CHANGE_ACTIVE_ELEMENT: {
       return {
         ...state,
-        layout: { ...state.layout, activeEl: { id: payload }, activeBarIndex: 1 }
+        layout: {
+          ...state.layout,
+          activeEl: { id: payload },
+          activeBarIndex: 1
+        }
       };
     }
     case SET_BAR_INDEX: {

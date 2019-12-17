@@ -4,7 +4,7 @@ import {
   ADD_NEW_ELEMENT,
   REMOVE_ELEMENT,
   CHANGE_ACTIVE_ELEMENT
-} from "../../context/reducer";
+} from "../../context/actions";
 import uuid from "uuid";
 import { EL_LIST, filterElement } from "../Constants";
 import Toolbar from "../../core/Toolbar";
@@ -14,21 +14,22 @@ const Dashboard = () => {
 
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
-    const Settings = EL_LIST.filter(el => el.label === elLabel)[0].Settings;
+    const el = EL_LIST.filter(el => el.label === elLabel)[0];
 
     dispatch({
       type: ADD_NEW_ELEMENT,
       payload: {
+        elLabel: el.label,
         elId: uuid.v4(),
-        ElSettings: <Settings />,
+        ElSettings: <el.Settings />,
         elData: null
       }
     });
   };
 
-  const handleOnToolClick = (e, id)=> {
+  const handleOnToolClick = (ev, id)=> {
     // console.log('id', id);
-    e.stopPropagation()
+    ev.stopPropagation()
     const filteredEls = filterElement(layout, id);
     dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
@@ -63,9 +64,9 @@ const Dashboard = () => {
             >
               <Toolbar
                 className={"textSettings-toolbar"}
-                onClick={(e) => handleOnToolClick(e,el.elId)}
+                onClick={(ev) => handleOnToolClick(ev,el.elId)}
               />
-              {el.elData}
+              <div dangerouslySetInnerHTML={{ __html: el.elData && el.elData.toString('html') }} />
             </div>
           ))}
         </div>
