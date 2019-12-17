@@ -62,8 +62,15 @@ export const filterElement = (layout, id) => {
   return filteredItem;
 };
 
-export const OPTION_LIST = ["YouTube", "Facebook", "Vimeo", "Metacafe", "Veoh"];
-export const CHECKBOX_LIST = [
+export const PROVIDER_LIST = [
+  { name: "YouTube", value: "youtube.com/embed" },
+  { name: "Facebook", value: "facebook.com/facebook/videos" },
+  { name: "Vimeo", value: "" },
+  { name: "Metacafe", value: "" },
+  { name: "Veoh", value: "" }
+];
+
+export const VIDEO_FORMAT_LIST = [
   { label: "Autoplay: ", name: "autoplay " },
   { label: "Loop: ", name: "loop " },
   { label: "Control: ", name: "control " }

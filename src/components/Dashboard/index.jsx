@@ -27,9 +27,9 @@ const Dashboard = () => {
     });
   };
 
-  const handleOnToolClick = (ev, id)=> {
+  const handleOnToolClick = (ev, id) => {
     // console.log('id', id);
-    ev.stopPropagation()
+    ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
     dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
@@ -50,15 +50,21 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              className={`element ${el.elId === layout.activeEl.id ? 'element-active': ''}`}
+              className={`element ${
+                el.elId === layout.activeEl.id ? "element-active" : ""
+              }`}
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
               <Toolbar
                 className={"textSettings-toolbar"}
-                onClick={(ev) => handleOnToolClick(ev,el.elId)}
+                onClick={ev => handleOnToolClick(ev, el.elId)}
               />
-              {EL_DATA_LIST.map((item) => item.label === el.elLabel ? <item.Data key={uuid.v4()} elData={el.elData}/>: null) }
+              {EL_DATA_LIST.map(item =>
+                item.label === el.elLabel ? (
+                  <item.Data key={uuid.v4()} elData={el.elData} />
+                ) : null
+              )}
             </div>
           ))}
         </div>
