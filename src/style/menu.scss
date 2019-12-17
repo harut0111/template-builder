@@ -44,11 +44,7 @@
           display: flex;
           flex-wrap: wrap;
 
-          .textEditor {
-            width: 100%;
-            height: 100%;
-          }
-          
+         
           .element {
 
               user-select: none;
@@ -71,6 +67,17 @@
                   color: $CUSTOM_LIGHTBLUE
               }
               
+          }
+
+
+          .settings {
+              .textSettings {
+                  height: 100%;
+                  .textEditor {
+                    width: 100%;
+                    height: 100%;
+                  }
+              }
           }
       }
     }

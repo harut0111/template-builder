@@ -33,13 +33,6 @@ const TextSettings = () => {
         value={getActiveEl(layout).elData || RichTextEditor.createEmptyValue()}
         onChange={val => handleOnChange(val)}
       />
-
-      {/* <input
-        type="text"
-        placeholder='type some text'
-        value={getActiveEl(layout).elData || ''}
-        onChange={ev => handleOnChange(ev.target.value)}
-      /> */}
     </div>
   );
 };
