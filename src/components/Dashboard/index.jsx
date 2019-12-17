@@ -6,7 +6,7 @@ import {
   CHANGE_ACTIVE_ELEMENT
 } from "../../context/actions";
 import uuid from "uuid";
-import { EL_LIST, filterElement } from "../Constants";
+import { EL_LIST, filterElement, EL_DATA_LIST } from "../Constants";
 import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
@@ -39,6 +39,18 @@ const Dashboard = () => {
     dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
   };
 
+  // <item.Data elData={el.elData}/>:null
+  // console.log('test', test);
+
+  const test = (item, el) => {
+    // console.log('item, el', item, el);
+    if(item.label == el.elLabel) {
+      console.log('asdfasfsdafas')
+      return <item.Data/>
+    }
+    return null
+  }
+
   return (
     <div className="dashboard">
       <div className="dashboard-main">
@@ -58,7 +70,11 @@ const Dashboard = () => {
                 className={"textSettings-toolbar"}
                 onClick={(ev) => handleOnToolClick(ev,el.elId)}
               />
-              <div dangerouslySetInnerHTML={{ __html: el.elData && el.elData.toString('html') }} />
+              {/* <div>asdf</div> */}
+              {/* {console.log('el--->', el.elLabel)} */}
+              {EL_DATA_LIST.map((item, i) => item.label === el.elLabel ? <item.Data key={uuid.v4()} elData={el.elData}/>: null) }
+              {/* {<EL_DATA_LIST[1].Data /> */}
+              {/* <div dangerouslySetInnerHTML={{ __html: el.elData && el.elData.toString('html') }} /> */}
             </div>
           ))}
         </div>

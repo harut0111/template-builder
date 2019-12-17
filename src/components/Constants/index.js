@@ -14,6 +14,21 @@ import Map from "../Settings/Map";
 import LinkButton from "../Settings/LinkButton";
 import Divider from "../Settings/Divider";
 
+import TextData from "../Dashboard/TextData";
+import VideoData from "../Dashboard/VideoData";
+import MapData from "../Dashboard/MapData";
+import DividerData from "../Dashboard/DividerData";
+import ImageData from "../Dashboard/ImageData";
+import SliderData from "../Dashboard/SliderData";
+import SocialMediaData from "../Dashboard/SocialMediaData";
+import AudioData from "../Dashboard/AudioData";
+import LinkButtonData from "../Dashboard/LinkButtonData";
+
+
+
+
+
+
 export const EL_LIST = [
   { label: "Text", Icon: MdTextFields, Settings: Text },
   { label: "Video", Icon: FaRegPlayCircle, Settings: Video },
@@ -24,6 +39,18 @@ export const EL_LIST = [
   { label: "Map", Icon: FiMapPin, Settings: Map },
   { label: "Link/Button", Icon: FiLink2, Settings: LinkButton },
   { label: "Divider", Icon: TiDivideOutline, Settings: Divider }
+];
+
+export const EL_DATA_LIST = [
+  { label: "Text", Data: TextData },
+  { label: "Video", Data: VideoData },
+  { label: "Image", Data: ImageData },
+  { label: "Slider", Data: SliderData },
+  { label: "Social Media", Data: SocialMediaData },
+  { label: "Audio", Data: AudioData },
+  { label: "Map", Data: MapData },
+  { label: "Link/Button", Data: LinkButtonData },
+  { label: "Divider", Data: DividerData }
 ];
 
 export const BAR_LIST = ["Elements", "Component Settings"];

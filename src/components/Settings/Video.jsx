@@ -1,18 +1,10 @@
 import React from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
+import { getActiveEl } from "../Constants";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
-
-  const getActiveEl = layout => {
-    const filteredItem = layout.elements.filter(
-      el => el.elId === layout.activeEl.id
-    );
-    return filteredItem[0];
-  };
-
-
 
   const handleOnChange = val => {
     const elements = [...layout.elements];

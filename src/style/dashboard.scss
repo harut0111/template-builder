@@ -23,11 +23,15 @@
 
             .element {
                 min-height: 40px;
-                border-bottom: 1px solid gray;
+                border: 1px solid gray;
+                margin: 5px;
+                border-radius: 5px;
+                transition: all 1s;
+                opacity: 0.5;
 
                 &-active {
-                    // border-color: rgb(0, 255, 0);
                     background: rgb(238, 238, 238);
+                    opacity: 1;
                 }
             }
         }
