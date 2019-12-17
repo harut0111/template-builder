@@ -39,18 +39,6 @@ const Dashboard = () => {
     dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
   };
 
-  // <item.Data elData={el.elData}/>:null
-  // console.log('test', test);
-
-  const test = (item, el) => {
-    // console.log('item, el', item, el);
-    if(item.label == el.elLabel) {
-      console.log('asdfasfsdafas')
-      return <item.Data/>
-    }
-    return null
-  }
-
   return (
     <div className="dashboard">
       <div className="dashboard-main">
@@ -70,11 +58,7 @@ const Dashboard = () => {
                 className={"textSettings-toolbar"}
                 onClick={(ev) => handleOnToolClick(ev,el.elId)}
               />
-              {/* <div>asdf</div> */}
-              {/* {console.log('el--->', el.elLabel)} */}
-              {EL_DATA_LIST.map((item, i) => item.label === el.elLabel ? <item.Data key={uuid.v4()} elData={el.elData}/>: null) }
-              {/* {<EL_DATA_LIST[1].Data /> */}
-              {/* <div dangerouslySetInnerHTML={{ __html: el.elData && el.elData.toString('html') }} /> */}
+              {EL_DATA_LIST.map((item) => item.label === el.elLabel ? <item.Data key={uuid.v4()} elData={el.elData}/>: null) }
             </div>
           ))}
         </div>

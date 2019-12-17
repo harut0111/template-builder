@@ -61,3 +61,10 @@ export const filterElement = (layout, id) => {
   const filteredItem = layout.elements.filter(el => el.elId !== id);
   return filteredItem;
 };
+
+export const OPTION_LIST = ["YouTube", "Facebook", "Vimeo", "Metacafe", "Veoh"];
+export const CHECKBOX_LIST = [
+  { label: "Autoplay: ", name: "autoplay " },
+  { label: "Loop: ", name: "loop " },
+  { label: "Control: ", name: "control " }
+];
