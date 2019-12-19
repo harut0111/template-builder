@@ -40,7 +40,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
           activeEl: {
             id: payload.length && payload[payload.length - 1].elId
           },
-          activeBarIndex: 0
+          activeBarIndex: 1
         }
       };
     }

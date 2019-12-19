@@ -49,10 +49,10 @@ const Dashboard = (props) => {
                 className={"textSettings-toolbar"}
                 onClick={ev => handleOnToolClick(ev, el.elId)}
               />
-              {EL_DATA_LIST.map(item =>
+              {EL_DATA_LIST.map((item, i) =>
                 item.label === el.elLabel ? (
-                  <item.Data key={uuid.v4()} elData={el.elData} />
-                ) : null
+                  <div key={el.elId + i}><item.Data  elData={el.elData} /></div>
+                ) : null  
               )}
             </div>
           ))}
