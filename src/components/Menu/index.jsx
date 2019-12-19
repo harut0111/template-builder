@@ -2,25 +2,23 @@ import React from "react";
 import uuid from "uuid";
 import Settings from "../Settings";
 import { useStateValue } from "../../context";
-import {
-  ADD_NEW_ELEMENT,
-  SET_BAR_INDEX,
-} from "../../context/actions";
+
 import { EL_LIST, BAR_LIST } from "../Constants";
+import { SET_BAR_INDEX } from "../Constants/actionTypes";
 
 const Menu = () => {
   const [{ layout }, dispatchLayouts] = useStateValue();
 
   const handleOnClick = el => {
-    dispatchLayouts({
-      type: ADD_NEW_ELEMENT,
-      payload: {
-        elLabel: el.label,
-        elId: uuid.v4(),
-        ElSettings: <el.Settings />,
-        elData: null
-      }
-    });
+    // dispatchLayouts({
+    //   type: ADD_NEW_ELEMENT,
+    //   payload: {
+    //     elLabel: el.label,
+    //     elId: uuid.v4(),
+    //     ElSettings: <el.Settings />,
+    //     elData: null
+    //   }
+    // });
   };
 
   return (

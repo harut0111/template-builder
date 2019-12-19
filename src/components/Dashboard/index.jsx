@@ -1,42 +1,45 @@
 import React from "react";
-import { useStateValue } from "../../context";
-import {
-  ADD_NEW_ELEMENT,
-  REMOVE_ELEMENT,
-  CHANGE_ACTIVE_ELEMENT
-} from "../../context/actions";
+import { connect } from 'react-redux'
+
 import uuid from "uuid";
 import { EL_LIST, filterElement, EL_DATA_LIST } from "../Constants";
 import Toolbar from "../../core/Toolbar";
+import { dispatchFilteredEls, dispatchId } from "../../redux/action";
 
-const Dashboard = () => {
-  const [{ layout }, dispatch] = useStateValue();
+const Dashboard = (props) => {
+  // const [{ layout }, dispatch] = useStateValue();
+  
+  const {layout, dispatchFilteredEls, dispatchId} = props
+
+  console.log('layout', layout);
 
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
     const el = EL_LIST.filter(el => el.label === elLabel)[0];
 
-    dispatch({
-      type: ADD_NEW_ELEMENT,
-      payload: {
-        elLabel: el.label,
-        elId: uuid.v4(),
-        ElSettings: <el.Settings />,
-        elData: null
-      }
-    });
+    // dispatch({
+    //   type: ADD_NEW_ELEMENT,
+    //   payload: {
+    //     elLabel: el.label,
+    //     elId: uuid.v4(),
+    //     ElSettings: <el.Settings />,
+    //     elData: null
+    //   }
+    // });
   };
 
   const handleOnToolClick = (ev, id) => {
     // console.log('id', id);
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
-    dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
+    // dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
+    dispatchFilteredEls(filteredEls);
   };
 
   const handleOnElementClick = id => {
     // console.log("id", id);
-    dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
+    // dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
+    dispatchId(id)
   };
 
   return (
@@ -74,4 +77,15 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    layout: state.layout,
+  }
+}
+
+const mapDispatchToProps = {
+    dispatchFilteredEls,
+    dispatchId
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

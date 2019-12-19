@@ -20,7 +20,7 @@ const TextSettings = () => {
         elements[i].elData = val;
       }
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    // dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
  

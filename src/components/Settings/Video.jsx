@@ -1,56 +1,53 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+// import { UPDATE_ELEMENT } from "../../context/actions";
 
 // import { getActiveEl } from "../Constants";
-import uuid from "uuid";
-import { PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
+// import uuid from "uuid";
+import { PROVIDER_LIST } from "../Constants";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  console.log('layout', layout);
+  const urlRef = useRef(null);
+  const providerRef = useRef(null);
 
-  const [provider, setProvider] = useState(PROVIDER_LIST[0]);
-  const [url, setUrl] = useState('')
-  const [videFormat, setVideFormat] = useState({
-    autoplay: false,
-    loop: false,
-    control: false
-  });
+  const autoplayRef = useRef(null);
+  const loopRef = useRef(null);
+  const controlRef = useRef(null);
 
-  const handleOnChange = ev => {
-
+  const handleOnSubmit = ev => {
     ev.preventDefault();
+
+    const provider = providerRef.current.value;
+    const url = urlRef.current.value;
+
+    const autoplay = autoplayRef.current.checked;
+    const loop = loopRef.current.checked;
+    const control = controlRef.current.checked;
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
       if (element.elId === layout.activeEl.id) {
-        elements[i].elData = {provider: provider.value, url, videFormat};
+        elements[i].elData = {
+          provider,
+          url,
+          videoFormat: { autoplay, loop, control }
+        };
       }
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
-  };
-
-  const handleCheckboxChange = e => {
-    setVideFormat({
-      ...videFormat,
-      [e.target.name]: !videFormat[e.target.name]
-    });
+    // dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   return (
     <div className="videoSettings">
       <h3>Video</h3>
-      <form onChange={handleOnChange}>
+      <form onSubmit={handleOnSubmit}>
         <div>
           <label>Provider: </label>
-          <select
-            value={provider}
-            onChange={e => setProvider({...provider, value: e.target.value})}
-          >
-            {PROVIDER_LIST.map(item => (
-              <option key={uuid.v4()} value={item.value}>
+          <select ref={providerRef}>
+            {PROVIDER_LIST.map((item, i) => (
+              <option key={i} value={item.value}>
                 {item.name}
               </option>
             ))}
@@ -58,27 +55,24 @@ const Video = () => {
         </div>
         <div>
           <label>Source: </label>
-          <input placeholder="URL" value={url} onChange={e => setUrl(e.target.value)}/>
+          <input placeholder="URL" ref={urlRef} />
         </div>
         <div>
-          {VIDEO_FORMAT_LIST.map(item => (
-            <span key={uuid.v4()}>
-              <label>{item.label}</label>
-              <input
-                type="checkbox"
-                name={item.name}
-                checked={videFormat[item.name]}
-                onChange={handleCheckboxChange}
-              />
-            </span>
-          ))}
+          <span>
+            <label>Autoplay: </label>
+            <input type="checkbox" ref={autoplayRef} />
+          </span>
+          <span>
+            <label>Loop: </label>
+            <input type="checkbox" ref={loopRef} />
+          </span>
+          <span>
+            <label>Control: </label>
+            <input type="checkbox" ref={controlRef} />
+          </span>
         </div>
+        <input type="submit" value="Ok" />
       </form>
-      {/* <input
-        type="number"
-        value={getActiveEl(layout).elData || ""}
-        onChange={ev => handleOnChange(ev.target.value)}
-      /> */}
     </div>
   );
 };
