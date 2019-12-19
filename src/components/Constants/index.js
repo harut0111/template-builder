@@ -65,9 +65,9 @@ export const filterElement = (layout, id) => {
 export const PROVIDER_LIST = [
   { name: "YouTube", value: "youtube.com/embed" },
   { name: "Facebook", value: "facebook.com/facebook/videos" },
-  { name: "Vimeo", value: "" },
-  { name: "Metacafe", value: "" },
-  { name: "Veoh", value: "" }
+  { name: "Vimeo", value: "asdf" },
+  { name: "Metacafe", value: "asdf" },
+  { name: "Veoh", value: "asdf" }
 ];
 
 export const VIDEO_FORMAT_LIST = [

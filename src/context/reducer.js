@@ -6,12 +6,6 @@ import {
   SET_BAR_INDEX
 } from "./actions";
 
-// export const ADD_NEW_ELEMENT = "ADD_NEW_ELEMENT";
-// export const UPDATE_ELEMENT = "UPDATE_ACTIVE_ELEMENT_DATA";
-// export const SET_BAR_INDEX = "SET_BAR_INDEX";
-// export const REMOVE_ELEMENT = "REMOVE_ELEMENT";
-// export const CHANGE_ACTIVE_ELEMENT = "CHANGE_ACTIVE_ELEMENT";
-
 export const initialState = {
   layout: {
     elements: [],
@@ -46,7 +40,7 @@ export const reducer = (state, { type, payload }) => {
           activeEl: {
             id: payload.length && payload[payload.length - 1].elId
           },
-          activeBarIndex: 0
+          activeBarIndex: 1
         }
       };
     }
