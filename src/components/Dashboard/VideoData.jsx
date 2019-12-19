@@ -1,13 +1,13 @@
 import React from 'react'
 
-const VideoData = () => {
+const VideoData = ({elData}) => {
 
-    // console.log('videoData', elData);
-    // console.log(elData && `https://www.${elData.provider}/${elData.url}`)
+    console.log('videoData', elData);
+    console.log(elData && `https://www.${elData.provider}/${elData.url}`)
     return (
         <div className='videoData'>
-            {/* <iframe title='videFrame' width="320" height="245" src={elData && `https://www.${elData.provider}/${elData.url}`}>
-            </iframe> */}
+            <iframe title='videFrame' width="320" height="245" src={elData && `https://www.${elData.provider}/${elData.url}`}>
+            </iframe>
             {Math.random()}
         </div>
     )
@@ -24,4 +24,4 @@ const areEqual = (prevProps, nextProps) => {
     return prevVal === nextVal
 }
 
-export default React.memo(VideoData, areEqual);
+export default React.memo(VideoData, areEqual)

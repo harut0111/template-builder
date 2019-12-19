@@ -1,15 +1,15 @@
 import React from "react";
+import { useStateValue } from "../../context";
 import { getActiveEl } from "../Constants";
-import { connect } from "react-redux";
 
-const Settings = ({ layout }) => {
-  return <div className="settings">{getActiveEl(layout).ElSettings}</div>;
+const Settings = () => {
+  const [{ layout }] = useStateValue();
+  
+  return (
+    <div className="settings">
+      {getActiveEl(layout).ElSettings}
+    </div>
+  );
 };
 
-const mapStateToProps = state => {
-  return {
-    layout: state.layout
-  };
-};
-
-export default connect(mapStateToProps)(Settings);
+export default Settings;

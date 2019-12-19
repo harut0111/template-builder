@@ -1,32 +1,43 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { useStateValue } from "../../context";
+import {
+  ADD_NEW_ELEMENT,
+  REMOVE_ELEMENT,
+  CHANGE_ACTIVE_ELEMENT
+} from "../../context/actions";
 import uuid from "uuid";
-
 import { EL_LIST, filterElement, EL_DATA_LIST } from "../Constants";
 import Toolbar from "../../core/Toolbar";
-import { dispatchFilteredEls, dispatchId, dispatchLayouts } from "../../redux/action";
 
-const Dashboard = (props) => {
-  
-  const {layout, dispatchFilteredEls, dispatchId, dispatchLayouts} = props;
-
-  
-  console.log('layout', layout);
+const Dashboard = () => {
+  const [{ layout }, dispatch] = useStateValue();
 
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
     const el = EL_LIST.filter(el => el.label === elLabel)[0];
-    
-    dispatchLayouts(el, () => uuid.v4())
+
+    dispatch({
+      type: ADD_NEW_ELEMENT,
+      payload: {
+        elLabel: el.label,
+        elId: uuid.v4(),
+        ElSettings: <el.Settings />,
+        elData: null
+      }
+    });
   };
 
   const handleOnToolClick = (ev, id) => {
+    // console.log('id', id);
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
-    dispatchFilteredEls(filteredEls);
+    dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
 
-
+  const handleOnElementClick = id => {
+    // console.log("id", id);
+    dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
+  };
 
   return (
     <div className="dashboard">
@@ -43,7 +54,7 @@ const Dashboard = (props) => {
                 el.elId === layout.activeEl.id ? "element-active" : ""
               }`}
               key={el.elId}
-              onClick={() => dispatchId(el.elId)}
+              onClick={() => handleOnElementClick(el.elId)}
             >
               <Toolbar
                 className={"textSettings-toolbar"}
@@ -51,8 +62,8 @@ const Dashboard = (props) => {
               />
               {EL_DATA_LIST.map((item, i) =>
                 item.label === el.elLabel ? (
-                  <div key={el.elId + i}><item.Data  elData={el.elData} /></div>
-                ) : null  
+                  <item.Data key={el.elId + i} elData={el.elData} />
+                ) : null
               )}
             </div>
           ))}
@@ -63,16 +74,4 @@ const Dashboard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    layout: state.layout,
-  }
-}
-
-const mapDispatchToProps = {
-    dispatchFilteredEls,
-    dispatchId,
-    dispatchLayouts,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;

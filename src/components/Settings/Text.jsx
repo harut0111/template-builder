@@ -1,13 +1,17 @@
 import React from "react";
+import { useStateValue } from "../../context";
+import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
-import RichTextEditor from "react-rte";
-import { connect } from "react-redux";
-import { dispatchTextData } from "../../redux/action";
+import RichTextEditor from 'react-rte';
 
-const TextSettings = ({ layout, dispatchTextData }) => {
+const TextSettings = () => {
+  const [{ layout }, dispatch] = useStateValue();
+
+
   // const [content, setContent] = React.useState(
   //   RichTextEditor.createEmptyValue()
   // );
+
 
   const handleOnChange = val => {
     const elements = [...layout.elements];
@@ -16,8 +20,10 @@ const TextSettings = ({ layout, dispatchTextData }) => {
         elements[i].elData = val;
       }
     });
-    dispatchTextData(elements);
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
+
+ 
 
   return (
     <div className="textSettings">
@@ -32,14 +38,4 @@ const TextSettings = ({ layout, dispatchTextData }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    layout: state.layout
-  };
-};
-
-const mapDispatchToPorps = {
-  dispatchTextData
-};
-
-export default connect(mapStateToProps, mapDispatchToPorps)(TextSettings);
+export default TextSettings;

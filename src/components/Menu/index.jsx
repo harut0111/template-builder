@@ -1,27 +1,27 @@
 import React from "react";
 import uuid from "uuid";
 import Settings from "../Settings";
-import { connect } from 'react-redux'
+import { useStateValue } from "../../context";
+import {
+  ADD_NEW_ELEMENT,
+  SET_BAR_INDEX,
+} from "../../context/actions";
 import { EL_LIST, BAR_LIST } from "../Constants";
-import { dispatchBarIndex, dispatchLayouts } from '../../redux/action'
 
+const Menu = () => {
+  const [{ layout }, dispatchLayouts] = useStateValue();
 
-const Menu = (props) => {
-
-  const {layout, dispatchBarIndex, dispatchLayouts} = props;
-  
-
-  // const handleOnClick = el => {
-  //   // dispatchLayouts({
-  //   //   type: ADD_NEW_ELEMENT,
-  //   //   payload: {
-  //   //     elLabel: el.label,
-  //   //     elId: uuid.v4(),
-  //   //     ElSettings: <el.Settings />,
-  //   //     elData: null
-  //   //   }
-  //   // });
-  // };
+  const handleOnClick = el => {
+    dispatchLayouts({
+      type: ADD_NEW_ELEMENT,
+      payload: {
+        elLabel: el.label,
+        elId: uuid.v4(),
+        ElSettings: <el.Settings />,
+        elData: null
+      }
+    });
+  };
 
   return (
     <div className="menu">
@@ -37,7 +37,7 @@ const Menu = (props) => {
                   }`}
                   onClick={() =>
                     layout.activeEl.id
-                      ? dispatchBarIndex(i)
+                      ? dispatchLayouts({ type: SET_BAR_INDEX, payload: i })
                       : null
                   }
                 >
@@ -62,7 +62,7 @@ const Menu = (props) => {
                   e.dataTransfer.setData("text/plain", el.label)
                 }
                 id={el.label}
-                onClick={() => dispatchLayouts(el, () => uuid.v4())}
+                onClick={() => handleOnClick(el)}
               >
                 {<el.Icon size="22px" />}
                 <span>{el.label}</span>
@@ -75,15 +75,4 @@ const Menu = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    layout: state.layout
-  }
-}
-
-const mapDispatchToProps = {
-  dispatchBarIndex,
-  dispatchLayouts
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default Menu;
