@@ -2,7 +2,7 @@ import React from 'react'
 
 const VideoData = ({elData}) => {
 
-    console.log('videoData', elData);
+    // console.log('videoData', elData);
     console.log(elData && `https://www.${elData.provider}/${elData.url}`)
     return (
         <div className='videoData'>

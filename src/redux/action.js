@@ -33,12 +33,7 @@ export const dispatchLayouts = (el, uuid) => ({
   }
 });
 
-export const dispatchTextData = (val, layout) => {
-  const elements = [...layout.elements];
-  elements.forEach((element, i) => {
-    if (element.elId === layout.activeEl.id) {
-      elements[i].elData = val;
-    }
-  });
-  return { type: UPDATE_ELEMENT, payload: elements };
-};
+export const dispatchTextData = elements => ({
+  type: UPDATE_ELEMENT,
+  payload: elements
+});
