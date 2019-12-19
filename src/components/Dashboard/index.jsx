@@ -7,7 +7,6 @@ import Toolbar from "../../core/Toolbar";
 import { dispatchFilteredEls, dispatchId } from "../../redux/action";
 
 const Dashboard = (props) => {
-  // const [{ layout }, dispatch] = useStateValue();
   
   const {layout, dispatchFilteredEls, dispatchId} = props
 
@@ -30,13 +29,15 @@ const Dashboard = (props) => {
 
   const handleOnToolClick = (ev, id) => {
     // console.log('id', id);
+    // dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
+
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
-    // dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
     dispatchFilteredEls(filteredEls);
   };
 
   const handleOnElementClick = id => {
+    console.log('id', id);
     // console.log("id", id);
     // dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
     dispatchId(id)

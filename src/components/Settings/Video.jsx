@@ -1,13 +1,10 @@
 import React, { useRef } from "react";
-import { useStateValue } from "../../context";
-// import { UPDATE_ELEMENT } from "../../context/actions";
-
+import { connect } from 'react-redux'
 // import { getActiveEl } from "../Constants";
 // import uuid from "uuid";
 import { PROVIDER_LIST } from "../Constants";
 
-const Video = () => {
-  const [{ layout }, dispatch] = useStateValue();
+const Video = ({layout}) => {
 
   const urlRef = useRef(null);
   const providerRef = useRef(null);
@@ -77,4 +74,11 @@ const Video = () => {
   );
 };
 
-export default Video;
+const mapStateToProps = (state) => {
+  return {
+    layout: state.layout
+  }
+}
+
+
+export default connect(mapStateToProps)(Video);

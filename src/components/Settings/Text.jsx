@@ -1,11 +1,10 @@
 import React from "react";
-import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
 import RichTextEditor from 'react-rte';
+import { connect } from 'react-redux'
+import { dispatchTextData } from '../../redux/action'
 
-const TextSettings = () => {
-  const [{ layout }, dispatch] = useStateValue();
+const TextSettings = ({layout, dispatchTextData}) => {
 
 
   // const [content, setContent] = React.useState(
@@ -13,15 +12,16 @@ const TextSettings = () => {
   // );
 
 
-  const handleOnChange = val => {
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = val;
-      }
-    });
-    // dispatch({ type: UPDATE_ELEMENT, payload: elements });
-  };
+  // const handleOnChange = val => {
+  //   const elements = [...layout.elements];
+  //   elements.forEach((element, i) => {
+  //     if (element.elId === layout.activeEl.id) {
+  //       elements[i].elData = val;
+  //     }
+  //   });
+  //   // dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  //   dispatchTextData(val, layout)
+  // };
 
  
 
@@ -32,10 +32,20 @@ const TextSettings = () => {
         className="textEditor"
         autoFocus
         value={getActiveEl(layout).elData || RichTextEditor.createEmptyValue()}
-        onChange={val => handleOnChange(val)}
+        onChange={val => dispatchTextData(val, layout)}
       />
     </div>
   );
 };
 
-export default TextSettings;
+const mapStateToProps = (state) => {
+  return {
+    layout: state.layout
+  }
+}
+
+const mapDispatchToPorps = {
+  dispatchTextData
+}
+
+export default connect(mapStateToProps, mapDispatchToPorps)(TextSettings);

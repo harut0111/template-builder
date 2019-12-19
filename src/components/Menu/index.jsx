@@ -1,25 +1,27 @@
 import React from "react";
 import uuid from "uuid";
 import Settings from "../Settings";
-import { useStateValue } from "../../context";
-
+import { connect } from 'react-redux'
 import { EL_LIST, BAR_LIST } from "../Constants";
-import { SET_BAR_INDEX } from "../Constants/actionTypes";
+import { dispatchBarIndex, dispatchLayouts } from '../../redux/action'
 
-const Menu = () => {
-  const [{ layout }, dispatchLayouts] = useStateValue();
 
-  const handleOnClick = el => {
-    // dispatchLayouts({
-    //   type: ADD_NEW_ELEMENT,
-    //   payload: {
-    //     elLabel: el.label,
-    //     elId: uuid.v4(),
-    //     ElSettings: <el.Settings />,
-    //     elData: null
-    //   }
-    // });
-  };
+const Menu = (props) => {
+
+  const {layout, dispatchBarIndex, dispatchLayouts} = props;
+  
+
+  // const handleOnClick = el => {
+  //   // dispatchLayouts({
+  //   //   type: ADD_NEW_ELEMENT,
+  //   //   payload: {
+  //   //     elLabel: el.label,
+  //   //     elId: uuid.v4(),
+  //   //     ElSettings: <el.Settings />,
+  //   //     elData: null
+  //   //   }
+  //   // });
+  // };
 
   return (
     <div className="menu">
@@ -35,7 +37,7 @@ const Menu = () => {
                   }`}
                   onClick={() =>
                     layout.activeEl.id
-                      ? dispatchLayouts({ type: SET_BAR_INDEX, payload: i })
+                      ? dispatchBarIndex(i)
                       : null
                   }
                 >
@@ -60,7 +62,7 @@ const Menu = () => {
                   e.dataTransfer.setData("text/plain", el.label)
                 }
                 id={el.label}
-                onClick={() => handleOnClick(el)}
+                onClick={() => dispatchLayouts(el, () => uuid.v4())}
               >
                 {<el.Icon size="22px" />}
                 <span>{el.label}</span>
@@ -73,4 +75,16 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  console.log('state', state);
+  return {
+    layout: state.layout
+  }
+}
+
+const mapDispatchToProps = {
+  dispatchBarIndex,
+  dispatchLayouts
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

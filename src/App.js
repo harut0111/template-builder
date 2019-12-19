@@ -4,7 +4,7 @@ import "./style/index.scss";
 // import { initialState, reducer } from "./context/reducer";
 import Main from "./components/Main";
 import { Provider } from "react-redux";
-import {store} from './redux'
+import { store } from "./redux";
 
 function App() {
   return (
