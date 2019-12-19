@@ -3,6 +3,7 @@ import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
 import RichTextEditor from 'react-rte';
+import { areEqual } from "../../core/Comparision";
 
 const TextSettings = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -38,4 +39,4 @@ const TextSettings = () => {
   );
 };
 
-export default TextSettings;
+export default React.memo(TextSettings, (p,n) => areEqual(p,n));
