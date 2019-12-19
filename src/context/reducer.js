@@ -40,7 +40,7 @@ export const reducer = (state, { type, payload }) => {
           activeEl: {
             id: payload.length && payload[payload.length - 1].elId
           },
-          activeBarIndex: 1
+          activeBarIndex: payload.length ? 1:0
         }
       };
     }
