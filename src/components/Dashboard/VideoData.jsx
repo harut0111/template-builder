@@ -1,4 +1,5 @@
 import React from "react";
+import {areEqual} from '../../core/Comparision'
 
 const VideoData = ({ elData }) => {
   if (elData) {
@@ -8,6 +9,8 @@ const VideoData = ({ elData }) => {
     // console.log({ ...videoFormat });
     // console.log(`https://www.${provider}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
 
+    const id = url.slice(url.lastIndexOf("=") + 1);
+
     return (
       <div className="videoData" style={{ height: "150px" }}>
         {elData ? (
@@ -15,7 +18,7 @@ const VideoData = ({ elData }) => {
             title="videFrame"
             width="220"
             height="145"
-            src={`https://www.${provider}/${url}?controls=${+control}&autoplay=${+autoplay}${
+            src={`https://www.${provider}/${id}?controls=${+control}&autoplay=${+autoplay}${
               loop ? `&${+loop}&playlist=${url}` : ""
             }`}
           />
@@ -29,11 +32,4 @@ const VideoData = ({ elData }) => {
   }
 };
 
-const areEqual = (prevProps, nextProps) => {
-  const prevVal = JSON.stringify(prevProps.elData);
-  const nextVal = JSON.stringify(nextProps.elData);
-  
-  return prevVal === nextVal;
-};
-
-export default React.memo(VideoData, areEqual);
+export default React.memo(VideoData, (p,n) => areEqual(p,n));

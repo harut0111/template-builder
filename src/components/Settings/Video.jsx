@@ -53,7 +53,7 @@ const VideoSettings = () => {
         </div>
         <div>
           <label>Source: </label>
-          <input placeholder="URL" ref={urlRef} defaultValue={'q4MEKTVxg0c'} />
+          <input placeholder="URL" ref={urlRef} />
         </div>
         <div>
           <span>
