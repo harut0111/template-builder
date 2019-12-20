@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import uuid from "uuid";
+
 import { PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants/";
-import uuid from "uuid";
 
 const VideoSettings = () => {
   const [{ layout }, dispatch] = useStateValue();
