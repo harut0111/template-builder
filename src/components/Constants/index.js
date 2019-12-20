@@ -71,7 +71,7 @@ export const PROVIDER_LIST = [
 ];
 
 export const VIDEO_FORMAT_LIST = [
-  { label: "Autoplay: ", name: "autoplay " },
-  { label: "Loop: ", name: "loop " },
-  { label: "Control: ", name: "control " }
+  { label: "Autoplay: ", name: "autoplay" },
+  { label: "Loop: ", name: "loop" },
+  { label: "Control: ", name: "control" }
 ];

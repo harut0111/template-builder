@@ -1,6 +1,6 @@
 .dashboard {
     background-color: grey;
-    flex: 0.7;
+    flex: 1;
 
     display: flex;
     justify-content: center;
@@ -20,6 +20,7 @@
             height: 90%;
             border-bottom: 1px dashed gray;
             border-top: 1px dashed gray;
+            overflow-y: scroll;
 
             .element {
                 min-height: 40px;

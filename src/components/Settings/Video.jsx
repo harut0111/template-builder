@@ -1,28 +1,41 @@
-import React, { useRef } from "react";
-import { PROVIDER_LIST } from "../Constants";
+import React, { useState, useEffect } from "react";
+import { PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
+import { getActiveEl } from "../Constants/";
+import uuid from "uuid";
 
 const VideoSettings = () => {
+  const [{ layout }, dispatch] = useStateValue();
 
-  const [{layout}, dispatch] = useStateValue();
+  const [provider, setProvider] = useState(PROVIDER_LIST[0]);
+  const [url, setUrl] = useState("");
+  const [videoFormat, setVideFormat] = useState({
+    autoplay: false,
+    loop: false,
+    control: true
+  });
 
-  const urlRef = useRef(null);
-  const providerRef = useRef(null);
+  const VD = getActiveEl(layout).elData;
 
-  const autoplayRef = useRef(null);
-  const loopRef = useRef(null);
-  const controlRef = useRef(null);
+  useEffect(() => {
+    if (VD) {
+      setProvider(VD.provider);
+      setUrl(VD.url);
+      setVideFormat(VD.videoFormat);
+    } else {
+      setProvider(PROVIDER_LIST[0]);
+      setUrl("");
+      setVideFormat({
+        autoplay: false,
+        loop: false,
+        control: true
+      });
+    }
+  }, [VD]);
 
   const handleOnSubmit = ev => {
     ev.preventDefault();
-
-    const provider = providerRef.current.value;
-    const url = urlRef.current.value;
-
-    const autoplay = autoplayRef.current.checked;
-    const loop = loopRef.current.checked;
-    const control = controlRef.current.checked;
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
@@ -30,11 +43,18 @@ const VideoSettings = () => {
         elements[i].elData = {
           provider,
           url,
-          videoFormat: { autoplay, loop, control }
+          videoFormat
         };
       }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  };
+
+  const handleCheckboxChange = e => {
+    setVideFormat({
+      ...videoFormat,
+      [e.target.name]: !videoFormat[e.target.name]
+    });
   };
 
   return (
@@ -43,7 +63,10 @@ const VideoSettings = () => {
       <form onSubmit={handleOnSubmit}>
         <div>
           <label>Provider: </label>
-          <select ref={providerRef}>
+          <select
+            value={provider.value}
+            onChange={e => setProvider({ ...provider, value: e.target.value })}
+          >
             {PROVIDER_LIST.map((item, i) => (
               <option key={i} value={item.value}>
                 {item.name}
@@ -51,28 +74,31 @@ const VideoSettings = () => {
             ))}
           </select>
         </div>
+
         <div>
           <label>Source: </label>
-          <input placeholder="URL" ref={urlRef} />
+          <input
+            placeholder="URL"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+          />
         </div>
-        <div>
-          <span>
-            <label>Autoplay: </label>
-            <input type="checkbox" ref={autoplayRef} />
+
+        {VIDEO_FORMAT_LIST.map(item => (
+          <span key={uuid.v4()}>
+            <label>{item.label}</label>
+            <input
+              type="checkbox"
+              name={item.name}
+              checked={videoFormat[item.name]}
+              onChange={handleCheckboxChange}
+            />
           </span>
-          <span>
-            <label>Loop: </label>
-            <input type="checkbox" ref={loopRef} />
-          </span>
-          <span>
-            <label>Control: </label>
-            <input type="checkbox" ref={controlRef} />
-          </span>
-        </div>
+        ))}
         <input type="submit" value="Ok" />
       </form>
     </div>
   );
 };
 
-export default VideoSettings
+export default VideoSettings;

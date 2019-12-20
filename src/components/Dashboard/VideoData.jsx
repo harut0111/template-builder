@@ -6,8 +6,10 @@ const VideoData = ({ elData }) => {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
 
+    console.log('autoplay', autoplay);
+
     // console.log({ ...videoFormat });
-    // console.log(`https://www.${provider}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
+    console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
 
     const id = url.slice(url.lastIndexOf("=") + 1);
 
@@ -18,7 +20,7 @@ const VideoData = ({ elData }) => {
             title="videFrame"
             width="220"
             height="145"
-            src={`https://www.${provider}/${id}?controls=${+control}&autoplay=${+autoplay}${
+            src={`https://www.${provider.value}/${id}?controls=${+control}&autoplay=${+autoplay}${
               loop ? `&${+loop}&playlist=${url}` : ""
             }`}
           />
