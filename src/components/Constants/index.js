@@ -48,19 +48,15 @@ export const EL_DATA_LIST = [
   { label: "Divider", Data: DividerData }
 ];
 
+export const BORDER_TYPE_LIST = [
+  "solid",
+  "dotted",
+  "dashed",
+  "double",
+  "none",
+];
+
 export const BAR_LIST = ["Elements", "Component Settings"];
-
-export const getActiveEl = layout => {
-  const filteredItem = layout.elements.filter(
-    el => el.elId === layout.activeEl.id
-  );
-  return filteredItem[0];
-};
-
-export const filterElement = (layout, id) => {
-  const filteredItem = layout.elements.filter(el => el.elId !== id);
-  return filteredItem;
-};
 
 export const PROVIDER_LIST = [
   { name: "YouTube", value: "youtube.com/embed" },
@@ -75,3 +71,16 @@ export const VIDEO_FORMAT_LIST = [
   { label: "Loop: ", name: "loop" },
   { label: "Control: ", name: "control" }
 ];
+
+
+export const getActiveEl = layout => {
+  const filteredItem = layout.elements.filter(
+    el => el.elId === layout.activeEl.id
+  );
+  return filteredItem[0];
+};
+
+export const filterElement = (layout, id) => {
+  const filteredItem = layout.elements.filter(el => el.elId !== id);
+  return filteredItem;
+};

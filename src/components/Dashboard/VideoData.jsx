@@ -1,15 +1,13 @@
 import React from "react";
-import {areEqual} from '../../core/Comparision'
+import { areEqual } from '../../core/Comparision'
 
 const VideoData = ({ elData }) => {
   if (elData) {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
 
-    console.log('autoplay', autoplay);
-
     // console.log({ ...videoFormat });
-    console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
+    // console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
 
     const id = url.slice(url.lastIndexOf("=") + 1);
 
