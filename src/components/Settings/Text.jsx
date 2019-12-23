@@ -2,17 +2,14 @@ import React from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
-import RichTextEditor from 'react-rte';
-import { areEqual } from "../../core/Comparision";
+import RichTextEditor from "react-rte";
 
 const TextSettings = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-
   // const [content, setContent] = React.useState(
   //   RichTextEditor.createEmptyValue()
   // );
-
 
   const handleOnChange = val => {
     const elements = [...layout.elements];
@@ -23,8 +20,6 @@ const TextSettings = () => {
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
-
- 
 
   return (
     <div className="textSettings">
@@ -39,4 +34,4 @@ const TextSettings = () => {
   );
 };
 
-export default React.memo(TextSettings, (p,n) => areEqual(p,n));
+export default TextSettings;

@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const DividerData = ({ elData }) => {
   if (elData) {
@@ -26,4 +27,4 @@ const DividerData = ({ elData }) => {
   );
 };
 
-export default DividerData;
+export default React.memo(DividerData, (p, n) => areEqual(p, n));

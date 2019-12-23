@@ -24,14 +24,6 @@ const VideoSettings = () => {
       setProvider(VD.provider);
       setUrl(VD.url);
       setVideFormat(VD.videoFormat);
-    } else {
-      setProvider(PROVIDER_LIST[0]);
-      setUrl("");
-      setVideFormat({
-        autoplay: false,
-        loop: false,
-        control: true
-      });
     }
   }, [VD]);
 

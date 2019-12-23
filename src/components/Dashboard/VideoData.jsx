@@ -2,6 +2,8 @@ import React from "react";
 import { areEqual } from "../../core/Comparision";
 
 const VideoData = ({ elData, active }) => {
+
+  console.log('elData', elData);
   if (elData) {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
