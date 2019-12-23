@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const TextData = ({elData}) => {
-    return (
-        <div className='textData'>
-            <p>Text Data</p>
-            <div dangerouslySetInnerHTML={{ __html: elData && elData.toString('html') }} />
-        </div>
-)
-}
+const TextData = ({ elData, active }) => {
+  return (
+    <div
+      className={`element ${active ? "element-active" : ""}`}
+    //   className="textData"
+    >
+      <div
+        dangerouslySetInnerHTML={{ __html: elData && elData.toString("html") }}
+      />
+    </div>
+  );
+};
 
-export default TextData
+export default TextData;

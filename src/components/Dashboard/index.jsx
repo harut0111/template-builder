@@ -50,19 +50,23 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              className={`element ${
-                el.elId === layout.activeEl.id ? "element-active" : ""
-              }`}
+              // className={`element ${
+              //   el.elId === layout.activeEl.id ? "element-active" : ""
+              // }`}
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
               <Toolbar
-                className={"textSettings-toolbar"}
+                className={"toolbar"}
                 onClick={ev => handleOnToolClick(ev, el.elId)}
               />
               {EL_DATA_LIST.map((item, i) =>
                 item.label === el.elLabel ? (
-                  <item.Data key={el.elId + i} elData={el.elData} />
+                  <item.Data
+                    key={el.elId + i}
+                    elData={el.elData}
+                    active={el.elId === layout.activeEl.id}
+                  />
                 ) : null
               )}
             </div>

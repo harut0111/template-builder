@@ -1,10 +1,9 @@
 import React from 'react'
 import {MdDeleteForever} from 'react-icons/md'
 
-const Toolbar = ({className, onClick}) => {
+const Toolbar = ({onClick}) => {
     return (
-        <div className={className} >
-            {/* <MdModeEdit /> */}
+        <div className='toolbar' >
             <MdDeleteForever onClick={onClick} style={{cursor: 'pointer', color: 'red', float: "right"}}/>
         </div>
     )

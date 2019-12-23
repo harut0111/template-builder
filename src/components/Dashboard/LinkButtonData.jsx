@@ -1,6 +1,6 @@
 import React from "react";
 
-const LinkButtonData = ({ elData }) => {
+const LinkButtonData = ({ elData, active }) => {
   //   console.log("LinkBtnData", elData);
 
   if (elData) {
@@ -15,7 +15,11 @@ const LinkButtonData = ({ elData }) => {
       textDecoration: "none"
     };
     return (
-      <div className="linkButtonData" style={{ padding: "10px" }}>
+      <div
+        className={`element ${active ? "element-active" : ""}`}
+        // className="linkButtonData"
+        style={{ padding: "10px" }}
+      >
         <a
           href={url ? url : "#"}
           style={style}
@@ -27,7 +31,14 @@ const LinkButtonData = ({ elData }) => {
       </div>
     );
   }
-  return <div style={{ color: "red" }}>Please set settings</div>;
+  return (
+    <div
+      className={`element ${active ? "element-active" : ""}`}
+      style={{ color: "red" }}
+    >
+      Please set settings
+    </div>
+  );
 };
 
 export default LinkButtonData;

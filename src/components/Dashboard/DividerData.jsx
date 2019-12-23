@@ -1,12 +1,29 @@
-import React from 'react'
+import React from "react";
 
-const DividerData = ({elData}) => {
+const DividerData = ({ elData }) => {
+  if (elData) {
+    const { borderType, borderWidth, borderColor } = elData;
     return (
-        <div className='dividerData'>
-            <p>Divider Data</p>
-            <div>{elData}</div>
-        </div>
-    )
-}
+      <div
+        className="dividerData"
+        style={{ margin: "30px 0px", padding: "1px 0 0 0" }}
+      >
+        <hr
+          style={{ borderTop: `${borderWidth}px ${borderType} ${borderColor}` }}
+        //   style={{ borderTop: "1px solid red" }}
+        />
+      </div>
+    );
+  }
 
-export default DividerData
+  return (
+    <div
+      className="dividerData"
+      style={{ margin: "30px 0px", padding: "1px 0 0 0" }}
+    >
+      <hr />
+    </div>
+  );
+};
+
+export default DividerData;

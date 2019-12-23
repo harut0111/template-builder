@@ -1,12 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const SocialMediaData = ({elData}) => {
-    return (
-        <div className='socialMediaData'>
-            <p>Social Media Data</p>
-            <div>{elData}</div>
-        </div>
-    )
-}
+const SocialMediaData = ({ elData, active }) => {
+  return (
+    <div
+      className={`element ${active ? "element-active" : ""}`}
+    //   className="socialMediaData"
+    >
+      <p>Social Media Data</p>
+      <div>{elData}</div>
+    </div>
+  );
+};
 
-export default SocialMediaData
+export default SocialMediaData;

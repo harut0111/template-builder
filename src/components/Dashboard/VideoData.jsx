@@ -1,7 +1,7 @@
 import React from "react";
-import { areEqual } from '../../core/Comparision'
+import { areEqual } from "../../core/Comparision";
 
-const VideoData = ({ elData }) => {
+const VideoData = ({ elData, active }) => {
   if (elData) {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
@@ -12,13 +12,19 @@ const VideoData = ({ elData }) => {
     const id = url.slice(url.lastIndexOf("=") + 1);
 
     return (
-      <div className="videoData" style={{ height: "150px" }}>
+      <div
+        className={`element ${active ? "element-active" : ""}`}
+        // className="videoData"
+        style={{ height: "150px" }}
+      >
         {elData ? (
           <iframe
             title="videFrame"
             width="220"
             height="145"
-            src={`https://www.${provider.value}/${id}?controls=${+control}&autoplay=${+autoplay}${
+            src={`https://www.${
+              provider.value
+            }/${id}?controls=${+control}&autoplay=${+autoplay}${
               loop ? `&${+loop}&playlist=${url}` : ""
             }`}
           />
@@ -27,9 +33,14 @@ const VideoData = ({ elData }) => {
     );
   } else {
     return (
-      <div style={{ height: "150px", color: "red" }}>Set Video Settings</div>
+      <div
+        className={`element ${active ? "element-active" : ""}`}
+        style={{ height: "150px", color: "red" }}
+      >
+        Set Video Settings
+      </div>
     );
   }
 };
 
-export default React.memo(VideoData, (p,n) => areEqual(p,n));
+export default React.memo(VideoData, (p, n) => areEqual(p, n));
