@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import uuid from "uuid";
 
 import { BORDER_TYPE_LIST, getActiveEl } from "../Constants";
@@ -8,22 +8,21 @@ import { UPDATE_ELEMENT } from "../../context/actions";
 const Divider = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  const [borderType, setBorderType] = useState("solid");
-  const [borderWidth, setBorderWidth] = useState("1");
-  const [borderColor, setBorderColor] = useState("#000000");
+  // const [borderType, setBorderType] = useState("solid");
+  // const [borderWidth, setBorderWidth] = useState("1");
+  // const [borderColor, setBorderColor] = useState("#000000");
 
   const borderTypeRef = useRef(null);
   const borderWidthRef = useRef(null);
   const borderColorRef = useRef(null);
 
-  const handleOnChange = ev => {
+  const handleOnChange = () => {
     const borderType = borderTypeRef.current.value;
     const borderWidth = borderWidthRef.current.value;
     const borderColor = borderColorRef.current.value;
 
-    console.log("object", borderType, borderWidth, borderColor);
-    // ev.preventDefault();
     const elements = [...layout.elements];
+
     elements.forEach((element, i) => {
       if (element.elId === layout.activeEl.id) {
         elements[i].elData = {
@@ -36,18 +35,17 @@ const Divider = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  const memoizedCallback = useCallback(handleOnChange, [
-    borderType,
-    borderWidth,
-    borderColor
-  ]);
+  // const memoizedCallback = useCallback(handleOnChange, [
+  //   borderType,
+  //   borderWidth,
+  //   borderColor
+  // ]);
 
-  useEffect(() => {
-    memoizedCallback();
-  }, [memoizedCallback]);
+  // useEffect(() => {
+  //   memoizedCallback();
+  // }, [memoizedCallback]);
 
-  const DD = getActiveEl(layout).elData;
-  console.log("DD", DD);
+  // console.log("DD", DD);
 
   // const memoizedLocalStateUpdate = useCallback(() => {
   //   if (DD) {
@@ -60,6 +58,8 @@ const Divider = () => {
   // useEffect(() => {
   //   memoizedLocalStateUpdate();
   // }, [memoizedLocalStateUpdate]);
+
+  const DD = getActiveEl(layout).elData;
 
   return (
     <div className="Divider">
