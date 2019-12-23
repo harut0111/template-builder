@@ -11,7 +11,7 @@ import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
   const [{ layout }, dispatch] = useStateValue();
-
+  
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
     const el = EL_LIST.filter(el => el.label === elLabel)[0];

@@ -31,16 +31,15 @@ const VideoData = ({ elData, active }) => {
         ) : null}
       </div>
     );
-  } else {
-    return (
-      <div
-        className={`element ${active ? "element-active" : ""}`}
-        style={{ height: "150px", color: "red" }}
-      >
-        Set Video Settings
-      </div>
-    );
   }
+  return (
+    <div
+      className={`element ${active ? "element-active" : ""}`}
+      style={{ height: "150px", color: "red" }}
+    >
+      Set Video Settings
+    </div>
+  );
 };
 
 export default React.memo(VideoData, (p, n) => areEqual(p, n));

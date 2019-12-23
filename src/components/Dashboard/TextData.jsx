@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const TextData = ({ elData, active }) => {
   return (
@@ -13,4 +14,4 @@ const TextData = ({ elData, active }) => {
   );
 };
 
-export default TextData;
+export default React.memo(TextData, (p, n) => areEqual(p, n));
