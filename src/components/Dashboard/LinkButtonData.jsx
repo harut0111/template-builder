@@ -31,14 +31,7 @@ const LinkButtonData = ({ elData, active }) => {
       </div>
     );
   }
-  return (
-    <div
-      className={`element ${active ? "element-active" : ""}`}
-      style={{ color: "red" }}
-    >
-      Please set settings
-    </div>
-  );
+  return null;
 };
 
 export default LinkButtonData;
