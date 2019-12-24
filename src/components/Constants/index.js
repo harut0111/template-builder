@@ -67,14 +67,10 @@ export const VIDEO_PROVIDER_LIST = [
 ];
 
 export const AUDIO_PROVIDER_LIST = [
-  { name: "YouTube", value: "youtube.com/embed" },
-  { name: "Facebook", value: "facebook.com/facebook/videos" },
-  { name: "Vimeo", value: "asdf" },
-  { name: "Metacafe", value: "asdf" },
-  { name: "Veoh", value: "asdf" }
+  { name: "Soundcloud", value: "youtube.com/embed" },
 ];
 
-export const VIDEO_FORMAT_LIST = [
+export const FORMAT_LIST = [
   { label: "Autoplay: ", name: "autoplay" },
   { label: "Loop: ", name: "loop" },
   { label: "Control: ", name: "control" }

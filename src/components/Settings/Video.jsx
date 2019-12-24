@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 
-import { VIDEO_PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
+import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants/";
@@ -77,7 +77,7 @@ const Video = () => {
           />
         </div>
 
-        {VIDEO_FORMAT_LIST.map(item => (
+        {FORMAT_LIST.map(item => (
           <span key={uuid.v4()}>
             <label>{item.label}</label>
             <input
