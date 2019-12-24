@@ -48,32 +48,26 @@ export const EL_DATA_LIST = [
   { label: "Divider", Data: DividerData }
 ];
 
-export const BORDER_TYPE_LIST = [
-  "solid",
-  "dotted",
-  "dashed",
-  "double",
-  "none",
-];
+export const BORDER_TYPE_LIST = ["solid", "dotted", "dashed", "double", "none"];
 
 export const BAR_LIST = ["Elements", "Component Settings"];
 
 export const VIDEO_PROVIDER_LIST = [
-  { name: "YouTube", value: "youtube.com/embed" },
-  { name: "Facebook", value: "facebook.com/facebook/videos" },
-  { name: "Vimeo", value: "asdf" },
-  { name: "Metacafe", value: "asdf" },
-  { name: "Veoh", value: "asdf" }
+  "YouTube",
+  "Facebook",
+  "Vimeo",
+  "Metacafe",
+  "Veoh"
 ];
 
 export const AUDIO_PROVIDER_LIST = [
-  { name: "Soundcloud", value: "youtube.com/embed" },
+  { name: "Soundcloud", value: "youtube.com/embed" }
 ];
 
 export const FORMAT_LIST = [
-  { label: "Autoplay: ", name: "autoplay" },
-  { label: "Loop: ", name: "loop" },
-  { label: "Control: ", name: "control" }
+  { label: "Autoplay: ", name: "autoplay", defaultVal: false },
+  { label: "Loop: ", name: "loop", defaultVal: false },
+  { label: "Control: ", name: "control", defaultVal: true }
 ];
 
 export const getActiveEl = layout => {

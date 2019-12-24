@@ -9,6 +9,7 @@ const VideoData = ({ elData, active }) => {
     // console.log({ ...videoFormat });
     // console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
 
+    console.log('provider', provider);
     const id = url.slice(url.lastIndexOf("=") + 1);
 
     return (
@@ -24,9 +25,7 @@ const VideoData = ({ elData, active }) => {
             height="200"
             scrolling="no"
             frameBorder="no"
-            src={`https://www.${
-              provider.value
-            }/${id}?controls=${+control}&autoplay=${+autoplay}${
+            src={`https://www.youtube.com/embed/${id}?controls=${+control}&autoplay=${+autoplay}${
               loop ? `&${+loop}&playlist=${url}` : ""
             }`}
           />

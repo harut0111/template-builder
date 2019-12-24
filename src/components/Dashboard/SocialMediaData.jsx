@@ -7,7 +7,7 @@ const SocialMediaData = ({ elData, active }) => {
       className={`element ${active ? "element-active" : ""}`}
       //   className="socialMediaData"
     >
-      <p>Social Media Data</p>
+      <h3>SOCIAL MEDIA</h3>
       <div>{elData}</div>
     </div>
   );
