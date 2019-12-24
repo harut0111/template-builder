@@ -5,6 +5,7 @@ const AudioData = ({ elData, active }) => {
   return (
     <div className={`element ${active ? "element-active" : ""}`}>
       <iframe
+        title="audio"
         width="100%"
         height="166"
         scrolling="no"
@@ -14,15 +15,16 @@ const AudioData = ({ elData, active }) => {
       />
     </div>
   );
-  return (
-    <div className={`element ${active ? "element-active" : ""}`}>
-      <audio src="horse.ogg" controls>
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  );
 };
 
 export default React.memo(AudioData, (p, n) => areEqual(p, n));
 
 // https://developers.soundcloud.com/
+
+// return (
+//   <div className={`element ${active ? "element-active" : ""}`}>
+//     <audio src="horse.ogg" controls>
+//       Your browser does not support the audio element.
+//     </audio>
+//   </div>
+// );
