@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import uuid from "uuid";
 
-import { FORMAT_LIST, AUDIO_PROVIDER_LIST } from "../Constants";
+import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants/";
 
-const Audio = () => {
+const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  const [provider, setProvider] = useState(AUDIO_PROVIDER_LIST[0]);
-  const [url, setUrl] = useState("");
-  const [videoFormat, setVideFormat] = useState({
-    autoplay: false,
-    loop: false,
-    control: true
-  });
+  const providerRef = useRef(null);
+  const urlRef = useRef(null);
 
+  const [autoplayRef, loopRef, controlRef] = [
+    useRef(null),
+    useRef(null),
+    useRef(null)
+  ];
+
+  const arrOfRefs = [autoplayRef, loopRef, controlRef];
   const VD = getActiveEl(layout).elData;
 
-  useEffect(() => {
-    if (VD) {
-      setProvider(VD.provider);
-      setUrl(VD.url);
-      setVideFormat(VD.videoFormat);
-    }
-  }, [VD]);
+  const handleOnChange = () => {
+    const provider = providerRef.current.value;
+    const url = urlRef.current.value;
 
-  const handleOnSubmit = ev => {
-    ev.preventDefault();
+    const autoplay = autoplayRef.current.checked;
+    const loop = loopRef.current.checked;
+    const control = controlRef.current.checked;
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
@@ -36,33 +35,30 @@ const Audio = () => {
         elements[i].elData = {
           provider,
           url,
-          videoFormat
+          videoFormat: { autoplay, loop, control }
         };
       }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  const handleCheckboxChange = e => {
-    setVideFormat({
-      ...videoFormat,
-      [e.target.name]: !videoFormat[e.target.name]
-    });
-  };
+  useEffect(handleOnChange, []);
 
   return (
-    <div className="audioSettings">
-      <h3>AUDIO</h3>
-      <form onSubmit={handleOnSubmit}>
+    <div className="videoSettings">
+      <h3>Video</h3>
+      <form onChange={handleOnChange}>
         <div>
           <label>Provider: </label>
           <select
-            value={provider.value}
-            onChange={e => setProvider({ ...provider, value: e.target.value })}
+            // onChange={e => setProvider({ ...provider, value: e.target.value })}
+            defaultValue={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
+            ref={providerRef}
+            onChange={handleOnChange}
           >
-            {AUDIO_PROVIDER_LIST.map((item, i) => (
-              <option key={i} value={item.value}>
-                {item.name}
+            {VIDEO_PROVIDER_LIST.map((provider, i) => (
+              <option key={i} value={provider}>
+                {provider}
               </option>
             ))}
           </select>
@@ -72,26 +68,35 @@ const Audio = () => {
           <label>Source: </label>
           <input
             placeholder="URL"
-            value={url}
-            onChange={e => setUrl(e.target.value)}
+            // value={url}
+            // onChange={e => setUrl(e.target.value)}
+            ref={urlRef}
+            defaultValue={VD ? VD.url : ""}
+            onChange={handleOnChange}
           />
         </div>
-
-        {FORMAT_LIST.map(item => (
-          <span key={uuid.v4()}>
-            <label>{item.label}</label>
-            <input
-              type="checkbox"
-              name={item.name}
-              checked={videoFormat[item.name]}
-              onChange={handleCheckboxChange}
-            />
-          </span>
-        ))}
-        <input type="submit" value="Ok" />
+        <div>
+          {FORMAT_LIST.map((item, i) => (
+            <span key={uuid.v4()}>
+              <label>{item.label}</label>
+              <input
+                type="checkbox"
+                name={item.name}
+                // checked={videoFormat[item.name]}
+                // checked={true}
+                defaultChecked={
+                  VD ? VD.videoFormat[item.name] : item.defaultVal
+                }
+                onChange={handleOnChange}
+                ref={arrOfRefs[i]}
+              />
+            </span>
+          ))}
+        </div>
+        {/* <input type="submit" value="Ok" /> */}
       </form>
     </div>
   );
 };
 
-export default Audio;
+export default Video;

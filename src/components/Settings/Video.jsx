@@ -9,14 +9,6 @@ import { getActiveEl } from "../Constants/";
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  // const [provider, setProvider] = useState(VIDEO_PROVIDER_LIST[0]);
-  // const [url, setUrl] = useState("");
-  // const [videoFormat, setVideFormat] = useState({
-  //   autoplay: false,
-  //   loop: false,
-  //   control: true
-  // });
-
   const providerRef = useRef(null);
   const urlRef = useRef(null);
 
@@ -51,13 +43,6 @@ const Video = () => {
   };
 
   useEffect(handleOnChange, []);
-
-  // const handleCheckboxChange = e => {
-  //   setVideFormat({
-  //     ...videoFormat,
-  //     [e.target.name]: !videoFormat[e.target.name]
-  //   });
-  // };
 
   return (
     <div className="videoSettings">
