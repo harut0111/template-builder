@@ -4,7 +4,7 @@ import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
 import RichTextEditor from "react-rte";
 
-const TextSettings = () => {
+const Text = () => {
   const [{ layout }, dispatch] = useStateValue();
 
   // const [content, setContent] = React.useState(
@@ -34,4 +34,4 @@ const TextSettings = () => {
   );
 };
 
-export default TextSettings;
+export default Text;

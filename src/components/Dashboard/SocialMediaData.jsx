@@ -1,10 +1,11 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const SocialMediaData = ({ elData, active }) => {
   return (
     <div
       className={`element ${active ? "element-active" : ""}`}
-    //   className="socialMediaData"
+      //   className="socialMediaData"
     >
       <p>Social Media Data</p>
       <div>{elData}</div>
@@ -12,4 +13,4 @@ const SocialMediaData = ({ elData, active }) => {
   );
 };
 
-export default SocialMediaData;
+export default React.memo(SocialMediaData, (p, n) => areEqual(p, n));

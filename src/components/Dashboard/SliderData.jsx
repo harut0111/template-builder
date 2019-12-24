@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const SliderData = ({ elData,active }) => {
   return (
@@ -12,4 +13,4 @@ const SliderData = ({ elData,active }) => {
   );
 };
 
-export default SliderData;
+export default React.memo(SliderData, (p, n) => areEqual(p, n));

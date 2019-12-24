@@ -2,8 +2,6 @@ import React from "react";
 import { areEqual } from "../../core/Comparision";
 
 const VideoData = ({ elData, active }) => {
-
-  console.log('elData', elData);
   if (elData) {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
@@ -17,13 +15,15 @@ const VideoData = ({ elData, active }) => {
       <div
         className={`element ${active ? "element-active" : ""}`}
         // className="videoData"
-        style={{ height: "150px" }}
+        style={{ height: "220px" }}
       >
         {elData ? (
           <iframe
-            title="videFrame"
-            width="220"
-            height="145"
+            title="video"
+            width="100%"
+            height="200"
+            scrolling="no"
+            frameBorder="no"
             src={`https://www.${
               provider.value
             }/${id}?controls=${+control}&autoplay=${+autoplay}${

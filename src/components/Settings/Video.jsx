@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 
-import { PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
+import { VIDEO_PROVIDER_LIST, VIDEO_FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants/";
 
-const VideoSettings = () => {
+const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  const [provider, setProvider] = useState(PROVIDER_LIST[0]);
+  const [provider, setProvider] = useState(VIDEO_PROVIDER_LIST[0]);
   const [url, setUrl] = useState("");
   const [videoFormat, setVideFormat] = useState({
     autoplay: false,
@@ -60,7 +60,7 @@ const VideoSettings = () => {
             value={provider.value}
             onChange={e => setProvider({ ...provider, value: e.target.value })}
           >
-            {PROVIDER_LIST.map((item, i) => (
+            {VIDEO_PROVIDER_LIST.map((item, i) => (
               <option key={i} value={item.value}>
                 {item.name}
               </option>
@@ -94,4 +94,4 @@ const VideoSettings = () => {
   );
 };
 
-export default VideoSettings;
+export default Video;

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect,useRef } from "react";
 import uuid from "uuid";
 
 import { BORDER_TYPE_LIST, getActiveEl } from "../Constants";
@@ -35,6 +35,8 @@ const Divider = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
+  useEffect(handleOnChange, []);
+
   // const memoizedCallback = useCallback(handleOnChange, [
   //   borderType,
   //   borderWidth,
@@ -63,12 +65,13 @@ const Divider = () => {
 
   return (
     <div className="Divider">
-      <h3>DIVIDER{Math.random()}</h3>
-      <form>
+      <h3>DIVIDER</h3>
+      <form onChange={handleOnChange}>
         <select
-          value={DD ? DD.borderType : "solid"}
+          defaultValue={DD ? DD.borderType : "solid"}
+          // value={DD ? DD.borderType : "solid"}
           // onChange={e => setBorderType(e.target.value)}
-          onChange={handleOnChange}
+          // onChange={handleOnChange}
           ref={borderTypeRef}
         >
           {BORDER_TYPE_LIST.map(value => (
@@ -80,18 +83,20 @@ const Divider = () => {
         <div>
           <input
             type="number"
-            value={DD ? +DD.borderWidth : "1"}
+            defaultValue={DD ? +DD.borderWidth : "1"}
+            // value={DD ? +DD.borderWidth : "1"}
             // onChange={e => setBorderWidth(String(e.target.value))}
-            onChange={handleOnChange}
+            // onChange={handleOnChange}
             ref={borderWidthRef}
           />
           <span>px</span>
         </div>
         <input
           type="color"
-          value={DD ? DD.borderColor : "#000000"}
+          defaultValue={DD ? DD.borderColor : "#000000"}
+          // value={DD ? DD.borderColor : "#000000"}
           // onChange={e => setBorderColor(e.target.value)}
-          onChange={handleOnChange}
+          // onChange={handleOnChange}
           ref={borderColorRef}
         />
       </form>

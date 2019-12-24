@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const ImageData = ({ elData, active }) => {
   return (
@@ -12,4 +13,5 @@ const ImageData = ({ elData, active }) => {
   );
 };
 
-export default ImageData;
+export default React.memo(ImageData, (p, n) => areEqual(p, n));
+

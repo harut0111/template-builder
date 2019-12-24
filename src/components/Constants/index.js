@@ -58,7 +58,15 @@ export const BORDER_TYPE_LIST = [
 
 export const BAR_LIST = ["Elements", "Component Settings"];
 
-export const PROVIDER_LIST = [
+export const VIDEO_PROVIDER_LIST = [
+  { name: "YouTube", value: "youtube.com/embed" },
+  { name: "Facebook", value: "facebook.com/facebook/videos" },
+  { name: "Vimeo", value: "asdf" },
+  { name: "Metacafe", value: "asdf" },
+  { name: "Veoh", value: "asdf" }
+];
+
+export const AUDIO_PROVIDER_LIST = [
   { name: "YouTube", value: "youtube.com/embed" },
   { name: "Facebook", value: "facebook.com/facebook/videos" },
   { name: "Vimeo", value: "asdf" },
@@ -71,7 +79,6 @@ export const VIDEO_FORMAT_LIST = [
   { label: "Loop: ", name: "loop" },
   { label: "Control: ", name: "control" }
 ];
-
 
 export const getActiveEl = layout => {
   const filteredItem = layout.elements.filter(

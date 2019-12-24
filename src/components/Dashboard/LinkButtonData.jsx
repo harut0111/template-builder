@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const LinkButtonData = ({ elData, active }) => {
   //   console.log("LinkBtnData", elData);
@@ -34,4 +35,5 @@ const LinkButtonData = ({ elData, active }) => {
   return null;
 };
 
-export default LinkButtonData;
+export default React.memo(LinkButtonData, (p, n) => areEqual(p, n));
+

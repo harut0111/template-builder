@@ -1,4 +1,5 @@
 import React from "react";
+import { areEqual } from "../../core/Comparision";
 
 const MapData = ({ elData, active }) => {
   return (
@@ -12,4 +13,5 @@ const MapData = ({ elData, active }) => {
   );
 };
 
-export default MapData;
+export default React.memo(MapData, (p, n) => areEqual(p, n));
+

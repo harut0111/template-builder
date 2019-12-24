@@ -105,6 +105,7 @@ const LinkButton = () => {
             // onChange={e => setUrl(e.target.value)}
             // value={LBD ? LBD.url: ""}
             // onChange={handleOnChange}
+            required
             defaultValue={LBD ? LBD.url : ""}
             ref={urlRef}
           />
