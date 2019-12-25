@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
@@ -29,11 +29,23 @@ const SocialMedia = () => {
   useEffect(handleOnChange, []);
 
   const SMD = getActiveEl(layout).elData;
+  const socialMediaIcons = [
+    <FaFacebook />,
+    <FaTwitter />,
+    <FaInstagram />,
+    <FaYoutube />
+  ];
 
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
-      <FaFacebook />
+      {
+        socialMediaIcons[
+          SOCIAL_MEDIA_LIST.indexOf(
+            socialMediaRef.current && socialMediaRef.current.value
+          )
+        ]
+      }
       <form onChange={handleOnChange}>
         <select defaultValue={SMD ? SMD.socialMedia : ""} ref={socialMediaRef}>
           {SOCIAL_MEDIA_LIST.map((item, i) => (
@@ -42,7 +54,12 @@ const SocialMedia = () => {
             </option>
           ))}
         </select>
-        <input type="url" placeholder='URL' ref={urlRef} defaultValue={SMD ? SMD.url : ""} />
+        <input
+          type="url"
+          placeholder="URL"
+          ref={urlRef}
+          defaultValue={SMD ? SMD.url : ""}
+        />
       </form>
     </div>
   );

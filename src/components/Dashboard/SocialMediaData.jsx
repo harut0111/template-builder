@@ -8,7 +8,6 @@ const SocialMediaData = ({ elData, active }) => {
         className={`element ${active ? "element-active" : ""}`}
         //   className="socialMediaData"
       >
-        <h3>SOCIAL MEDIA</h3>
         <div>{JSON.stringify(elData)}</div>
       </div>
     );
