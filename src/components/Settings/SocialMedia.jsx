@@ -39,28 +39,37 @@ const SocialMedia = () => {
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
-      {
-        socialMediaIcons[
-          SOCIAL_MEDIA_LIST.indexOf(
-            socialMediaRef.current && socialMediaRef.current.value
-          )
-        ]
-      }
-      <form onChange={handleOnChange}>
-        <select defaultValue={SMD ? SMD.socialMedia : ""} ref={socialMediaRef}>
-          {SOCIAL_MEDIA_LIST.map((item, i) => (
-            <option key={i} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-        <input
-          type="url"
-          placeholder="URL"
-          ref={urlRef}
-          defaultValue={SMD ? SMD.url : ""}
-        />
-      </form>
+      <div className="socialMedia-main">
+        {
+          socialMediaIcons[
+            SOCIAL_MEDIA_LIST.indexOf(
+              socialMediaRef.current && socialMediaRef.current.value
+            )
+          ]
+        }
+        <form onChange={handleOnChange}>
+          <select
+            defaultValue={SMD ? SMD.socialMedia : ""}
+            ref={socialMediaRef}
+          >
+            {SOCIAL_MEDIA_LIST.map((item, i) => (
+              <option key={i} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+          <input
+            type="url"
+            placeholder="URL"
+            ref={urlRef}
+            defaultValue={SMD ? SMD.url : ""}
+          />
+          <hr />
+          <input type="submit" value="Delete" />
+        </form>
+        <hr />
+      </div>
+      <button>Add another service</button>
     </div>
   );
 };
