@@ -3,13 +3,13 @@ import { areEqual } from "../../core/Comparision";
 
 const VideoData = ({ elData, active }) => {
   if (elData) {
+    // eslint-disable-next-line
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
 
     // console.log({ ...videoFormat });
     // console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
 
-    console.log('provider', provider);
     const id = url.slice(url.lastIndexOf("=") + 1);
 
     return (

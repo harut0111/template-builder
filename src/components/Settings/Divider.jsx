@@ -1,4 +1,4 @@
-import React, { useEffect,useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import uuid from "uuid";
 
 import { BORDER_TYPE_LIST, getActiveEl } from "../Constants";
@@ -37,43 +37,13 @@ const Divider = () => {
 
   useEffect(handleOnChange, []);
 
-  // const memoizedCallback = useCallback(handleOnChange, [
-  //   borderType,
-  //   borderWidth,
-  //   borderColor
-  // ]);
-
-  // useEffect(() => {
-  //   memoizedCallback();
-  // }, [memoizedCallback]);
-
-  // console.log("DD", DD);
-
-  // const memoizedLocalStateUpdate = useCallback(() => {
-  //   if (DD) {
-  //     setBorderType(DD.borderType);
-  //     setBorderWidth(DD.borderWidth);
-  //     setBorderColor(DD.borderColor);
-  //   }
-  // }, [DD]);
-
-  // useEffect(() => {
-  //   memoizedLocalStateUpdate();
-  // }, [memoizedLocalStateUpdate]);
-
   const DD = getActiveEl(layout).elData;
 
   return (
     <div className="Divider">
       <h3>DIVIDER</h3>
       <form onChange={handleOnChange}>
-        <select
-          defaultValue={DD ? DD.borderType : "solid"}
-          // value={DD ? DD.borderType : "solid"}
-          // onChange={e => setBorderType(e.target.value)}
-          // onChange={handleOnChange}
-          ref={borderTypeRef}
-        >
+        <select defaultValue={DD ? DD.borderType : "solid"} ref={borderTypeRef}>
           {BORDER_TYPE_LIST.map(value => (
             <option key={uuid.v4()} value={value}>
               {value}
@@ -84,9 +54,6 @@ const Divider = () => {
           <input
             type="number"
             defaultValue={DD ? +DD.borderWidth : "1"}
-            // value={DD ? +DD.borderWidth : "1"}
-            // onChange={e => setBorderWidth(String(e.target.value))}
-            // onChange={handleOnChange}
             ref={borderWidthRef}
           />
           <span>px</span>
@@ -94,9 +61,6 @@ const Divider = () => {
         <input
           type="color"
           defaultValue={DD ? DD.borderColor : "#000000"}
-          // value={DD ? DD.borderColor : "#000000"}
-          // onChange={e => setBorderColor(e.target.value)}
-          // onChange={handleOnChange}
           ref={borderColorRef}
         />
       </form>

@@ -61,6 +61,9 @@ export const VIDEO_PROVIDER_LIST = [
 ];
 
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
+export const SOCIAL_MEDIA_LIST = ["Facebook", "Twitter", "Instagram", "YouTube"];
+
+
 
 export const FORMAT_LIST = [
   { label: "Autoplay: ", name: "autoplay", defaultVal: false },

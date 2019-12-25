@@ -51,7 +51,6 @@ const Video = () => {
         <div>
           <label>Provider: </label>
           <select
-            // onChange={e => setProvider({ ...provider, value: e.target.value })}
             defaultValue={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
             ref={providerRef}
             onChange={handleOnChange}
@@ -68,8 +67,6 @@ const Video = () => {
           <label>Source: </label>
           <input
             placeholder="URL"
-            // value={url}
-            // onChange={e => setUrl(e.target.value)}
             ref={urlRef}
             defaultValue={VD ? VD.url : ""}
             onChange={handleOnChange}
@@ -82,8 +79,6 @@ const Video = () => {
               <input
                 type="checkbox"
                 name={item.name}
-                // checked={videoFormat[item.name]}
-                // checked={true}
                 defaultChecked={
                   VD ? VD.videoFormat[item.name] : item.defaultVal
                 }
@@ -93,7 +88,6 @@ const Video = () => {
             </span>
           ))}
         </div>
-        {/* <input type="submit" value="Ok" /> */}
       </form>
     </div>
   );
