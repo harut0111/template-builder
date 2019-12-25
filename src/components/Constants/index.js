@@ -60,9 +60,7 @@ export const VIDEO_PROVIDER_LIST = [
   "Veoh"
 ];
 
-export const AUDIO_PROVIDER_LIST = [
-  { name: "Soundcloud", value: "youtube.com/embed" }
-];
+export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
 
 export const FORMAT_LIST = [
   { label: "Autoplay: ", name: "autoplay", defaultVal: false },

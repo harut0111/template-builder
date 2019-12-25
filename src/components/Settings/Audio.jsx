@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import uuid from "uuid";
 
-import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../Constants";
+import { VIDEO_PROVIDER_LIST, FORMAT_LIST, AUDIO_PROVIDER_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants/";
@@ -56,7 +56,7 @@ const Video = () => {
             ref={providerRef}
             onChange={handleOnChange}
           >
-            {VIDEO_PROVIDER_LIST.map((provider, i) => (
+            {AUDIO_PROVIDER_LIST.map((provider, i) => (
               <option key={i} value={provider}>
                 {provider}
               </option>
