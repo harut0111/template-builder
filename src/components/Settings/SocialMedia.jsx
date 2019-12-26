@@ -43,7 +43,7 @@ const SocialMedia = i => {
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
 
     }
-
+    //eslint-disable-next-line
   } , []);
 
   const handleOnRemove = index => {
