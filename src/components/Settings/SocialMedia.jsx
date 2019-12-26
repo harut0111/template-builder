@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 // import uuid from 'uuid';
-// import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
@@ -65,26 +65,23 @@ const SocialMedia = i => {
   };
 
 
-  // const socialMediaIcons = [
-  //   <FaFacebook />,
-  //   <FaTwitter />,
-  //   <FaInstagram />,
-  //   <FaYoutube />
-  // ];
+  const socialMediaIcons = [
+    <FaFacebook />,
+    <FaTwitter />,
+    <FaInstagram />,
+    <FaYoutube />
+  ];
 
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
       {(SMD || [{ socialMedia: "Facebook", url: "" }]).map((el, i) => (
         <div className="socialMedia-main" key={i}>
-          {/* {
+          {
             socialMediaIcons[
-              SOCIAL_MEDIA_LIST.indexOf(
-                (socialMediaRef.current && socialMediaRef.current.value) ||
-                  "Facebook"
-              )
+              SOCIAL_MEDIA_LIST.indexOf(el.socialMedia)
             ]
-          } */}
+          }
           <form onChange={ev => handleOnChange(ev, i)}>
             <select defaultValue={el.socialMedia} ref={socialMediaRef}>
               {SOCIAL_MEDIA_LIST.map((item, i) => (
