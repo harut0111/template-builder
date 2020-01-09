@@ -34,6 +34,12 @@
                     background: rgb(238, 238, 238);
                     opacity: 1;
                 }
+
+                &-wraper {
+                    display: flex;
+                    flex-direction: column;
+                    border-top: 1px solid gainsboro;
+                }
             }
         }
 

@@ -53,6 +53,7 @@ const Dashboard = () => {
               // className={`element ${
               //   el.elId === layout.activeEl.id ? "element-active" : ""
               // }`}
+              className='element-wraper'
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
