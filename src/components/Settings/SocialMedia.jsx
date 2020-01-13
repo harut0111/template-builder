@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
+import uuid from "uuid";
 
 const SocialMedia = i => {
   const [{ layout }, dispatch] = useStateValue();
 
   // const socialMediaRef = useRef(null);
-  const [socialMediaRef, setSocialMediaRef] = useState(null);
-  const [urlRef, setUrlRef] = useState(null);
+  // const [socialMediaRef, setSocialMediaRef] = useState(null);
+  // const [urlRef, setUrlRef] = useState(null);
+
+  let socialMediaRef = [];
+  let urlRef = [];
 
   // console.log("urlRef", urlRef);
 
@@ -17,17 +21,18 @@ const SocialMedia = i => {
   // console.log("SMD", SMD);
 
   const handleOnAdd = () => {
-    const socialMedia = socialMediaRef.value;
-    const url = urlRef.value;
+    // const socialMedia = socialMediaRef.value;
+    // const url = urlRef.value;
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
       if (element.elId === layout.activeEl.id) {
         if (SMD) {
           elements[i].elData = [...SMD, { socialMedia: "Facebook", url: "" }];
-        } else {
-          elements[i].elData = [{ socialMedia, url }];
         }
+        // else {
+        //   elements[i].elData = [{ socialMedia, url }];
+        // }
       }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
@@ -55,15 +60,16 @@ const SocialMedia = i => {
           elements[i].elData = SMD.slice(index);
         }
       });
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      // dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
 
   const handleOnChange = (ev, index) => {
     ev.preventDefault();
 
-    const socialMedia = socialMediaRef.value;
-    const url = urlRef.value;
+    const socialMedia = socialMediaRef[index].value;
+    const url = urlRef[index].value;
+
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
@@ -83,26 +89,30 @@ const SocialMedia = i => {
     <FaYoutube />
   ];
 
-  const setUrlInputRef = element => {
-    console.log("element", element && element);
-    setUrlRef(element);
-  };
+  // const setUrlInputRef = element => {
+  //   urlRef.push(element);
+  // };
 
-  const setSocialMediaOptonRef = element => {
-    console.log("element", element && element);
-    setSocialMediaRef(element);
-  };
+  // const setSocialMediaOptonRef = element => {
+  //   socialMediaRef.push(element);
+  // };
+
 
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
-      {/* {console.log(SMD)} */}
+      {console.log(SMD)}
       {SMD
         ? SMD.map((el, i) => (
             <div className="socialMedia-main" key={i} id={i}>
-              {socialMediaIcons[SOCIAL_MEDIA_LIST.indexOf(el.socialMedia)]}
-              <form onChange={ev => handleOnChange(ev, i)}>
-                <select defaultValue={el.socialMedia} ref={setSocialMediaOptonRef}>
+              <form onSubmit={e => e.preventDefault()}>
+                {console.log("el.socialMedia", el.socialMedia)}
+                {console.log("el.url", el.url)}
+                <select
+                  value={el.socialMedia}
+                  ref={(el) => socialMediaRef.push(el)}
+                  onChange={ev => handleOnChange(ev, i)}
+                >
                   {SOCIAL_MEDIA_LIST.map((item, i) => (
                     <option key={i} value={item}>
                       {item}
@@ -110,9 +120,11 @@ const SocialMedia = i => {
                   ))}
                 </select>
                 <input
+                  id={`inp-${i}`}
                   placeholder="URL"
-                  ref={setUrlInputRef}
-                  defaultValue={el.url}
+                  ref={(el) => urlRef.push(el)}
+                  onChange={ev => handleOnChange(ev, i)}
+                  value={el.url}
                 />
                 <hr />
                 <input
