@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import uuid from "uuid";
 
 const SocialMedia = i => {
   const [{ layout }, dispatch] = useStateValue();
@@ -54,12 +53,27 @@ const SocialMedia = i => {
 
   const handleOnRemove = index => {
     if (SMD.length > 1) {
-      const elements = [...layout.elements];
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          elements[i].elData = SMD.slice(index);
-        }
-      });
+      console.log('SMD.length', SMD);
+      
+      const elements = [...SMD];
+      // console.log('index', index);
+      // delete elements[index]
+      
+      // console.log('elements', elements);
+
+
+      // elements.forEach((element, i) => {
+      //   if (element.elId === layout.activeEl.id) {
+      //     elements[i].elData = SMD.slice(index);
+      //   }
+      // });
+
+
+
+      elements.splice(index, 1)
+
+      console.log('elements', elements);
+
       // dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
