@@ -1,17 +1,34 @@
 import React from "react";
 import { areEqual } from "../../core/Comparision";
+import { SOCIAL_MEDIA_LIST } from "../Constants";
 
 const SocialMediaData = ({ elData, active }) => {
   if (elData) {
     return (
       <div
-        className={`element ${active ? "element-active" : ""}`}
-        //   className="socialMediaData"
+        className={`socialMediaData element ${active ? "element-active" : ""}`}
       >
-        <div>{JSON.stringify(elData)}</div>
+        <div>
+          {elData.map((el, i) => (
+            <a
+              key={i}
+              href={el.url}
+              target="_blank"
+              onClick={!el.url ? e => e.preventDefault() : null}
+              rel="noopener noreferrer"
+              style={{ color: "inherit" }}
+            >
+              {
+                SOCIAL_MEDIA_LIST.filter(
+                  item => item.label === el.socialMedia
+                )[0].Icon
+              }
+            </a>
+          ))}
+        </div>
       </div>
     );
-  } 
+  }
   return null;
 };
 

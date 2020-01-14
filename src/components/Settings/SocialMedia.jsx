@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 
-const SocialMedia = i => {
+const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
 
   let socialMediaRef = [];
@@ -23,7 +23,7 @@ const SocialMedia = i => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(() => {
+  const memoizedCallback = useCallback(() => {
     if (!SMD) {
       const elements = [...layout.elements];
 
@@ -34,8 +34,11 @@ const SocialMedia = i => {
       });
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
-    //eslint-disable-next-line
-  }, []);
+  }, [SMD, layout.elements, layout.activeEl.id, dispatch]);
+
+  useEffect(() => {
+    memoizedCallback();
+  }, [memoizedCallback]);
 
   const handleOnRemove = index => {
     if (SMD.length > 1) {
@@ -93,6 +96,7 @@ const SocialMedia = i => {
                   ))}
                 </select>
                 <input
+                  type="url"
                   id={`inp-${i}`}
                   placeholder="URL"
                   ref={el => urlRef.push(el)}
