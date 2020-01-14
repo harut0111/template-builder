@@ -14,10 +14,8 @@ const SocialMedia = i => {
   let socialMediaRef = [];
   let urlRef = [];
 
-  // console.log("urlRef", urlRef);
-
   const SMD = getActiveEl(layout).elData;
-  // console.log("SMD", SMD);
+  // console.log('test', test);
 
   const handleOnAdd = () => {
     // const socialMedia = socialMediaRef.value;
@@ -53,28 +51,16 @@ const SocialMedia = i => {
 
   const handleOnRemove = index => {
     if (SMD.length > 1) {
-      console.log('SMD.length', SMD);
-      
-      const elements = [...SMD];
-      // console.log('index', index);
-      // delete elements[index]
-      
-      // console.log('elements', elements);
+      const elements = [...layout.elements];
+      elements.forEach((element, i) => {
+        if (element.elId === layout.activeEl.id) {
+          const filteredEls = [...element.elData];
+          filteredEls.splice(index, 1);
+          elements[i].elData = filteredEls;
+        }
+      });
 
-
-      // elements.forEach((element, i) => {
-      //   if (element.elId === layout.activeEl.id) {
-      //     elements[i].elData = SMD.slice(index);
-      //   }
-      // });
-
-
-
-      elements.splice(index, 1)
-
-      console.log('elements', elements);
-
-      // dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
 
@@ -83,7 +69,6 @@ const SocialMedia = i => {
 
     const socialMedia = socialMediaRef[index].value;
     const url = urlRef[index].value;
-
 
     const elements = [...layout.elements];
     elements.forEach((element, i) => {
@@ -111,20 +96,19 @@ const SocialMedia = i => {
   //   socialMediaRef.push(element);
   // };
 
-
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
-      {console.log(SMD)}
+      {/* {console.log(SMD)} */}
       {SMD
         ? SMD.map((el, i) => (
             <div className="socialMedia-main" key={i} id={i}>
               <form onSubmit={e => e.preventDefault()}>
-                {console.log("el.socialMedia", el.socialMedia)}
-                {console.log("el.url", el.url)}
+                {/* {console.log("el.socialMedia", el.socialMedia)}
+                {console.log("el.url", el.url)} */}
                 <select
                   value={el.socialMedia}
-                  ref={(el) => socialMediaRef.push(el)}
+                  ref={el => socialMediaRef.push(el)}
                   onChange={ev => handleOnChange(ev, i)}
                 >
                   {SOCIAL_MEDIA_LIST.map((item, i) => (
@@ -136,11 +120,12 @@ const SocialMedia = i => {
                 <input
                   id={`inp-${i}`}
                   placeholder="URL"
-                  ref={(el) => urlRef.push(el)}
+                  ref={el => urlRef.push(el)}
                   onChange={ev => handleOnChange(ev, i)}
                   value={el.url}
                 />
                 <hr />
+                {console.log("i", i)}
                 <input
                   type="button"
                   value="Delete"
