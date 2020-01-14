@@ -7,7 +7,6 @@ const Settings = () => {
   
   return (
     <div className="settings">
-      {console.log('layout from settings', layout)}
       {getActiveEl(layout).ElSettings}
     </div>
   );

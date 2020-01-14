@@ -1,8 +1,10 @@
+import React from 'react'
 import { MdTextFields } from "react-icons/md";
 import { TiDivideOutline } from "react-icons/ti";
 import { FaRegPlayCircle, FaImage } from "react-icons/fa";
 import { IoIosImages, IoMdShare } from "react-icons/io";
 import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 import Text from "../Settings/Text";
 import Video from "../Settings/Video";
@@ -61,9 +63,12 @@ export const VIDEO_PROVIDER_LIST = [
 ];
 
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
-export const SOCIAL_MEDIA_LIST = ["Facebook", "Twitter", "Instagram", "YouTube"];
-
-
+export const SOCIAL_MEDIA_LIST = [
+  { label: "Facebook", Icon: <FaFacebook />},
+  { label: "Twitter", Icon: <FaTwitter/> },
+  { label: "Instagram", Icon: <FaInstagram />},
+  { label: "YouTube", Icon: <FaYoutube /> }
+];
 
 export const FORMAT_LIST = [
   { label: "Autoplay: ", name: "autoplay", defaultVal: false },
