@@ -14,7 +14,7 @@ const SocialMediaData = ({ elData, active }) => {
               key={i}
               href={el.url}
               target="_blank"
-              onClick={!el.url ? e => e.preventDefault() : null}
+              onClick={el.url ? null: e => e.preventDefault()}
               rel="noopener noreferrer"
               style={{ color: "inherit" }}
             >

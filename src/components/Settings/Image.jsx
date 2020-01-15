@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
@@ -6,39 +6,42 @@ import { getActiveEl } from "../Constants";
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  // const [imgSrc, setImgSrc] = useState(null);
-  const [deg, setDeg] = useState(0);
-
-  const inputRef = useRef(null);
+  const urlRef = useRef(null);
+  const fileRef = useRef(null);
 
   const ID = getActiveEl(layout).elData;
 
   const handleOnChanage = () => {
-    const reader = new FileReader();
 
-    const file = inputRef.current.files[0];
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const elements = [...layout.elements];
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          elements[i].elData = {
-            imgSrc: reader.result
-          };
-        }
-      });
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
-    };
+    const file = fileRef.current.files[0];
+    const url = urlRef.current.value;
+
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const elements = [...layout.elements];
+        elements.forEach((element, i) => {
+          if (element.elId === layout.activeEl.id) {
+            elements[i].elData = {
+              imgSrc: reader.result,
+              url
+            };
+          }
+        });
+        dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      };
+    }
   };
 
-  console.log("ID", ID);
   return (
     <div className="Image">
-      <input type="file" ref={inputRef} onChange={handleOnChanage} />
-      <div>
-        <button onClick={() => setDeg(deg - 90)}>Left</button>
-        <button onClick={() => setDeg(deg + 90)}>Right</button>
-      </div>
+      <form>
+        <label>Link Image: </label>
+        <input type="url" placeholder="URL" ref={urlRef} onChange={handleOnChanage}/>
+        <input type="file" ref={fileRef} onChange={handleOnChanage} />
+      </form>
+
       <div>
         {ID ? (
           <img
@@ -46,7 +49,7 @@ const Image = () => {
             width="150"
             height="150"
             alt="img"
-            style={{ transform: `rotate(${deg}deg)` }}
+            // style={{ transform: `rotate(${deg}deg)` }}
           />
         ) : null}
       </div>
