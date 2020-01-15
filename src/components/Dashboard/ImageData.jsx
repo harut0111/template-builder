@@ -2,7 +2,6 @@ import React from "react";
 import { areEqual } from "../../core/Comparision";
 
 const ImageData = ({ elData, active }) => {
-  console.log("elData", elData);
 
   const emptyDivStyle = {
     height: "150px",
@@ -10,6 +9,7 @@ const ImageData = ({ elData, active }) => {
     justifyContent: "center",
     alignItems: "center"
   }
+
   return (
     <div className={`imageData element ${active ? "element-active" : ""}`}>
       <div>

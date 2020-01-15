@@ -24,8 +24,9 @@ const LinkButtonData = ({ elData, active }) => {
         <a
           href={url ? url : "#"}
           style={style}
-          target={url ? "_blank" : "_self"}
+          target="_blank"
           rel="noopener noreferrer"
+          onClick={url ? null: e => e.preventDefault()}
         >
           {btnText ? btnText : "Button"}
         </a>

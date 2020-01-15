@@ -12,7 +12,6 @@ const Image = () => {
   const ID = getActiveEl(layout).elData;
 
   const handleOnChanage = () => {
-
     const file = fileRef.current.files[0];
     const url = urlRef.current.value;
 
@@ -38,16 +37,22 @@ const Image = () => {
     <div className="Image">
       <form>
         <label>Link Image: </label>
-        <input type="url" placeholder="URL" ref={urlRef} onChange={handleOnChanage}/>
-        <input type="file" ref={fileRef} onChange={handleOnChanage} />
+        <input
+          type="url"
+          placeholder="URL"
+          ref={urlRef}
+          onChange={handleOnChanage}
+          value={ID ? ID.url: ''}
+        />
+        <input type="file" ref={fileRef} onChange={handleOnChanage}  />
       </form>
 
       <div>
         {ID ? (
           <img
             src={ID.imgSrc}
-            width="150"
-            height="150"
+            width="100"
+            height="100"
             alt="img"
             // style={{ transform: `rotate(${deg}deg)` }}
           />
