@@ -36,6 +36,7 @@ const Image = () => {
 
   return (
     <div className="image">
+      <h3>Image</h3>
       <form>
         <label>Link Image:</label>
         <input
