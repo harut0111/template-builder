@@ -65,6 +65,19 @@
         width: 100%;
         padding: 10px;
 
+        .image {
+          input[type="file"] {
+            display: none;
+          }
+
+          .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+          }
+        }
+
         h3 {
           margin-top: 5px;
           color: black;

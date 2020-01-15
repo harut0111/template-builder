@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
+import { FaRegImage } from "react-icons/fa";
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -34,17 +35,28 @@ const Image = () => {
   };
 
   return (
-    <div className="Image">
+    <div className="image">
       <form>
-        <label>Link Image: </label>
+        <label>Link Image:</label>
         <input
           type="url"
           placeholder="URL"
           ref={urlRef}
           onChange={handleOnChanage}
-          value={ID ? ID.url: ''}
+          value={ID ? ID.url : ""}
         />
-        <input type="file" ref={fileRef} onChange={handleOnChanage}  />
+        <div>
+          <label htmlFor="file-upload" className="custom-file-upload">
+            {ID ? "Change" : "Insert"}
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            ref={fileRef}
+            onChange={handleOnChanage}
+          />
+        </div>
+        <div>{ID ?  null : <FaRegImage size="50px"/>}</div>
       </form>
 
       <div>
