@@ -23,7 +23,7 @@ const ImageData = ({ elData, active }) => {
           >
             <img
               src={elData.imgSrc}
-              width="150"
+              width="200"
               height="150"
               alt="img"
               // style={{ transform: `rotate(${elData.deg}deg)` }}

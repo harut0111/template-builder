@@ -64,7 +64,7 @@ const Image = () => {
         {ID ? (
           <img
             src={ID.imgSrc}
-            width="100"
+            width="150"
             height="100"
             alt="img"
             // style={{ transform: `rotate(${deg}deg)` }}
