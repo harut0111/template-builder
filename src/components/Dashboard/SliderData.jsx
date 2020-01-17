@@ -8,7 +8,6 @@ const SliderData = ({ elData,active }) => {
     //   className="sliderData"
     >
       <p>Slider Data</p>
-      <div>{elData}</div>
     </div>
   );
 };

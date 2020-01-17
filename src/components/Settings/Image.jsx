@@ -57,19 +57,14 @@ const Image = () => {
             onChange={handleOnChanage}
           />
         </div>
-        <div>{ID ?  null : <FaRegImage size="50px"/>}</div>
       </form>
 
-      <div>
+      <div className='image-preview'>
         {ID ? (
-          <img
-            src={ID.imgSrc}
-            width="150"
-            height="100"
-            alt="img"
-            // style={{ transform: `rotate(${deg}deg)` }}
-          />
-        ) : null}
+          <img src={ID.imgSrc} width="150" height="100" alt="img" />
+        ) : (
+          <FaRegImage size="50px" />
+        )}
       </div>
     </div>
   );
