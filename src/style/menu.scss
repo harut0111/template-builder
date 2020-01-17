@@ -79,23 +79,30 @@
         }
 
         .slider {
-
           .image-uploader {
-
             display: flex;
             flex-direction: column;
 
             input[type="file"] {
               display: none;
             }
-            
-            .custom-file-upload, .image-remove {
+
+            .custom-file-upload,
+            .image-remove {
               cursor: pointer;
               color: #81d8f2;
               margin: 0 6px;
               font-size: 12px;
             }
+          }
 
+          .slider-images {
+            display: flex;
+            flex-flow: wrap;
+
+            .image-uploader {
+              margin: 0 5px;
+            }
           }
         }
 

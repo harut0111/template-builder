@@ -13,7 +13,6 @@ const Slider = () => {
 
   const SD = getActiveEl(layout).elData;
 
-
   const handleOnChanage = id => {
     // const file = fileRef.current.files[0];
     // console.log("layout", layout);
@@ -77,31 +76,38 @@ const Slider = () => {
             <label>Duration: </label>
             <input type="number" placeholder="seconds" ref={durRef} />
           </div>
-          {SD.imgSrc.map(imgSrc => (
-            <div className="image-uploader" key={imgSrc.id}>
-              <div className="image-preview">
-                {imgSrc.value ? (
-                  <img src={imgSrc.value} width="150" height="100" alt="img" />
-                ) : (
-                  <FaRegImage size="100px" />
-                )}
+          <div className="slider-images">
+            {SD.imgSrc.map(imgSrc => (
+              <div className="image-uploader" key={imgSrc.id}>
+                <div className="image-preview">
+                  {imgSrc.value ? (
+                    <img
+                      src={imgSrc.value}
+                      width="150"
+                      height="100"
+                      alt="img"
+                    />
+                  ) : (
+                    <FaRegImage size="100px" />
+                  )}
+                </div>
+                <div className="image-tools">
+                  <span>
+                    <label htmlFor={imgSrc.id} className="custom-file-upload">
+                      {imgSrc.value ? "Change" : "Insert"}
+                    </label>
+                    <input
+                      id={imgSrc.id}
+                      type="file"
+                      ref={el => fileRef.push(el)}
+                      onChange={() => handleOnChanage(imgSrc.id)}
+                    />
+                  </span>
+                  <span className="image-remove">Remove</span>
+                </div>
               </div>
-              <div className="image-tools">
-                <span>
-                  <label htmlFor={imgSrc.id} className="custom-file-upload">
-                    {imgSrc.value ? "Change" : "Insert"}
-                  </label>
-                  <input
-                    id={imgSrc.id}
-                    type="file"
-                    ref={el => fileRef.push(el)}
-                    onChange={() => handleOnChanage(imgSrc.id)}
-                  />
-                </span>
-                <span className="image-remove">Remove</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
           <input type="button" value="Add another image" />
         </form>
       ) : null}
