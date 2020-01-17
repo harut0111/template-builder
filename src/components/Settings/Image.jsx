@@ -59,7 +59,7 @@ const Image = () => {
         </div>
       </form>
 
-      <div className='image-preview'>
+      <div className="image-preview">
         {ID ? (
           <img src={ID.imgSrc} width="150" height="100" alt="img" />
         ) : (
