@@ -21,6 +21,9 @@ const Slider = () => {
     const reader = new FileReader();
     const file = fileRef.filter(file => file.id === id)[0].files[0];
 
+    // const file1 = fileRef.filter(file => file.id === id)[0];
+    // console.log('object', file1)
+
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
