@@ -12,16 +12,16 @@ const Slider = () => {
   const SD = getActiveEl(layout).elData;
 
   return (
-    <div className="Slider">
+    <div className="slider">
       <h3>Slider</h3>
       <form>
-        <div>
-          <label htmlFor="slider-duration"></label>
-          <input type="number" id="slider-duration" />
+        <div className='slider-row-1'>
+          <label>Duration: </label>
+          <input type="number" placeholder='seconds'/>
         </div>
-        <div>
-          <div>{SD ? null : <FaRegImage size="50px" />}</div>
-          <div>
+        <div className='image-uploader'>
+          <div className='image-icon'>{SD ? null : <FaRegImage size="100px" />}</div>
+          <div className='image-tools'>
             <span>
               <label htmlFor="file-upload" className="custom-file-upload">
                 {SD ? "Change" : "Insert"}
@@ -33,7 +33,7 @@ const Slider = () => {
                 // onChange={handleOnChanage}
               />
             </span>
-            <span>Remove</span>
+            <span className='image-remove'>Remove</span>
           </div>
         </div>
       </form>

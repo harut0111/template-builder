@@ -78,6 +78,27 @@
           }
         }
 
+        .slider {
+
+          .image-uploader {
+
+            display: flex;
+            flex-direction: column;
+
+            input[type="file"] {
+              display: none;
+            }
+            
+            .custom-file-upload, .image-remove {
+              cursor: pointer;
+              color: #81d8f2;
+              margin: 0 6px;
+              font-size: 12px;
+            }
+
+          }
+        }
+
         h3 {
           margin-top: 5px;
           color: black;
