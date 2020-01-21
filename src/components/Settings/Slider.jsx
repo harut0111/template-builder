@@ -72,7 +72,6 @@ const Slider = () => {
 
   const handleOnAddImage = () => {
     const elements = [...layout.elements];
-
     elements.forEach((element, i) => {
       if (element.elId === layout.activeEl.id) {
         elements[i].elData = {
@@ -83,6 +82,30 @@ const Slider = () => {
     });
 
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  };
+
+  const handleOnRemoveImage = id => {
+    
+    if (SD.imgSrc.length > 2) {
+
+      const duration = durRef.current.value;
+      // console.log("id", id);
+
+      const filteredImgSrc = SD.imgSrc.filter(item => item.id !== id);
+      // console.log('filteredImgSrc', filteredImgSrc);
+
+      const elements = [...layout.elements];
+      elements.forEach((element, i) => {
+        if (element.elId === layout.activeEl.id) {
+          elements[i].elData = {
+            duration,
+            imgSrc: SD.imgSrc.filter(item => item.id !== id)
+          };
+        }
+      });
+
+      dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    }
   };
 
   return (
@@ -121,7 +144,12 @@ const Slider = () => {
                       onChange={() => handleOnImgSrcChanage(imgSrc.id)}
                     />
                   </span>
-                  <span className="image-remove">Remove</span>
+                  <span
+                    className="image-remove"
+                    onClick={() => handleOnRemoveImage(imgSrc.id)}
+                  >
+                    Remove
+                  </span>
                 </div>
               </div>
             ))}
