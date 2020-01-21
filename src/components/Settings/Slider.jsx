@@ -13,11 +13,11 @@ const Slider = () => {
 
   const SD = getActiveEl(layout).elData;
 
-  const handleOnImgSrcChanage = id => {
+  const handleOnImgSrcChange = id => {
     // const file = fileRef.current.files[0];
     // console.log("layout", layout);
 
-    const duration = durRef.current.value;
+    // const duration = durRef.current.value;
     const reader = new FileReader();
     const file = fileRef.filter(file => file.id === id)[0].files[0];
 
@@ -33,7 +33,7 @@ const Slider = () => {
           if (element.elId === layout.activeEl.id) {
             // console.log("elements[i]", elements[i].elData);
             elements[i].elData = {
-              duration,
+              ...SD,
               imgSrc: elements[i].elData.imgSrc.map(imgSrc =>
                 imgSrc.id === id ? { ...imgSrc, value: reader.result } : imgSrc
               )
@@ -43,6 +43,19 @@ const Slider = () => {
         dispatch({ type: UPDATE_ELEMENT, payload: elements });
       };
     }
+  };
+
+  const handleOnDurationChange = () => {
+    const duration = +durRef.current.value;
+    const elements = [...layout.elements];
+
+    elements.forEach((element, i) => {
+      if (element.elId === layout.activeEl.id) {
+        elements[i].elData = { ...SD, duration };
+      }
+    });
+
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   const memoizedCallback_OrigineState = useCallback(() => {
@@ -75,7 +88,7 @@ const Slider = () => {
     elements.forEach((element, i) => {
       if (element.elId === layout.activeEl.id) {
         elements[i].elData = {
-          duration: 0,
+          ...SD,
           imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
         };
       }
@@ -85,14 +98,8 @@ const Slider = () => {
   };
 
   const handleOnRemoveImage = id => {
-    
     if (SD.imgSrc.length > 2) {
-
       const duration = durRef.current.value;
-      // console.log("id", id);
-
-      const filteredImgSrc = SD.imgSrc.filter(item => item.id !== id);
-      // console.log('filteredImgSrc', filteredImgSrc);
 
       const elements = [...layout.elements];
       elements.forEach((element, i) => {
@@ -108,6 +115,7 @@ const Slider = () => {
     }
   };
 
+  // console.log("SD", SD);
   return (
     <div className="slider">
       <h3>Slider</h3>
@@ -115,7 +123,14 @@ const Slider = () => {
         <form>
           <div className="slider-row-1">
             <label>Duration: </label>
-            <input type="number" placeholder="seconds" ref={durRef} />
+            <input
+              type="number"
+              min="0"
+              defaultValue={1}
+              placeholder="seconds"
+              ref={durRef}
+              onChange={handleOnDurationChange}
+            />
           </div>
           <div className="slider-images">
             {SD.imgSrc.map(imgSrc => (
@@ -141,7 +156,7 @@ const Slider = () => {
                       id={imgSrc.id}
                       type="file"
                       ref={el => fileRef.push(el)}
-                      onChange={() => handleOnImgSrcChanage(imgSrc.id)}
+                      onChange={() => handleOnImgSrcChange(imgSrc.id)}
                     />
                   </span>
                   <span
