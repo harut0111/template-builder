@@ -26,7 +26,6 @@ const ImageData = ({ elData, active }) => {
               width="200"
               height="150"
               alt="img"
-              // style={{ transform: `rotate(${elData.deg}deg)` }}
             />
           </a>
         ) : <div style={emptyDivStyle}>Choose image from assets</div>}

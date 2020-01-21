@@ -10,7 +10,7 @@ const Slider = () => {
 
   const durRef = useRef(null);
   let fileRef = [];
-
+  
   const SD = getActiveEl(layout).elData;
 
   const handleOnImgSrcChange = id => {
@@ -65,7 +65,7 @@ const Slider = () => {
       elements.forEach((element, i) => {
         if (element.elId === layout.activeEl.id) {
           elements[i].elData = {
-            duration: 0,
+            duration: 1000,
             imgSrc: [
               { id: uuid.v4(), value: null },
               { id: uuid.v4(), value: null }
@@ -99,7 +99,7 @@ const Slider = () => {
 
   const handleOnRemoveImage = id => {
     if (SD.imgSrc.length > 2) {
-      const duration = durRef.current.value;
+      const duration = +durRef.current.value;
 
       const elements = [...layout.elements];
       elements.forEach((element, i) => {
@@ -126,7 +126,7 @@ const Slider = () => {
             <input
               type="number"
               min="0"
-              defaultValue={1}
+              defaultValue={1000}
               placeholder="seconds"
               ref={durRef}
               onChange={handleOnDurationChange}
