@@ -13,7 +13,7 @@ const Slider = () => {
 
   const SD = getActiveEl(layout).elData;
 
-  const handleOnChanage = id => {
+  const handleOnImgSrcChanage = id => {
     // const file = fileRef.current.files[0];
     // console.log("layout", layout);
 
@@ -45,7 +45,7 @@ const Slider = () => {
     }
   };
 
-  const memoizedCallback = useCallback(() => {
+  const memoizedCallback_OrigineState = useCallback(() => {
     if (!SD) {
       const elements = [...layout.elements];
 
@@ -67,8 +67,23 @@ const Slider = () => {
   }, [SD, layout.elements, layout.activeEl.id, dispatch]);
 
   useEffect(() => {
-    memoizedCallback();
-  }, [memoizedCallback]);
+    memoizedCallback_OrigineState();
+  }, [memoizedCallback_OrigineState]);
+
+  const handleOnAddImage = () => {
+    const elements = [...layout.elements];
+
+    elements.forEach((element, i) => {
+      if (element.elId === layout.activeEl.id) {
+        elements[i].elData = {
+          duration: 0,
+          imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
+        };
+      }
+    });
+
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  };
 
   return (
     <div className="slider">
@@ -86,7 +101,7 @@ const Slider = () => {
                   {imgSrc.value ? (
                     <img
                       src={imgSrc.value}
-                      width="150"
+                      width="100"
                       height="100"
                       alt="img"
                     />
@@ -103,7 +118,7 @@ const Slider = () => {
                       id={imgSrc.id}
                       type="file"
                       ref={el => fileRef.push(el)}
-                      onChange={() => handleOnChanage(imgSrc.id)}
+                      onChange={() => handleOnImgSrcChanage(imgSrc.id)}
                     />
                   </span>
                   <span className="image-remove">Remove</span>
@@ -111,7 +126,11 @@ const Slider = () => {
               </div>
             ))}
           </div>
-          <input type="button" value="Add another image" />
+          <input
+            type="button"
+            value="Add another image"
+            onClick={handleOnAddImage}
+          />
         </form>
       ) : null}
     </div>
