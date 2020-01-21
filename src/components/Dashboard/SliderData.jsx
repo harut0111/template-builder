@@ -18,9 +18,10 @@ const SliderData = ({ elData, active }) => {
       {elData ? (
         list.length ? (
           <Carousel
-            autoPlay={true}
             interval={elData.duration}
+            autoPlay={true}
             infiniteLoop={true}
+            showThumbs={false}
           >
             {list.map(imgSrc => (
               <div key={imgSrc.id}>
