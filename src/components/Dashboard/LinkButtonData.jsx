@@ -17,8 +17,7 @@ const LinkButtonData = ({ elData, active }) => {
     };
     return (
       <div
-        className={`element ${active ? "element-active" : ""}`}
-        // className="linkButtonData"
+        className={`linkButtonData element ${active ? "element-active" : ""}`}
         style={{ padding: "10px" }}
       >
         <a
@@ -26,7 +25,7 @@ const LinkButtonData = ({ elData, active }) => {
           style={style}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={url ? null: e => e.preventDefault()}
+          onClick={url ? null : e => e.preventDefault()}
         >
           {btnText ? btnText : "Button"}
         </a>
@@ -37,4 +36,3 @@ const LinkButtonData = ({ elData, active }) => {
 };
 
 export default React.memo(LinkButtonData, (p, n) => areEqual(p, n));
-

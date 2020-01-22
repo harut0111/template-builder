@@ -23,7 +23,7 @@ const Text = () => {
 
   return (
     <div className="textSettings">
-      <h3>TEXT</h3>
+      <h3>Text</h3>
       <RichTextEditor
         className="textEditor"
         autoFocus

@@ -10,28 +10,19 @@ const Slider = () => {
 
   const durRef = useRef(null);
   let fileRef = [];
-  
+
   const SD = getActiveEl(layout).elData;
 
   const handleOnImgSrcChange = id => {
-    // const file = fileRef.current.files[0];
-    // console.log("layout", layout);
-
-    // const duration = durRef.current.value;
     const reader = new FileReader();
     const file = fileRef.filter(file => file.id === id)[0].files[0];
-
-    // const file1 = fileRef.filter(file => file.id === id)[0];
-    // console.log('object', file1)
 
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         const elements = [...layout.elements];
-        // console.log("elements", elements);
         elements.forEach((element, i) => {
           if (element.elId === layout.activeEl.id) {
-            // console.log("elements[i]", elements[i].elData);
             elements[i].elData = {
               ...SD,
               imgSrc: elements[i].elData.imgSrc.map(imgSrc =>
@@ -74,7 +65,6 @@ const Slider = () => {
         }
       });
 
-      // console.log("elements", elements);
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   }, [SD, layout.elements, layout.activeEl.id, dispatch]);
@@ -115,7 +105,6 @@ const Slider = () => {
     }
   };
 
-  // console.log("SD", SD);
   return (
     <div className="slider">
       <h3>Slider</h3>

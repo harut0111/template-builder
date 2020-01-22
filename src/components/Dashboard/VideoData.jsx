@@ -14,8 +14,7 @@ const VideoData = ({ elData, active }) => {
 
     return (
       <div
-        className={`element ${active ? "element-active" : ""}`}
-        // className="videoData"
+        className={`videoData element ${active ? "element-active" : ""}`}
         style={{ height: "220px" }}
       >
         {elData ? (

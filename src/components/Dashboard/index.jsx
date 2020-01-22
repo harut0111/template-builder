@@ -11,7 +11,7 @@ import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
   const [{ layout }, dispatch] = useStateValue();
-  
+
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
     const el = EL_LIST.filter(el => el.label === elLabel)[0];
@@ -28,14 +28,12 @@ const Dashboard = () => {
   };
 
   const handleOnToolClick = (ev, id) => {
-    // console.log('id', id);
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
     dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
 
   const handleOnElementClick = id => {
-    // console.log("id", id);
     dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
   };
 
@@ -50,10 +48,7 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              // className={`element ${
-              //   el.elId === layout.activeEl.id ? "element-active" : ""
-              // }`}
-              className='element-wraper'
+              className="element-wraper"
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >

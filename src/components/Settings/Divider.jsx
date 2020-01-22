@@ -8,10 +8,6 @@ import { UPDATE_ELEMENT } from "../../context/actions";
 const Divider = () => {
   const [{ layout }, dispatch] = useStateValue();
 
-  // const [borderType, setBorderType] = useState("solid");
-  // const [borderWidth, setBorderWidth] = useState("1");
-  // const [borderColor, setBorderColor] = useState("#000000");
-
   const borderTypeRef = useRef(null);
   const borderWidthRef = useRef(null);
   const borderColorRef = useRef(null);
@@ -42,8 +38,12 @@ const Divider = () => {
   return (
     <div className="Divider">
       <h3>DIVIDER</h3>
-      <form onChange={handleOnChange}>
-        <select defaultValue={DD ? DD.borderType : "solid"} ref={borderTypeRef}>
+      <form>
+        <select
+          onChange={handleOnChange}
+          value={DD ? DD.borderType : "solid"}
+          ref={borderTypeRef}
+        >
           {BORDER_TYPE_LIST.map(value => (
             <option key={uuid.v4()} value={value}>
               {value}
@@ -53,14 +53,16 @@ const Divider = () => {
         <div>
           <input
             type="number"
-            defaultValue={DD ? +DD.borderWidth : "1"}
+            onChange={handleOnChange}
+            value={DD ? +DD.borderWidth : "1"}
             ref={borderWidthRef}
           />
           <span>px</span>
         </div>
         <input
           type="color"
-          defaultValue={DD ? DD.borderColor : "#000000"}
+          onChange={handleOnChange}
+          value={DD ? DD.borderColor : "#000000"}
           ref={borderColorRef}
         />
       </form>

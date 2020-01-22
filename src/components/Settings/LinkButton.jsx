@@ -42,7 +42,7 @@ const LinkButton = () => {
   return (
     <div className="Link_Button">
       <h3>Link/Button</h3>
-      <form >
+      <form>
         <div>
           <input
             type="text"

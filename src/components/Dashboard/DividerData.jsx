@@ -11,7 +11,6 @@ const DividerData = ({ elData }) => {
       >
         <hr
           style={{ borderTop: `${borderWidth}px ${borderType} ${borderColor}` }}
-        //   style={{ borderTop: "1px solid red" }}
         />
       </div>
     );
