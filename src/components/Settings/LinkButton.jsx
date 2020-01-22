@@ -42,17 +42,18 @@ const LinkButton = () => {
   return (
     <div className="Link_Button">
       <h3>Link/Button</h3>
-      <form onChange={handleOnChange}>
+      <form >
         <div>
           <input
             type="text"
             placeholder="Button Text"
-            defaultValue={LBD ? LBD.btnText : ""}
+            value={LBD ? LBD.btnText : ""}
+            onChange={handleOnChange}
             ref={btnTextRef}
           />
           <input
             type="color"
-            defaultValue={LBD ? LBD.btnColor : "#ffffff"}
+            value={LBD ? LBD.btnColor : "#ffffff"}
             onChange={handleOnChange}
             ref={btnColorRef}
           />
@@ -75,7 +76,8 @@ const LinkButton = () => {
             ref={bgColorRef}
           />
           <select
-            defaultValue={LBD ? LBD.borderType : "solid"}
+            value={LBD ? LBD.borderType : "solid"}
+            onChange={handleOnChange}
             ref={borderTypeRef}
           >
             {BORDER_TYPE_LIST.map((value, i) => (
