@@ -7,10 +7,13 @@ const VideoData = ({ elData, active }) => {
     const { provider, url, videoFormat } = elData;
     const { autoplay, loop, control } = videoFormat;
 
-    // console.log({ ...videoFormat });
-    // console.log(`https://www.${provider.value}/${url}?autoplay=${+autoplay}&loop=${+loop}&controls=${+control}`);
+    const youtubePrser = url => {
+      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+      var match = url.match(regExp);
+      return match && match[7].length == 11 ? match[7] : "";
+    };
 
-    const id = url.slice(url.lastIndexOf("=") + 1);
+    const id = youtubePrser(url);
 
     return (
       <div
