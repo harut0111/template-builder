@@ -2,20 +2,18 @@ import React from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-const _Slider = () => {
-
-
+const _Slider = React.forwardRef((props, ref) => {
   const wrapperStyle = {
     width: "100px",
     margin: "0 10px"
-  }
+  };
 
   return (
     <div className="_slider" style={wrapperStyle}>
-      <Slider min={0} max = {10}/>
+      <Slider min={0} max={20} ref={ref} onChange={props.onChange} />
     </div>
   );
-};
+});
 
 export default _Slider;
 

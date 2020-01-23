@@ -3,6 +3,8 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { areEqual } from "../../core/Comparision";
 
 const MapData = ({ elData, active }) => {
+
+  console.log('elData', elData);
   const onClick = param => {
     console.log("onClick", param);
   };
@@ -12,8 +14,8 @@ const MapData = ({ elData, active }) => {
   };
 
   const center = {
-    lat: 0,
-    lng: -180
+    lat: 40.1872,
+    lng: 44.5152
   };
 
   return (
@@ -27,7 +29,7 @@ const MapData = ({ elData, active }) => {
           id="example-map"
           // mapContainerStyle={styles.container}
           mapContainerStyle={{ height: "250px" }}
-          zoom={5}
+          zoom={elData ? elData.zoom : 0}
           center={center}
           onClick={onClick}
           onLoad={onMapLoad}
