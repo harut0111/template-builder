@@ -115,7 +115,7 @@ const Slider = () => {
             <input
               type="number"
               min="0"
-              defaultValue={1000}
+              value={SD.duration}
               placeholder="seconds"
               ref={durRef}
               onChange={handleOnDurationChange}
