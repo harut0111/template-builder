@@ -63,7 +63,8 @@ const LinkButton = () => {
             type="url"
             placeholder="URL"
             required
-            defaultValue={LBD ? LBD.url : ""}
+            value={LBD ? LBD.url : ""}
+            onChange={handleOnChange}
             ref={urlRef}
           />
         </div>
@@ -72,7 +73,8 @@ const LinkButton = () => {
           <label>Background Color: </label>
           <input
             type="color"
-            defaultValue={LBD ? LBD.bgColor : "#000000"}
+            value={LBD ? LBD.bgColor : "#000000"}
+            onChange={handleOnChange}
             ref={bgColorRef}
           />
           <select
