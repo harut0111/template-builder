@@ -39,7 +39,26 @@
                     display: flex;
                     flex-direction: column;
                     border-top: 1px solid gainsboro;
+
+                    .textData {
+                        all: initial;
+                        min-height: 150px;
+                        padding: 0 15px;
+
+                        ul {
+                            margin: 1em 0;
+                            list-style-type: disc;
+                            margin-left: 15px;
+                        }
+
+                        ol {
+                            margin-left: 15px;
+                            padding-left: 0;
+                        }
+                    }
                 }
+
+                
             }
 
             .socialMediaData {
