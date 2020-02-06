@@ -12,7 +12,7 @@ const TextData = ({ elData, active }) => {
             }}
           />
         ) : (
-          <p>type some text</p>
+          <p>Type some text...</p>
         )}
       </div>
     );

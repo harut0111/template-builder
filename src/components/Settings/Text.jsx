@@ -27,6 +27,7 @@ const Text = () => {
       <RichTextEditor
         className="textEditor"
         autoFocus
+        placeholder={"Type some text..."}
         value={getActiveEl(layout).elData || RichTextEditor.createEmptyValue()}
         onChange={val => handleOnChange(val)}
       />
