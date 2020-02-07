@@ -14,7 +14,7 @@ const VideoData = ({ elData, active }) => {
     };
 
     // const id = youtubePrser(url);
-    const id = elData.url.split("/").filter(el => /^\d+$/.test(el))[0]
+    const id = elData.url.split(/\/|=/g).filter(el => /^\d+$/.test(el))[0];
 
     // console.log  ('elData.url', elData.url);
 
