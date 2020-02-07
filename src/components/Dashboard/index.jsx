@@ -37,6 +37,20 @@ const Dashboard = () => {
     dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
   };
 
+  const getElementData = el => (
+    <>
+      {EL_DATA_LIST.map((item, i) =>
+        item.label === el.elLabel ? (
+          <item.Data
+            key={i}
+            elData={el.elData}
+            active={el.elId === layout.activeEl.id}
+          />
+        ) : null
+      )}
+    </>
+  );
+
   return (
     <div className="dashboard">
       <div className="dashboard-main">
@@ -56,15 +70,7 @@ const Dashboard = () => {
                 className={"toolbar"}
                 onClick={ev => handleOnToolClick(ev, el.elId)}
               />
-              {EL_DATA_LIST.map((item, i) =>
-                item.label === el.elLabel ? (
-                  <item.Data
-                    key={el.elId + i}
-                    elData={el.elData}
-                    active={el.elId === layout.activeEl.id}
-                  />
-                ) : null
-              )}
+              {getElementData(el)}
             </div>
           ))}
         </div>

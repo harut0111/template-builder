@@ -25,6 +25,7 @@ import SliderData from "../Dashboard/SliderData";
 import SocialMediaData from "../Dashboard/SocialMediaData";
 import AudioData from "../Dashboard/AudioData";
 import LinkButtonData from "../Dashboard/LinkButtonData";
+import uuid from 'uuid';
 
 export const EL_LIST = [
   { label: "Text", Icon: MdTextFields, Settings: Text },
@@ -39,15 +40,15 @@ export const EL_LIST = [
 ];
 
 export const EL_DATA_LIST = [
-  { label: "Text", Data: TextData },
-  { label: "Video", Data: VideoData },
-  { label: "Image", Data: ImageData },
-  { label: "Slider", Data: SliderData },
-  { label: "Social Media", Data: SocialMediaData },
-  { label: "Audio", Data: AudioData },
-  { label: "Map", Data: MapData },
-  { label: "Link/Button", Data: LinkButtonData },
-  { label: "Divider", Data: DividerData }
+  { label: "Text", Data: TextData, id: uuid.v4() },
+  { label: "Video", Data: VideoData, id: uuid.v4() },
+  { label: "Image", Data: ImageData, id: uuid.v4() },
+  { label: "Slider", Data: SliderData, id: uuid.v4() },
+  { label: "Social Media", Data: SocialMediaData, id: uuid.v4() },
+  { label: "Audio", Data: AudioData, id: uuid.v4() },
+  { label: "Map", Data: MapData, id: uuid.v4() },
+  { label: "Link/Button", Data: LinkButtonData, id: uuid.v4() },
+  { label: "Divider", Data: DividerData, id: uuid.v4() }
 ];
 
 export const BORDER_TYPE_LIST = ["solid", "dotted", "dashed", "double", "none"];
