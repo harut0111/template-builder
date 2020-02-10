@@ -39,10 +39,10 @@ const Dashboard = () => {
 
   const getElementData = el => (
     <>
-      {EL_DATA_LIST.map((item, i) =>
+      {EL_DATA_LIST.map(item =>
         item.label === el.elLabel ? (
           <item.Data
-            key={i}
+            key={item.id}
             elData={el.elData}
             active={el.elId === layout.activeEl.id}
           />
