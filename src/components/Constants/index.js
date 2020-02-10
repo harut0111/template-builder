@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { MdTextFields } from "react-icons/md";
 import { TiDivideOutline } from "react-icons/ti";
 import { FaRegPlayCircle, FaImage } from "react-icons/fa";
@@ -25,7 +25,7 @@ import SliderData from "../Dashboard/SliderData";
 import SocialMediaData from "../Dashboard/SocialMediaData";
 import AudioData from "../Dashboard/AudioData";
 import LinkButtonData from "../Dashboard/LinkButtonData";
-import uuid from 'uuid';
+import uuid from "uuid";
 
 export const EL_LIST = [
   { label: "Text", Icon: MdTextFields, Settings: Text },
@@ -58,23 +58,41 @@ export const BAR_LIST = ["Elements", "Component Settings"];
 export const VIDEO_PROVIDER_LIST = [
   "YouTube",
   "Facebook",
-  "Vimeo",
-  "Metacafe",
-  "Veoh"
+  // "Vimeo",
+  // "Metacafe",
+  // "Veoh"
 ];
 
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
 export const SOCIAL_MEDIA_LIST = [
-  { label: "Facebook", Icon: <FaFacebook />},
-  { label: "Twitter", Icon: <FaTwitter/> },
-  { label: "Instagram", Icon: <FaInstagram />},
+  { label: "Facebook", Icon: <FaFacebook /> },
+  { label: "Twitter", Icon: <FaTwitter /> },
+  { label: "Instagram", Icon: <FaInstagram /> },
   { label: "YouTube", Icon: <FaYoutube /> }
 ];
 
 export const FORMAT_LIST = [
-  { label: "Autoplay: ", name: "autoplay", defaultVal: false },
-  { label: "Loop: ", name: "loop", defaultVal: false },
-  { label: "Control: ", name: "control", defaultVal: true }
+  {
+    label: "Autoplay: ",
+    id: uuid.v4(),
+    name: "autoplay",
+    defaultVal: false,
+    for: ["YouTube", "Facebook", "Twitter", "Instagram"]
+  },
+  {
+    label: "Loop: ",
+    id: uuid.v4(),
+    name: "loop",
+    defaultVal: false,
+    for: ["YouTube"]
+  },
+  {
+    label: "Control: ",
+    id: uuid.v4(),
+    name: "control",
+    defaultVal: true,
+    for: ["YouTube"]
+  }
 ];
 
 export const getActiveEl = layout => {

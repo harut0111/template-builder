@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import uuid from "uuid";
-
 import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
@@ -74,7 +72,16 @@ const Video = () => {
         </div>
         <div>
           {FORMAT_LIST.map((item, i) => (
-            <span key={uuid.v4()}>
+            <span
+              key={item.id}
+              style={{
+                display: item.for.includes(
+                  VD ? VD.provider : VIDEO_PROVIDER_LIST[0]
+                )
+                  ? "initial"
+                  : "none"
+              }}
+            >
               <label>{item.label}</label>
               <input
                 type="checkbox"

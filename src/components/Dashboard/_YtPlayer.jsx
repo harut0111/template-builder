@@ -1,7 +1,7 @@
 import React from "react";
 
 const YtPlayer = ({ elData }) => {
-  const { provider, url, videoFormat } = elData;
+  const { url, videoFormat } = elData;
   const { autoplay, loop, control } = videoFormat;
   const youtubePrser = url => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;

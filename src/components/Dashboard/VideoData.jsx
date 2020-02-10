@@ -6,12 +6,11 @@ import FbPlayer from "./_FbPlayer";
 
 const VideoData = ({ elData, active }) => {
   if (elData) {
-    // eslint-disable-next-line
-    const { provider, url, videoFormat } = elData;
-    // const { autoplay, loop, control } = videoFormat;
+    const { provider } = elData;
 
-    let Player = <YtPlayer elData={elData} />;
+    let Player = "asdfa";
 
+    console.log("elData", elData);
     switch (provider) {
       case VIDEO_PROVIDER_LIST[0]:
         Player = YtPlayer;
@@ -19,9 +18,6 @@ const VideoData = ({ elData, active }) => {
       case VIDEO_PROVIDER_LIST[1]:
         Player = FbPlayer;
         break;
-      // case VIDEO_PROVIDER_LIST[2]:
-      //   Player = FbPlayer;
-      //   break;
       default:
         break;
     }
