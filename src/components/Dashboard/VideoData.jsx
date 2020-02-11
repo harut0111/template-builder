@@ -8,9 +8,8 @@ const VideoData = ({ elData, active }) => {
   if (elData) {
     const { provider } = elData;
 
-    let Player = "asdfa";
+    let Player = YtPlayer;
 
-    console.log("elData", elData);
     switch (provider) {
       case VIDEO_PROVIDER_LIST[0]:
         Player = YtPlayer;

@@ -46,25 +46,26 @@ const Image = () => {
           onChange={handleOnChanage}
           value={ID ? ID.url : ""}
         />
-        <div>
-          <label htmlFor="file-upload" className="custom-file-upload">
-            {ID ? "Change" : "Insert"}
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            ref={fileRef}
-            onChange={handleOnChanage}
-          />
-        </div>
       </form>
-
       <div className="image-preview">
         {ID ? (
           <img src={ID.imgSrc} width="150" height="100" alt="img" />
         ) : (
-          <FaRegImage size="50px" />
+          <div className="icon-wrapper">
+            <FaRegImage size="70px" />
+          </div>
         )}
+      </div>
+      <div>
+        <label htmlFor="file-upload" className="custom-file-upload">
+          {ID ? "Change" : "Insert"}
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          ref={fileRef}
+          onChange={handleOnChanage}
+        />
       </div>
     </div>
   );
