@@ -8,7 +8,7 @@ const ImageData = ({ elData, active }) => {
     justifyContent: "center",
     alignItems: "center"
   };
-
+  console.log('elData', elData);
   return (
     <div className={`imageData element ${active ? "element-active" : ""}`}>
       <div>

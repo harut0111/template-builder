@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
@@ -33,7 +33,7 @@ const Image = () => {
   };
 
   const handleOnURLChanage = () => {
-    const url = urlRef.current.value;
+    const url = urlRef.current.value.trim();
 
     const elements = layout.elements.map(obj => {
       if (obj.elId === layout.activeEl.id) {
@@ -47,7 +47,7 @@ const Image = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(() => {
+  const firstDispatch = useCallback(() => {
     const elements = layout.elements.map(obj => {
       if (obj.elId === layout.activeEl.id) {
         return {
@@ -61,8 +61,9 @@ const Image = () => {
       return obj;
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
-  }, []);
+  }, [dispatch, layout.activeEl.id, layout.elements]);
 
+  useEffect(firstDispatch, []);
 
   return (
     <div className="image">
