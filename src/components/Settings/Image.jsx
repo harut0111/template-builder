@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
@@ -12,27 +12,57 @@ const Image = () => {
 
   const ID = getActiveEl(layout).elData;
 
-  const handleOnChanage = () => {
+  const handleOnFileChanage = () => {
     const file = fileRef.current.files[0];
-    const url = urlRef.current.value;
-
     const reader = new FileReader();
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        const elements = [...layout.elements];
-        elements.forEach((element, i) => {
-          if (element.elId === layout.activeEl.id) {
-            elements[i].elData = {
-              imgSrc: reader.result,
-              url
+        const elements = layout.elements.map(obj => {
+          if (obj.elId === layout.activeEl.id) {
+            return {
+              ...obj,
+              elData: { ...obj.elData, imgSrc: reader.result }
             };
           }
+          return obj;
         });
         dispatch({ type: UPDATE_ELEMENT, payload: elements });
       };
     }
   };
+
+  const handleOnURLChanage = () => {
+    const url = urlRef.current.value;
+
+    const elements = layout.elements.map(obj => {
+      if (obj.elId === layout.activeEl.id) {
+        return {
+          ...obj,
+          elData: { ...obj.elData, url }
+        };
+      }
+      return obj;
+    });
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  };
+
+  useEffect(() => {
+    const elements = layout.elements.map(obj => {
+      if (obj.elId === layout.activeEl.id) {
+        return {
+          ...obj,
+          elData: {
+            url: "",
+            imgSrc: ""
+          }
+        };
+      }
+      return obj;
+    });
+    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  }, []);
+
 
   return (
     <div className="image">
@@ -43,12 +73,12 @@ const Image = () => {
           type="url"
           placeholder="URL"
           ref={urlRef}
-          onChange={handleOnChanage}
+          onChange={handleOnURLChanage}
           value={ID ? ID.url : ""}
         />
       </form>
       <div className="image-preview">
-        {ID ? (
+        {ID && ID.imgSrc ? (
           <img src={ID.imgSrc} width="150" height="100" alt="img" />
         ) : (
           <div className="icon-wrapper">
@@ -64,7 +94,7 @@ const Image = () => {
           id="file-upload"
           type="file"
           ref={fileRef}
-          onChange={handleOnChanage}
+          onChange={handleOnFileChanage}
         />
       </div>
     </div>
