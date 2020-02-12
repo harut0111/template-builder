@@ -37,7 +37,7 @@ const SocialMedia = () => {
       });
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
-  }, [SMD, layout.elements, layout.activeEl.id, dispatch]);
+  }, [SMD, els, dispatch, activeElId]);
 
   useEffect(() => {
     memoizedCallback();
