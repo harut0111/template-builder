@@ -5,6 +5,8 @@ import { UPDATE_ELEMENT } from "../../context/actions";
 
 const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   let socialMediaRef = [];
   let urlRef = [];
@@ -12,25 +14,26 @@ const SocialMedia = () => {
   const SMD = getActiveEl(layout).elData;
 
   const handleOnAdd = () => {
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        if (SMD) {
-          elements[i].elData = [...SMD, { socialMedia: "Facebook", url: "" }];
-        }
+    const elements = els.map(obj => {
+      if (obj.elId === activeElId) {
+        return Object.assign({}, obj, {
+          elData: [...SMD, { socialMedia: "Facebook", url: "" }]
+        });
       }
+      return obj;
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   const memoizedCallback = useCallback(() => {
     if (!SMD) {
-      const elements = [...layout.elements];
-
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          elements[i].elData = [{ socialMedia: "Facebook", url: "" }];
+      const elements = els.map(obj => {
+        if (obj.elId === activeElId) {
+          return Object.assign({}, obj, {
+            elData: [{ socialMedia: "Facebook", url: "" }]
+          });
         }
+        return obj;
       });
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
@@ -42,15 +45,14 @@ const SocialMedia = () => {
 
   const handleOnRemove = index => {
     if (SMD.length > 1) {
-      const elements = [...layout.elements];
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          const filteredEls = [...element.elData];
-          filteredEls.splice(index, 1);
-          elements[i].elData = filteredEls;
+      const elements = els.map(obj => {
+        if (obj.elId === activeElId) {
+          return Object.assign({}, obj, {
+            elData: [...obj.elData].splice(index, 1)
+          });
         }
+        return obj;
       });
-
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
@@ -61,13 +63,15 @@ const SocialMedia = () => {
     const socialMedia = socialMediaRef[index].value;
     const url = urlRef[index].value;
 
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
+    const elements = els.map(obj => {
+      if (obj.elId === activeElId) {
         const CSMD = [...SMD];
         CSMD[index] = { socialMedia, url };
-        elements[i].elData = CSMD;
+        return Object.assign({}, obj, {
+          elData: CSMD
+        });
       }
+      return obj;
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };

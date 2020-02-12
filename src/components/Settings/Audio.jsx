@@ -4,7 +4,8 @@ import uuid from "uuid";
 import {
   VIDEO_PROVIDER_LIST,
   FORMAT_LIST,
-  AUDIO_PROVIDER_LIST
+  AUDIO_PROVIDER_LIST,
+  updateElementData
 } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
@@ -12,6 +13,8 @@ import { getActiveEl } from "../Constants/";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   const providerRef = useRef(null);
   const urlRef = useRef(null);
@@ -33,15 +36,10 @@ const Video = () => {
     const loop = loopRef.current.checked;
     const control = controlRef.current.checked;
 
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = {
-          provider,
-          url,
-          videoFormat: { autoplay, loop, control }
-        };
-      }
+    const elements = updateElementData(els, activeElId, {
+      provider,
+      url,
+      videoFormat: { autoplay, loop, control }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
