@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import { BORDER_TYPE_LIST } from "../Constants";
+import { BORDER_TYPE_LIST, updateElementData } from "../Constants";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../Constants/";
 
 const LinkButton = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   const btnTextRef = useRef(null);
   const btnColorRef = useRef(null);
@@ -22,17 +24,12 @@ const LinkButton = () => {
     const bgColor = bgColorRef.current.value;
     const borderType = borderTypeRef.current.value;
 
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = {
-          btnText,
-          btnColor,
-          url,
-          bgColor,
-          borderType
-        };
-      }
+    const elements = updateElementData(els, activeElId, {
+      btnText,
+      btnColor,
+      url,
+      bgColor,
+      borderType
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
