@@ -1,12 +1,15 @@
 import React, { useRef, useEffect, useCallback } from "react";
+import uuid from "uuid";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../Constants";
 import { FaRegImage } from "react-icons/fa";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import uuid from "uuid";
+import { updateElementData } from "../Constants/index";
 
 const Slider = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   const durRef = useRef(null);
   let fileRef = [];
@@ -20,17 +23,17 @@ const Slider = () => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        const elements = [...layout.elements];
-        elements.forEach((element, i) => {
+        let elData;
+        els.forEach((element, i) => {
           if (element.elId === layout.activeEl.id) {
-            elements[i].elData = {
-              ...SD,
-              imgSrc: elements[i].elData.imgSrc.map(imgSrc =>
+            elData = Object.assign({}, SD, {
+              imgSrc: els[i].elData.imgSrc.map(imgSrc =>
                 imgSrc.id === id ? { ...imgSrc, value: reader.result } : imgSrc
               )
-            };
+            });
           }
         });
+        const elements = updateElementData(els, activeElId, { ...elData });
         dispatch({ type: UPDATE_ELEMENT, payload: elements });
       };
     }
@@ -38,52 +41,32 @@ const Slider = () => {
 
   const handleOnDurationChange = () => {
     const duration = +durRef.current.value;
-    const elements = [...layout.elements];
-
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = { ...SD, duration };
-      }
-    });
-
+    const elements = updateElementData(els, activeElId, { ...SD, duration });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   const memoizedCallback_OrigineState = useCallback(() => {
     if (!SD) {
-      const elements = [...layout.elements];
-
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          elements[i].elData = {
-            duration: 1000,
-            imgSrc: [
-              { id: uuid.v4(), value: null },
-              { id: uuid.v4(), value: null }
-            ]
-          };
-        }
+      const elements = updateElementData(els, activeElId, {
+        duration: 1000,
+        imgSrc: [
+          { id: uuid.v4(), value: null },
+          { id: uuid.v4(), value: null }
+        ]
       });
-
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
-  }, [SD, layout.elements, layout.activeEl.id, dispatch]);
+  }, [SD, dispatch, activeElId, els]);
 
   useEffect(() => {
     memoizedCallback_OrigineState();
   }, [memoizedCallback_OrigineState]);
 
   const handleOnAddImage = () => {
-    const elements = [...layout.elements];
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = {
-          ...SD,
-          imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
-        };
-      }
+    const elements = updateElementData(els, activeElId, {
+      ...SD,
+      imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
     });
-
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
@@ -91,16 +74,10 @@ const Slider = () => {
     if (SD.imgSrc.length > 2) {
       const duration = +durRef.current.value;
 
-      const elements = [...layout.elements];
-      elements.forEach((element, i) => {
-        if (element.elId === layout.activeEl.id) {
-          elements[i].elData = {
-            duration,
-            imgSrc: SD.imgSrc.filter(item => item.id !== id)
-          };
-        }
+      const elements = updateElementData(els, activeElId, {
+        duration,
+        imgSrc: SD.imgSrc.filter(item => item.id !== id)
       });
-
       dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
