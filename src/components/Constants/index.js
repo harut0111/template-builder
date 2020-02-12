@@ -6,6 +6,10 @@ import { IoIosImages, IoMdShare } from "react-icons/io";
 import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
+// import { useStateValue } from "../../context";
+// import { UPDATE_ELEMENT } from "../../context/actions";
+
+
 import Text from "../Settings/Text";
 import Video from "../Settings/Video";
 import Image from "../Settings/Image";
@@ -57,7 +61,7 @@ export const BAR_LIST = ["Elements", "Component Settings"];
 
 export const VIDEO_PROVIDER_LIST = [
   "YouTube",
-  "Facebook",
+  "Facebook"
   // "Vimeo",
   // "Metacafe",
   // "Veoh"
@@ -105,4 +109,17 @@ export const getActiveEl = layout => {
 export const filterElement = (layout, id) => {
   const filteredItem = layout.elements.filter(el => el.elId !== id);
   return filteredItem;
+};
+
+export const updateElementData = (els, activeElId, elData) => {
+
+  const elements = els.map(obj => {
+    if (obj.elId === activeElId) {
+      return Object.assign({}, obj, {
+        elData: { ...obj.elData, ...elData }
+      });
+    }
+    return obj;
+  });
+  return elements;
 };

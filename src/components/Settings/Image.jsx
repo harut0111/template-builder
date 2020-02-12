@@ -3,9 +3,12 @@ import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
 import { FaRegImage } from "react-icons/fa";
+import { updateElementData } from "../Constants/index";
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   const urlRef = useRef(null);
   const fileRef = useRef(null);
@@ -18,14 +21,8 @@ const Image = () => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        const elements = layout.elements.map(obj => {
-          if (obj.elId === layout.activeEl.id) {
-            return {
-              ...obj,
-              elData: { ...obj.elData, imgSrc: reader.result }
-            };
-          }
-          return obj;
+        const elements = updateElementData(els, activeElId, {
+          imgSrc: reader.result
         });
         dispatch({ type: UPDATE_ELEMENT, payload: elements });
       };
@@ -34,34 +31,17 @@ const Image = () => {
 
   const handleOnURLChanage = () => {
     const url = urlRef.current.value.trim();
-
-    const elements = layout.elements.map(obj => {
-      if (obj.elId === layout.activeEl.id) {
-        return {
-          ...obj,
-          elData: { ...obj.elData, url }
-        };
-      }
-      return obj;
-    });
+    const elements = updateElementData(els, activeElId, { url });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   const firstDispatch = useCallback(() => {
-    const elements = layout.elements.map(obj => {
-      if (obj.elId === layout.activeEl.id) {
-        return {
-          ...obj,
-          elData: {
-            url: "",
-            imgSrc: ""
-          }
-        };
-      }
-      return obj;
+    const elements = updateElementData(els, activeElId, {
+      url: "",
+      imgSrc: ""
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
-  }, [dispatch, layout.activeEl.id, layout.elements]);
+  }, [dispatch, activeElId, els]);
 
   useEffect(firstDispatch, []);
 
