@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import uuid from "uuid";
 
-import { BORDER_TYPE_LIST, getActiveEl } from "../Constants";
+import { BORDER_TYPE_LIST, getActiveEl, updateElementData } from "../Constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 
 const Divider = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const els = layout.elements;
+  const activeElId = layout.activeEl.id;
 
   const borderTypeRef = useRef(null);
   const borderWidthRef = useRef(null);
@@ -17,22 +19,16 @@ const Divider = () => {
     const borderWidth = borderWidthRef.current.value;
     const borderColor = borderColorRef.current.value;
 
-    const elements = [...layout.elements];
-
-    elements.forEach((element, i) => {
-      if (element.elId === layout.activeEl.id) {
-        elements[i].elData = {
-          borderType,
-          borderWidth,
-          borderColor
-        };
-      }
+    const elements = updateElementData(els, activeElId, {
+      borderType,
+      borderWidth,
+      borderColor
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   useEffect(handleOnChange, []);
-
+  
   const DD = getActiveEl(layout).elData;
 
   return (
