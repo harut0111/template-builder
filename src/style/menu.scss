@@ -78,11 +78,35 @@
             width: fit-content;
 
             .icon-wrapper {
-              width: 150px;
-              height: 100px;
+              width: 130px;
+              height: 80px;
               display: flex;
               justify-content: center;
               align-items: center;
+            }
+          }
+
+          &-source {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin: 10px 0;
+
+            label {
+              margin-right: 5px;
+              font-size: 14px;
+            }
+
+            input {
+              color: inherit;
+              border: none;
+              border-bottom: 1px solid #ddd;
+              outline: none;
+              text-align: left;
+              line-height: 1em;
+              font-size: 14px;
+              padding: 5px;
+              width: 240px;
             }
           }
 
@@ -137,7 +161,8 @@
           }
         }
 
-        .videoSettings, .audioSettings {
+        .videoSettings,
+        .audioSettings {
           color: rgb(87, 86, 86);
           font-size: 14px;
 

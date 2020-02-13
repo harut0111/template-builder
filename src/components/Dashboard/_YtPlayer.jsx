@@ -8,9 +8,7 @@ const YtPlayer = ({ elData }) => {
     const match = url.match(regExp);
     return match && match[7].length === 11 ? match[7] : "";
   };
-
-  console.log('url', url)
-//  console.log('control, +control', control, +control)
+  
   const id = youtubePrser(url);
   return (
     <div className="YtPlayer">

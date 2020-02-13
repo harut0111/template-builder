@@ -50,6 +50,7 @@ const Video = () => {
             value={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
             onChange={handleOnChange}
             ref={providerRef}
+            allowFullScreen
             className="select-box"
           >
             {VIDEO_PROVIDER_LIST.map(provider => (
