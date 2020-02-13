@@ -24,7 +24,7 @@ const Video = () => {
 
   const handleOnChange = () => {
     const provider = providerRef.current.value;
-    const url = urlRef.current.value;
+    const url = urlRef.current.value.trim();
 
     const autoplay = autoplayRef.current.checked;
     const loop = loopRef.current.checked;
@@ -44,12 +44,13 @@ const Video = () => {
     <div className="videoSettings">
       <h3>Video</h3>
       <form>
-        <div>
+        <div className="videoSettings-provider">
           <label>Provider: </label>
           <select
             value={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
             onChange={handleOnChange}
             ref={providerRef}
+            className="select-box"
           >
             {VIDEO_PROVIDER_LIST.map(provider => (
               <option key={provider.id} value={provider.name}>
@@ -59,7 +60,7 @@ const Video = () => {
           </select>
         </div>
 
-        <div>
+        <div className="videoSettings-source">
           <label>Source: </label>
           <input
             placeholder="URL"
@@ -68,7 +69,7 @@ const Video = () => {
             value={VD ? VD.url : ""}
           />
         </div>
-        <div>
+        <div className="videoSettings-format">
           {FORMAT_LIST.map((item, i) => (
             <span
               key={item.id}

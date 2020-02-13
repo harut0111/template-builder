@@ -136,6 +136,81 @@
             height: fit-content;
           }
         }
+
+        .videoSettings {
+          color: rgb(87, 86, 86);
+          font-size: 14px;
+
+          &-provider {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin: 10px 0;
+
+            label {
+              margin-right: 5px;
+            }
+            .select-box {
+              color: inherit;
+              cursor: pointer;
+              outline: none;
+              background: transparent;
+              padding: 2px;
+              font-size: 14px;
+              line-height: 1em;
+              border: none;
+              text-align: left;
+              line-height: 1em;
+              width: 180px;
+              height: 25px;
+              overflow: hidden;
+              background-color: #fff;
+              border-bottom: 1px solid #ddd;
+              // border-radius: 0;
+              // padding-right: 0;
+              // -webkit-appearance: none;
+              // vertical-align: top !important;
+              // border-radius: 3px 5px 5px 3px;
+              option {
+                &:hover {
+                  background-color: seashell;
+                }
+              }
+            }
+          }
+
+          &-source {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin: 10px 0;
+
+            label {
+              margin-right: 18px;
+            }
+
+            input {
+              color: inherit;
+              border: none;
+              border-bottom: 1px solid #ddd;
+              outline: none;
+              text-align: left;
+              line-height: 1em;
+              font-size: 14px;
+              padding: 5px;
+              width: 240px;
+            }
+          }
+
+          &-format {
+            margin: 15px 0;
+            color: inherit;
+            width: 250px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
       }
     }
   }
