@@ -9,6 +9,8 @@ const YtPlayer = ({ elData }) => {
     return match && match[7].length === 11 ? match[7] : "";
   };
 
+  console.log('url', url)
+//  console.log('control, +control', control, +control)
   const id = youtubePrser(url);
   return (
     <div className="YtPlayer">
@@ -19,9 +21,9 @@ const YtPlayer = ({ elData }) => {
           height="200"
           scrolling="no"
           frameBorder="no"
-          src={`https://www.youtube.com/embed/${id}?controls=${+control}&autoplay=${+autoplay}${
-            loop ? `&${+loop}&playlist=${url}` : ""
-          }`}
+          allowfullscreen
+          src={`https://www.youtube.com/embed/${id}?controls=${Number(control)}&autoplay=${Number(autoplay)}${loop ? 
+          `&loop=${Number(loop)}&playlist=${id}` : ""}`}
         />
       ) : null}
     </div>

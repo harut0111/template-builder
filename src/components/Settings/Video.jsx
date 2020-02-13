@@ -32,7 +32,7 @@ const Video = () => {
 
     const elements = updateElementData(els, activeElId, {
       provider,
-      url,
+      url: "https://www.youtube.com/watch?v=mWZ6b_I-Djg",
       videoFormat: { autoplay, loop, control }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
@@ -77,7 +77,7 @@ const Video = () => {
                 display: item.for.includes(
                   VD ? VD.provider : VIDEO_PROVIDER_LIST[0]
                 )
-                  ? "initial"
+                  ? "flex"
                   : "none"
               }}
             >
