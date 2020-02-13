@@ -51,9 +51,9 @@ const Video = () => {
             onChange={handleOnChange}
             ref={providerRef}
           >
-            {VIDEO_PROVIDER_LIST.map((provider, i) => (
-              <option key={i} value={provider}>
-                {provider}
+            {VIDEO_PROVIDER_LIST.map(provider => (
+              <option key={provider.id} value={provider.name}>
+                {provider.name}
               </option>
             ))}
           </select>

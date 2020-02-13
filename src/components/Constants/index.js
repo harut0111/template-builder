@@ -6,10 +6,6 @@ import { IoIosImages, IoMdShare } from "react-icons/io";
 import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
-// import { useStateValue } from "../../context";
-// import { UPDATE_ELEMENT } from "../../context/actions";
-
-
 import Text from "../Settings/Text";
 import Video from "../Settings/Video";
 import Image from "../Settings/Image";
@@ -60,11 +56,11 @@ export const BORDER_TYPE_LIST = ["solid", "dotted", "dashed", "double", "none"];
 export const BAR_LIST = ["Elements", "Component Settings"];
 
 export const VIDEO_PROVIDER_LIST = [
-  "YouTube",
-  "Facebook"
-  // "Vimeo",
-  // "Metacafe",
-  // "Veoh"
+  { name: "YouTube", id: uuid.v4() },
+  { name: "Facebook", id: uuid.v4() },
+  // {name: "Vimeo", id: uuid.v4()},
+  // {name: "Metacafe", id: uuid.v4()},
+  // {name: "Veoh", id: uuid.v4()}
 ];
 
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
@@ -112,7 +108,6 @@ export const filterElement = (layout, id) => {
 };
 
 export const updateElementData = (els, activeElId, elData) => {
-
   const elements = els.map(obj => {
     if (obj.elId === activeElId) {
       return Object.assign({}, obj, {
