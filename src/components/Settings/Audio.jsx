@@ -30,7 +30,7 @@ const Video = () => {
 
   const handleOnChange = () => {
     const provider = providerRef.current.value;
-    const url = urlRef.current.value;
+    const url = urlRef.current.value.trim();
 
     const autoplay = autoplayRef.current.checked;
     const loop = loopRef.current.checked;
@@ -50,12 +50,13 @@ const Video = () => {
     <div className="audioSettings">
       <h3>Audio</h3>
       <form>
-        <div>
+        <div className="audioSettings-provider">
           <label>Provider: </label>
           <select
             onChange={handleOnChange}
             value={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
             ref={providerRef}
+            className="select-box"
           >
             {AUDIO_PROVIDER_LIST.map((provider, i) => (
               <option key={i} value={provider}>
@@ -65,7 +66,7 @@ const Video = () => {
           </select>
         </div>
 
-        <div>
+        <div className="audioSettings-source">
           <label>Source: </label>
           <input
             placeholder="URL"
@@ -74,7 +75,7 @@ const Video = () => {
             onChange={handleOnChange}
           />
         </div>
-        <div>
+        <div className="audioSettings-format">
           {FORMAT_LIST.map((item, i) => (
             <span key={uuid.v4()}>
               <label>{item.label}</label>

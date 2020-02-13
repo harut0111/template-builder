@@ -32,7 +32,7 @@ const Video = () => {
 
     const elements = updateElementData(els, activeElId, {
       provider,
-      url: "https://www.youtube.com/watch?v=mWZ6b_I-Djg",
+      url,
       videoFormat: { autoplay, loop, control }
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
@@ -93,6 +93,7 @@ const Video = () => {
           ))}
         </div>
       </form>
+      <p>https://www.youtube.com/watch?v=mWZ6b_I-Djg</p>
     </div>
   );
 };

@@ -11,10 +11,10 @@ const VideoData = ({ elData, active }) => {
     let Player = YtPlayer;
 
     switch (provider) {
-      case VIDEO_PROVIDER_LIST[0]:
+      case VIDEO_PROVIDER_LIST[0].name:
         Player = YtPlayer;
         break;
-      case VIDEO_PROVIDER_LIST[1]:
+      case VIDEO_PROVIDER_LIST[1].name:
         Player = FbPlayer;
         break;
       default:
