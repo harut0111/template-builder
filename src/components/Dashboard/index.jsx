@@ -21,7 +21,7 @@ const Dashboard = () => {
       payload: {
         elLabel: el.label,
         elId: uuid.v4(),
-        ElSettings: el.Settings,
+        ElSettings: <el.Settings />,
         elData: null
       }
     });
