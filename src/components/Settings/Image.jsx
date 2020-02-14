@@ -32,23 +32,23 @@ const Image = () => {
   };
 
   const handleOnURLChanage = () => {
-
-    const isUrlValid = (userInput) => {
-      var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-      if(res == null) return false;
-      return true;
-    }
+    const isUrlValid = url => {
+      const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+      const regex = new RegExp(expression);
+      return regex.test(url);
+    };
 
     const url = urlRef.current.value.trim();
-    if(!isUrlValid(url)) setUrlWarning(true);
-    else setUrlWarning(false);
-    const elements = updateElementData(els, activeElId, { url });
+    setUrlWarning(!isUrlValid(url));
+    const elements = updateElementData(els, activeElId, {
+      url: { value: url, validity: isUrlValid(url) }
+    });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
   const firstDispatch = useCallback(() => {
     const elements = updateElementData(els, activeElId, {
-      url: "",
+      url: { value: "", validity: false },
       imgSrc: ""
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
@@ -67,8 +67,8 @@ const Image = () => {
             placeholder="URL"
             ref={urlRef}
             onChange={handleOnURLChanage}
-            value={ID ? ID.url : ""}
-            style={{borderBottomColor: urlWarning ? "red": "#ddd"}}
+            value={ID ? ID.url.value : ""}
+            style={{ borderBottomColor: urlWarning ? "red" : "#ddd" }}
           />
         </div>
       </form>

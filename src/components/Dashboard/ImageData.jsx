@@ -13,9 +13,9 @@ const ImageData = ({ elData, active }) => {
       <div>
         {(elData && elData.imgSrc) ? (
           <a
-            href={elData.url}
+            href={elData.url.value}
             target="_blank"
-            onClick={elData.url ? null : e => e.preventDefault()}
+            onClick={elData.url.validity ? null : e => e.preventDefault()}
             rel="noopener noreferrer"
           >
             <img src={elData.imgSrc} width="200" height="150" alt="img" />
