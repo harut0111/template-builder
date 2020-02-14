@@ -19,7 +19,7 @@ const YtPlayer = ({ elData }) => {
           height="200"
           scrolling="no"
           frameBorder="no"
-          allowfullscreen
+          allowFullScreen
           src={`https://www.youtube.com/embed/${id}?version=3&controls=${Number(control)}&autoplay=${Number(autoplay)}${loop ? 
           `&loop=${Number(loop)}&playlist=${id}` : ""}`}
         />
