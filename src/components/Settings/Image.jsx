@@ -3,7 +3,7 @@ import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../Constants";
 import { FaRegImage } from "react-icons/fa";
-import { updateElementData } from "../Constants/index";
+import { updateElementData, isUrlValid } from "../Constants/index";
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -32,12 +32,6 @@ const Image = () => {
   };
 
   const handleOnURLChanage = () => {
-    const isUrlValid = url => {
-      const expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-      const regex = new RegExp(expression);
-      return regex.test(url);
-    };
-
     const url = urlRef.current.value.trim();
     setUrlWarning(!isUrlValid(url));
     const elements = updateElementData(els, activeElId, {
@@ -61,7 +55,7 @@ const Image = () => {
       <h3>Image</h3>
       <form>
         <div className="image-source">
-          <label>Link Image:</label>
+          <label>Link Image: </label>
           <input
             type="url"
             placeholder="URL"
