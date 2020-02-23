@@ -1,7 +1,9 @@
 import React, { useEffect, useCallback } from "react";
-import { SOCIAL_MEDIA_LIST, getActiveEl } from "../Constants";
+import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
+import { getActiveEl } from "../../utils/getActiveEl";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
+import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
 
 const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -82,11 +84,7 @@ const SocialMedia = () => {
       {SMD
         ? SMD.map((el, i) => (
             <div className="socialMedia-main" key={i} id={i}>
-              {
-                SOCIAL_MEDIA_LIST.filter(
-                  item => item.label === el.socialMedia
-                )[0].Icon
-              }
+              {getSocialMediaIcon(el.socialMedia)}
               <form onSubmit={e => e.preventDefault()}>
                 <select
                   value={el.socialMedia}

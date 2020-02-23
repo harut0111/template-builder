@@ -6,7 +6,7 @@ import {
   ADD_NEW_ELEMENT,
   SET_BAR_INDEX,
 } from "../../context/actions";
-import { EL_LIST, BAR_LIST } from "../Constants";
+import { EL_LIST, BAR_LIST } from "../../configs/constants";
 
 const Menu = () => {
   const [{ layout }, dispatchLayouts] = useStateValue();
@@ -17,7 +17,6 @@ const Menu = () => {
       payload: {
         elLabel: el.label,
         elId: uuid.v4(),
-        ElSettings: <el.Settings />,
         elData: null
       }
     });

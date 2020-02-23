@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { getActiveEl } from "../Constants";
+import { getActiveEl } from "../../utils/getActiveEl";
 import RichTextEditor from "react-rte";
 
 const Text = () => {

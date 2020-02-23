@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import uuid from "uuid";
 import { useStateValue } from "../../context";
-import { getActiveEl } from "../Constants";
+import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { updateElementData } from "../Constants/index";
+import { updateElementData } from '../../utils/updateElData'
 
 const Slider = () => {
   const [{ layout }, dispatch] = useStateValue();

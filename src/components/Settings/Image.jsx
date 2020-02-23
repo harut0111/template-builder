@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { getActiveEl } from "../Constants";
+import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
-import { updateElementData, isUrlValid } from "../Constants/index";
+import { updateElementData } from '../../utils/updateElData'
+import { isUrlValid } from '../../utils/urlValidation'
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();

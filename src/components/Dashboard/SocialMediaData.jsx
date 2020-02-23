@@ -1,6 +1,7 @@
 import React from "react";
-import { areEqual } from "../../core/Comparision";
-import { SOCIAL_MEDIA_LIST } from "../Constants";
+import { areEqual } from "../../utils/comparision";
+// import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
+import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
 
 const SocialMediaData = ({ elData, active }) => {
   if (elData) {
@@ -18,11 +19,7 @@ const SocialMediaData = ({ elData, active }) => {
               rel="noopener noreferrer"
               style={{ color: "inherit" }}
             >
-              {
-                SOCIAL_MEDIA_LIST.filter(
-                  item => item.label === el.socialMedia
-                )[0].Icon
-              }
+              {getSocialMediaIcon(el.socialMedia)}
             </a>
           ))}
         </div>

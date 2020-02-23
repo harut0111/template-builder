@@ -1,6 +1,6 @@
 import React from "react";
 import { FaRegImage } from "react-icons/fa";
-import { getActiveEl } from "../Constants";
+import { getActiveEl } from "../../configs/constants";
 
 const _ImageUploader = () => {
 

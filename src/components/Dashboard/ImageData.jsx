@@ -1,5 +1,5 @@
 import React from "react";
-import { areEqual } from "../../core/Comparision";
+import { areEqual } from "../../utils/comparision";
 
 const ImageData = ({ elData, active }) => {
   const emptyDivStyle = {

@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { areEqual } from "../../core/Comparision";
+import { areEqual } from "../../utils/comparision";
 
 const MapData = ({ elData, active }) => {
   console.log("elData", elData);

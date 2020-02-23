@@ -5,13 +5,13 @@ import {
   VIDEO_PROVIDER_LIST,
   FORMAT_LIST,
   AUDIO_PROVIDER_LIST,
-  updateElementData
-} from "../Constants";
+} from "../../configs/constants";
+import { updateElementData } from '../../utils/updateElData'
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { getActiveEl } from "../Constants/";
+import { getActiveEl } from "../../utils/getActiveEl";
 
-const Video = () => {
+const Audio = () => {
   const [{ layout }, dispatch] = useStateValue();
   const els = layout.elements;
   const activeElId = layout.activeEl.id;
@@ -94,4 +94,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default Audio;

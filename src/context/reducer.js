@@ -14,8 +14,15 @@ export const initialState = {
   }
 };
 
+const obj_from_localStr = JSON.parse(localStorage.getItem("state"));
+// eslint-disable-next-line
+const buildedObj = Object.assign(initialState, obj_from_localStr)
+
+// console.log('obj_from_localStr', obj_from_localStr);
+// console.log('buildedObj', buildedObj);
+
+
 export const reducer = (state, { type, payload }) => {
-  // console.log('type', type);
   // console.log('payload', payload);
   switch (type) {
     case ADD_NEW_ELEMENT:
@@ -40,7 +47,7 @@ export const reducer = (state, { type, payload }) => {
           activeEl: {
             id: payload.length && payload[payload.length - 1].elId
           },
-          activeBarIndex: payload.length ? 1:0
+          activeBarIndex: payload.length ? 1 : 0
         }
       };
     }

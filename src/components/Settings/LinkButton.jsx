@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { BORDER_TYPE_LIST, updateElementData } from "../Constants";
+import { BORDER_TYPE_LIST } from "../../configs/constants";
+import { updateElementData } from '../../utils/updateElData'
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { useStateValue } from "../../context";
-import { getActiveEl } from "../Constants/";
+import { getActiveEl } from "../../utils/getActiveEl";
 
 const LinkButton = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -20,7 +21,7 @@ const LinkButton = () => {
   const handleOnChange = () => {
     const btnText = btnTextRef.current.value;
     const btnColor = btnColorRef.current.value;
-    const url = urlRef.current.value;
+    const url = urlRef.current.value.trim();
     const bgColor = bgColorRef.current.value;
     const borderType = borderTypeRef.current.value;
 

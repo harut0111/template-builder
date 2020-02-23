@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Slider from "./_Slider";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { updateElementData } from "../Constants";
+import { updateElementData } from '../../utils/updateElData'
 
 const Map = () => {
   const [{ layout }, dispatch] = useStateValue();

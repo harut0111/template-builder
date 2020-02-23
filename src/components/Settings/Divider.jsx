@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import uuid from "uuid";
 
-import { BORDER_TYPE_LIST, getActiveEl, updateElementData } from "../Constants";
+import { BORDER_TYPE_LIST } from "../../configs/constants";
+import { getActiveEl } from "../../utils/getActiveEl";
+import { updateElementData } from '../../utils/updateElData'
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { areEqual } from "../../core/Comparision";
-import { VIDEO_PROVIDER_LIST } from "../Constants";
+import { areEqual } from "../../utils/comparision";
+import { VIDEO_PROVIDER_LIST } from "../../configs/constants";
 import YtPlayer from "./_YtPlayer";
 import FbPlayer from "./_FbPlayer";
 

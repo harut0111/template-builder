@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../Constants";
+import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../../configs/constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
-import { getActiveEl } from "../Constants/";
-import { updateElementData } from "../Constants/index";
+import { getActiveEl } from "../../utils/getActiveEl";
+import { updateElementData } from '../../utils/updateElData'
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();

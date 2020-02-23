@@ -6,9 +6,11 @@ import Main from "./components/Main";
 
 function App() {
   return (
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <Main />
-    </StateProvider>
+    <div className="App">
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <Main />
+      </StateProvider>
+    </div>
   );
 }
 
