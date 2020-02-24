@@ -4,6 +4,7 @@ import { getActiveEl } from "../../utils/getActiveEl";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
+import uuid from "uuid";
 
 const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -19,7 +20,7 @@ const SocialMedia = () => {
     const elements = els.map(obj => {
       if (obj.elId === activeElId) {
         return Object.assign({}, obj, {
-          elData: [...SMD, { socialMedia: "Facebook", url: "" }]
+          elData: [...SMD, {id: uuid(), socialMedia: "Facebook", url: "" }]
         });
       }
       return obj;
@@ -32,7 +33,7 @@ const SocialMedia = () => {
       const elements = els.map(obj => {
         if (obj.elId === activeElId) {
           return Object.assign({}, obj, {
-            elData: [{ socialMedia: "Facebook", url: "" }]
+            elData: [{id: uuid(), socialMedia: "Facebook", url: "" }]
           });
         }
         return obj;
@@ -55,7 +56,8 @@ const SocialMedia = () => {
         }
         return obj;
       });
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      console.log('elements', elements)
+      // dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
 
@@ -68,7 +70,7 @@ const SocialMedia = () => {
     const elements = els.map(obj => {
       if (obj.elId === activeElId) {
         const CSMD = [...SMD];
-        CSMD[index] = { socialMedia, url };
+        CSMD[index] = {...CSMD[index], socialMedia, url };
         return Object.assign({}, obj, {
           elData: CSMD
         });
@@ -78,32 +80,33 @@ const SocialMedia = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
+  console.log('SMD', SMD);
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
       {SMD
-        ? SMD.map((el, i) => (
-            <div className="socialMedia-main" key={i} id={i}>
-              {getSocialMediaIcon(el.socialMedia)}
+        ? SMD.map(({socialMedia, url, id }, i) => (
+            
+            <div className="socialMedia-main" key={id} id={id}>
+              {getSocialMediaIcon(socialMedia)}
               <form onSubmit={e => e.preventDefault()}>
                 <select
-                  value={el.socialMedia}
+                  value={socialMedia}
                   ref={el => socialMediaRef.push(el)}
                   onChange={ev => handleOnChange(ev, i)}
                 >
-                  {SOCIAL_MEDIA_LIST.map((item, i) => (
-                    <option key={i} value={item.label}>
-                      {item.label}
+                  {SOCIAL_MEDIA_LIST.map(({label, id}) => (
+                    <option key={id} value={label}>
+                      {label}
                     </option>
                   ))}
                 </select>
                 <input
                   type="url"
-                  id={`inp-${i}`}
                   placeholder="URL"
                   ref={el => urlRef.push(el)}
                   onChange={ev => handleOnChange(ev, i)}
-                  value={el.url}
+                  value={url}
                 />
                 <hr />
                 <input

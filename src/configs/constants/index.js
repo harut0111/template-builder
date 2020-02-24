@@ -78,10 +78,10 @@ export const VIDEO_PROVIDER_LIST = [
 
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
 export const SOCIAL_MEDIA_LIST = [
-  { label: "Facebook", Icon: FaFacebook },
-  { label: "Twitter", Icon: FaTwitter },
-  { label: "Instagram", Icon: FaInstagram },
-  { label: "YouTube", Icon: FaYoutube }
+  { label: "Facebook", Icon: FaFacebook, id: uuid.v4() },
+  { label: "Twitter", Icon: FaTwitter, id: uuid.v4() },
+  { label: "Instagram", Icon: FaInstagram, id: uuid.v4() },
+  { label: "YouTube", Icon: FaYoutube, id: uuid.v4() }
 ];
 
 export const FORMAT_LIST = [

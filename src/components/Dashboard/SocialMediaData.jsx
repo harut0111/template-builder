@@ -1,6 +1,5 @@
 import React from "react";
 import { areEqual } from "../../utils/comparision";
-// import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
 
 const SocialMediaData = ({ elData, active }) => {
