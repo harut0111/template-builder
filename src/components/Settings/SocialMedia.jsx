@@ -1,10 +1,11 @@
 import React, { useEffect, useCallback } from "react";
+import uuid from "uuid";
+
 import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
-import uuid from "uuid";
 
 const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -20,7 +21,7 @@ const SocialMedia = () => {
     const elements = els.map(obj => {
       if (obj.elId === activeElId) {
         return Object.assign({}, obj, {
-          elData: [...SMD, { id: uuid(), socialMedia: "Facebook", url: "" }]
+          elData: [...SMD, { socialMedia: "Facebook", url: "", id: uuid() }]
         });
       }
       return obj;
@@ -33,7 +34,7 @@ const SocialMedia = () => {
       const elements = els.map(obj => {
         if (obj.elId === activeElId) {
           return Object.assign({}, obj, {
-            elData: [{ id: uuid(), socialMedia: "Facebook", url: "" }]
+            elData: [{ socialMedia: "Facebook", url: "", id: uuid() }]
           });
         }
         return obj;
@@ -46,31 +47,29 @@ const SocialMedia = () => {
     memoizedCallback();
   }, [memoizedCallback]);
 
-  const handleOnRemove = index => {
+  const handleOnRemove = i => {
     if (SMD.length > 1) {
       const elements = els.map(obj => {
         if (obj.elId === activeElId) {
           return Object.assign({}, obj, {
-            elData: [...obj.elData].splice(index, 1)
+            elData: obj.elData.filter((item, index) => index !== i)
           });
         }
         return obj;
       });
       console.log("elements", elements);
-      // dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      dispatch({ type: UPDATE_ELEMENT, payload: elements });
     }
   };
 
-  const handleOnChange = (ev, index) => {
-    ev.preventDefault();
-
-    const socialMedia = socialMediaRef[index].value;
-    const url = urlRef[index].value;
+  const handleOnChange = i => {
+    const socialMedia = socialMediaRef[i].value;
+    const url = urlRef[i].value;
 
     const elements = els.map(obj => {
       if (obj.elId === activeElId) {
         const CSMD = [...SMD];
-        CSMD[index] = { ...CSMD[index], socialMedia, url };
+        CSMD[i] = { ...CSMD[i], socialMedia, url };
         return Object.assign({}, obj, {
           elData: CSMD
         });
@@ -90,7 +89,7 @@ const SocialMedia = () => {
             <select
               value={socialMedia}
               ref={el => socialMediaRef.push(el)}
-              onChange={ev => handleOnChange(ev, i)}
+              onChange={() => handleOnChange(i)}
             >
               {SOCIAL_MEDIA_LIST.map(({ label, id }) => (
                 <option key={id} value={label}>
@@ -102,7 +101,7 @@ const SocialMedia = () => {
               type="url"
               placeholder="URL"
               ref={el => urlRef.push(el)}
-              onChange={ev => handleOnChange(ev, i)}
+              onChange={() => handleOnChange(i)}
               value={url}
             />
             <hr />
