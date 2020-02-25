@@ -1,15 +1,16 @@
 .menu {
   flex: 1;
+  max-width: 530px;
 
   &-main {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: fit-content;
-
+    
     display: flex;
     flex-direction: column;
 
     &-navbar {
-      height: 35px;
+      // height: 35px;
 
       ul {
         border-bottom: 0.5px solid rgba(128, 128, 128, 0.541);
@@ -18,9 +19,10 @@
         flex-wrap: wrap;
 
         li {
+          white-space: nowrap;
           flex: 1;
           text-align: center;
-          padding: 5px 0;
+          padding: 5px 10px;
           cursor: pointer;
           color: rgb(6, 88, 155);
           font-weight: 900;
@@ -34,9 +36,12 @@
     }
 
     &-body {
-      min-height: 265px;
+      // min-height: 265px;
+      
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
 
       .element {
         user-select: none;

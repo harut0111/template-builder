@@ -5,9 +5,10 @@ import {
   REMOVE_ELEMENT,
   CHANGE_ACTIVE_ELEMENT
 } from "../../context/actions";
+import { Resizable } from "re-resizable";
 import uuid from "uuid";
 import { EL_LIST, EL_DATA_LIST } from "../../configs/constants";
-import { filterElement } from '../../utils/filterElement'
+import { filterElement } from "../../utils/filterElement";
 import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
@@ -51,10 +52,18 @@ const Dashboard = () => {
     </>
   );
 
+  const style = {
+    // display: "flex",
+    // alignItems: "center",
+    justifyContent: "center",
+    border: "solid 1px #ddd",
+    background: "#f0f0f0"
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard-main">
-        <div className="dashboard-main-header">dashboard-main-header</div>
+        <div className="dashboard-main-header">Header</div>
         <div
           className="dashboard-main-body"
           onDrop={handleOnDrop}
@@ -62,19 +71,30 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              className="element-wraper"
+              className="element-wrapper"
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
-              <Toolbar
-                className={"toolbar"}
-                onClick={ev => handleOnToolClick(ev, el.elId)}
-              />
-              {getElementData(el)}
+              <Resizable
+                style={style}
+                minHeight={150}
+                maxHeight={300}
+                enable={{ top: false, bottom: true }}
+                defaultSize={{
+                  // width: "98%",
+                  height: 200
+                }}
+              >
+                <Toolbar
+                  className={"toolbar"}
+                  onClick={ev => handleOnToolClick(ev, el.elId)}
+                />
+                {/* {getElementData(el)} */}
+              </Resizable>
             </div>
           ))}
         </div>
-        <div className="dashboard-main-footer">dashboard-main-footer</div>
+        <div className="dashboard-main-footer">Footer</div>
       </div>
     </div>
   );

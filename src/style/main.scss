@@ -4,10 +4,10 @@
         box-sizing: border-box;
     }
 
-    padding: 5px;
-    border: 1px dashed red;
-    width: 70%;
+    max-width: 90%;
+    // min-width: 640px;
     margin: auto;
+    margin-top: 20px;
     height: 700px;
     display: flex;
     flex-direction: row;

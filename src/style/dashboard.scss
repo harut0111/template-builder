@@ -1,72 +1,77 @@
 .dashboard {
-    background-color: grey;
-    flex: 1;
+  background-color: #505050;
+  flex: 1;
+  // overflow-y: scroll;
+
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-main {
+    background-color: #ffff;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    text-align: center;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 
-    &-main {
-        background-color: #ffff;
-        width: 90%;
-        height: 90%;
-        border-radius: 10px;
-        text-align: center;
-        
-        display: flex;
-        flex-direction: column;
+    &-header,
+    &-footer {
+      height: 30px;
+    }
 
-        &-body {
-            height: 90%;
-            border-bottom: 1px dashed gray;
-            border-top: 1px dashed gray;
-            overflow-y: scroll;
+    &-body {
+      @include scroll-bar;
 
-            .element {
-                min-height: 40px;
-                border: 1px solid gray;
-                margin: 5px;
-                border-radius: 5px;
-                transition: all 1s;
-                opacity: 0.5;
+      height: 90%;
+      border-bottom: 1px dashed gray;
+      border-top: 1px dashed gray;
+      overflow-y: scroll;
 
-                &-active {
-                    background: rgb(238, 238, 238);
-                    opacity: 1;
-                }
+      .element {
+        min-height: 40px;
+        border: 1px solid gray;
+        margin: 5px;
+        border-radius: 5px;
+        transition: all 1s;
+        opacity: 0.5;
 
-                &-wraper {
-                    display: flex;
-                    flex-direction: column;
-                    border-top: 1px solid gainsboro;
-
-                    .textData {
-                        all: initial;
-                        min-height: 150px;
-                        padding: 0 15px;
-
-                        ul {
-                            margin: 1em 0;
-                            list-style-type: disc;
-                            margin-left: 22px;
-                        }
-
-                        ol {
-                            margin-left: 15px;
-                            padding-left: 0;
-                        }
-                    }
-                }
-
-                
-            }
-
-            .socialMediaData {
-                cursor: pointer;
-            }
+        &-active {
+          background: rgb(238, 238, 238);
+          opacity: 1;
         }
 
+        &-wrapper {
+          display: flex;
+          flex-direction: column;
+          // border-top: 1px solid gainsboro;
+          margin: 15px 0;
+
+          .textData {
+            all: initial;
+            min-height: 150px;
+            padding: 0 15px;
+
+            ul {
+              margin: 1em 0;
+              list-style-type: disc;
+              margin-left: 22px;
+            }
+
+            ol {
+              margin-left: 15px;
+              padding-left: 0;
+            }
+          }
+        }
+      }
+
+      .socialMediaData {
+        cursor: pointer;
+      }
     }
+  }
 }
-
-
