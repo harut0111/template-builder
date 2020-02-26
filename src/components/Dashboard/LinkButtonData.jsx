@@ -10,10 +10,7 @@ const LinkButtonData = ({ elData, active }) => {
     const style = {
       border: `2px ${borderType} #000000`,
       color: btnColor,
-      backgroundColor: bgColor,
-
-      padding: "5px",
-      textDecoration: "none"
+      backgroundColor: bgColor,      
     };
     return (
       <div

@@ -5,7 +5,6 @@ import {
   REMOVE_ELEMENT,
   CHANGE_ACTIVE_ELEMENT
 } from "../../context/actions";
-import { Resizable } from "re-resizable";
 import uuid from "uuid";
 import { EL_LIST, EL_DATA_LIST } from "../../configs/constants";
 import { filterElement } from "../../utils/filterElement";
@@ -52,14 +51,6 @@ const Dashboard = () => {
     </>
   );
 
-  const style = {
-    // display: "flex",
-    // alignItems: "center",
-    justifyContent: "center",
-    border: "solid 1px #ddd",
-    background: "#f0f0f0"
-  };
-
   return (
     <div className="dashboard">
       <div className="dashboard-main">
@@ -71,26 +62,15 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              className="element-wrapper"
+              className={`element-wrapper ${el.elId === layout.activeEl.id ? "element-wrapper-active" : ""}`}
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
-              <Resizable
-                style={style}
-                minHeight={150}
-                maxHeight={300}
-                enable={{ top: false, bottom: true }}
-                defaultSize={{
-                  // width: "98%",
-                  height: 200
-                }}
-              >
-                <Toolbar
-                  className={"toolbar"}
-                  onClick={ev => handleOnToolClick(ev, el.elId)}
-                />
-                {/* {getElementData(el)} */}
-              </Resizable>
+              <Toolbar
+                className={"toolbar"}
+                onClick={ev => handleOnToolClick(ev, el.elId)}
+              />
+              {getElementData(el)}
             </div>
           ))}
         </div>

@@ -16,9 +16,9 @@ const YtPlayer = ({ elData }) => {
         <iframe
           title="youtube-video"
           width="100%"
-          height="200"
+          height="100%"
           scrolling="no"
-          frameBorder="no"
+          frameBorder="no"  
           allowFullScreen
           src={`https://www.youtube.com/embed/${id}?version=3&controls=${Number(control)}&autoplay=${Number(autoplay)}${loop ? 
           `&loop=${Number(loop)}&playlist=${id}` : ""}`}

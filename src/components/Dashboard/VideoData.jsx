@@ -1,10 +1,11 @@
 import React from "react";
+import { Resizable } from "re-resizable";
 import { areEqual } from "../../utils/comparision";
 import { VIDEO_PROVIDER_LIST } from "../../configs/constants";
 import YtPlayer from "./_YtPlayer";
 import FbPlayer from "./_FbPlayer";
 
-const VideoData = ({ elData, active }) => {
+const VideoData = ({ elData }) => {
   if (elData) {
     const { provider } = elData;
 
@@ -21,21 +22,35 @@ const VideoData = ({ elData, active }) => {
         break;
     }
 
+    const style = {
+      // display: "flex",
+      // alignItems: "center",
+      justifyContent: "center",
+      border: "solid 1px #ddd",
+      background: "#f0f0f0"
+    };
+
     return (
-      <div
-        className={`videoData element ${active ? "element-active" : ""}`}
-        style={{ height: "220px" }}
+      <Resizable
+        className="resizable-container"
+        style={style}
+        minHeight={150}
+        maxHeight={300}
+        enable={{ top: false, bottom: true }}
+        defaultSize={{
+          // width: "98%",
+          height: 200
+        }}
       >
-        <Player elData={elData} />
-      </div>
+        <div className="videoData">
+          <Player elData={elData} />
+        </div>
+      </Resizable>
     );
   }
 
   return (
-    <div
-      className={`element ${active ? "element-active" : ""}`}
-      style={{ height: "150px", color: "red" }}
-    >
+    <div className="videoData" style={{ height: "150px", color: "red" }}>
       Set Video Settings
     </div>
   );
