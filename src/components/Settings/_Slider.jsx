@@ -10,7 +10,7 @@ const _Slider = React.forwardRef((props, ref) => {
 
   return (
     <div className="_slider" style={wrapperStyle}>
-      <Slider min={0} max={20} ref={ref} onChange={props.onChange} />
+      <Slider min={0} max={20} defaultValue={7} ref={ref} onChange={props.onChange} />
     </div>
   );
 });

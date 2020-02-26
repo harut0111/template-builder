@@ -22,20 +22,11 @@ const VideoData = ({ elData }) => {
         break;
     }
 
-    const style = {
-      // display: "flex",
-      // alignItems: "center",
-      justifyContent: "center",
-      border: "solid 1px #ddd",
-      background: "#f0f0f0"
-    };
-
     return (
       <Resizable
         className="resizable-container"
-        style={style}
         minHeight={150}
-        maxHeight={300}
+        maxHeight={400}
         enable={{ top: false, bottom: true }}
         defaultSize={{
           // width: "98%",
