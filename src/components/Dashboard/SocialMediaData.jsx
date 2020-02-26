@@ -6,7 +6,8 @@ const SocialMediaData = ({ elData, active }) => {
   if (elData) {
     return (
       <div
-        className={`socialMediaData element ${active ? "element-active" : ""}`}
+        className="socialMediaData"
+        // className={`socialMediaData element ${active ? "element-active" : ""}`}
       >
         <div>
           {elData.map((el, i) => (

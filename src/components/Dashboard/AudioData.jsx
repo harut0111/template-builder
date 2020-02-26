@@ -3,7 +3,10 @@ import { areEqual } from "../../utils/comparision";
 
 const AudioData = ({ elData, active }) => {
   return (
-    <div className={`element ${active ? "element-active" : ""}`}>
+    <div
+      className="audioData"
+      // className={`element ${active ? "element-active" : ""}`}
+    >
       <iframe
         title="audio"
         width="100%"

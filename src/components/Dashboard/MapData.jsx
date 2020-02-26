@@ -2,7 +2,7 @@ import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { areEqual } from "../../utils/comparision";
 
-const MapData = ({ elData, active }) => {
+const MapData = ({ elData }) => {
   console.log("elData", elData);
 
   const onClick = param => console.log("onClick", param);
@@ -28,7 +28,10 @@ const MapData = ({ elData, active }) => {
   // }, []);
 
   return (
-    <div className={`mapData element ${active ? "element-active" : ""}`}>
+    <div
+      className="mapData"
+      // className={`mapData element ${active ? "element-active" : ""}`}
+    >
       <LoadScript
         id="script-loader"
         googleMapsApiKey="AIzaSyCnB2E_TdpTGGrc2LaSsb_v8jdXWJZICdU"

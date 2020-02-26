@@ -1,7 +1,7 @@
 import React from "react";
 import { areEqual } from "../../utils/comparision";
 
-const LinkButtonData = ({ elData, active }) => {
+const LinkButtonData = ({ elData }) => {
   //   console.log("LinkBtnData", elData);
 
   if (elData) {
@@ -10,13 +10,10 @@ const LinkButtonData = ({ elData, active }) => {
     const style = {
       border: `2px ${borderType} #000000`,
       color: btnColor,
-      backgroundColor: bgColor,      
+      backgroundColor: bgColor
     };
     return (
-      <div
-        className={`linkButtonData element ${active ? "element-active" : ""}`}
-        style={{ padding: "10px" }}
-      >
+      <div className="linkButtonData" style={{ padding: "10px" }}>
         <a
           href={url ? url : "#"}
           style={style}

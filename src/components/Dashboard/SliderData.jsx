@@ -3,7 +3,7 @@ import { areEqual } from "../../utils/comparision";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const SliderData = ({ elData, active }) => {
+const SliderData = ({ elData }) => {
   const list = elData && elData.imgSrc.filter(imgSrc => imgSrc.value);
 
   const emptyDivStyle = {
@@ -14,7 +14,10 @@ const SliderData = ({ elData, active }) => {
   };
 
   return (
-    <div className={`sliderData element ${active ? "element-active" : ""}`}>
+    <div
+      className="sliderData"
+      // className={`sliderData element ${active ? "element-active" : ""}`}
+    >
       {elData ? (
         list.length ? (
           <Carousel

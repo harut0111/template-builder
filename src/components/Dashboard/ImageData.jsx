@@ -9,9 +9,12 @@ const ImageData = ({ elData, active }) => {
     alignItems: "center"
   };
   return (
-    <div className={`imageData element ${active ? "element-active" : ""}`}>
+    <div
+      className="imageData"
+      // className={`imageData element ${active ? "element-active" : ""}`}
+    >
       <div>
-        {(elData && elData.imgSrc) ? (
+        {elData && elData.imgSrc ? (
           <a
             href={elData.url.value}
             target="_blank"

@@ -44,7 +44,6 @@ const Dashboard = () => {
           <item.Data
             key={item.id}
             elData={el.elData}
-            active={el.elId === layout.activeEl.id}
           />
         ) : null
       )}

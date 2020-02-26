@@ -4,7 +4,10 @@ import { areEqual } from "../../utils/comparision";
 const TextData = ({ elData, active }) => {
   if (elData) {
     return (
-      <div className={`textData element ${active ? "element-active" : ""}`}>
+      <div
+        className="textData"
+        // className={`textData element ${active ? "element-active" : ""}`}
+      >
         {elData.toString("html") !== "<p><br></p>" ? (
           <div
             dangerouslySetInnerHTML={{
