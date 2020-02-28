@@ -8,15 +8,7 @@ const TextData = ({ elData, active }) => {
         className="textData"
         // className={`textData element ${active ? "element-active" : ""}`}
       >
-        {elData.toString("html") !== "<p><br></p>" ? (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: elData && elData.toString("html")
-            }}
-          />
-        ) : (
-          <p>Type some text...</p>
-        )}
+        <div dangerouslySetInnerHTML={{ __html: elData.markup }} />
       </div>
     );
   }
