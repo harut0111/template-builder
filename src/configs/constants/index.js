@@ -28,7 +28,7 @@ import SocialMediaData from "../../components/Dashboard/SocialMediaData";
 import AudioData from "../../components/Dashboard/AudioData";
 import LinkButtonData from "../../components/Dashboard/LinkButtonData";
 
-const LABELS = ["Text", "Video",  "Image", "Slider", "Social Media", "Audio", "Map", "Link/Button", "Divider"];
+export const LABELS = ["Text", "Video",  "Image", "Slider", "Social Media", "Audio", "Map", "Link/Button", "Divider"];
 const ICONS = [MdTextFields, FaRegPlayCircle, FaImage, IoIosImages, IoMdShare, FiHeadphones, FiMapPin, FiLink2, TiDivideOutline];
 const SETS = [Text, Video, Image, Slider, SocialMedia, Audio, Map, LinkButton, Divider];
 const DATA = [TextData, VideoData, ImageData, SliderData, SocialMediaData, AudioData, MapData, LinkButtonData, DividerData];
