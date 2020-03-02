@@ -5,20 +5,20 @@ export const formElData = type => {
     switch (type) {
       
       // Text
-      case LABELS[0].label:
+      case LABELS[0]:
         return { markup: "<p></p>" };
       // Video
-      case LABELS[1].label:
+      case LABELS[1]:
         return {
           provider: "YouTube",
           url: "",
           videoFormat: { autoplay: false, loop: false, control: true }
         };
       // 
-      case LABELS[2].label:
+      case LABELS[2]:
         return { url: { value: "", validity: false }, imgSrc: "" };
       // Slider
-      case LABELS[3].label:
+      case LABELS[3]:
         return {
           duration: 1000,
           imgSrc: [
@@ -27,11 +27,11 @@ export const formElData = type => {
           ]
         };
       // SocialMedia
-      case LABELS[4].label:
+      case LABELS[4]:
         return [{ socialMedia: "Facebook", url: "", id: uuid.v4() }];
 
       // Audio
-      case LABELS[5].label:
+      case LABELS[5]:
         return {
           provider: "YouTube",
           url: "",
@@ -39,11 +39,11 @@ export const formElData = type => {
         };
 
       // Map
-      case LABELS[6].label:
+      case LABELS[6]:
         return { address: "", zoom: 7 };
 
       // LinkButton
-      case LABELS[7].label:
+      case LABELS[7]:
         return {
           btnText: "",
           btnColor: "#ffffff",
@@ -53,7 +53,7 @@ export const formElData = type => {
         };
     
       // Divider
-      case LABELS[8].label:
+      case LABELS[8]:
         return {
           borderType: "solid",
           borderWidth: "1",
