@@ -14,13 +14,7 @@ export const initialState = {
   }
 };
 
-const obj_from_localStr = JSON.parse(localStorage.getItem("state"));
-// eslint-disable-next-line
-const buildedObj = Object.assign(initialState, obj_from_localStr)
-
-// console.log('obj_from_localStr', obj_from_localStr);
-// console.log('buildedObj', buildedObj);
-
+Object.assign(initialState, JSON.parse(localStorage.getItem("state")));
 
 export const reducer = (state, { type, payload }) => {
   // console.log('payload', payload);
