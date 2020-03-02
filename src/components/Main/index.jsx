@@ -5,10 +5,9 @@ import { useStateValue } from "../../context";
 
 const Main = () => {
   const state = useStateValue()[0];
-  //   console.log("layout", state);
 
   React.useEffect(() => {
-    console.log("state changed", state);
+    console.log("state changed", state.layout);
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 

@@ -29,6 +29,7 @@ const Dashboard = () => {
 
   const handleOnToolClick = (ev, id) => {
     ev.stopPropagation();
+    console.log("id", id);
     const filteredEls = filterElement(layout, id);
     dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };
@@ -41,10 +42,7 @@ const Dashboard = () => {
     <>
       {EL_DATA_LIST.map(item =>
         item.label === el.elLabel ? (
-          <item.Data
-            key={item.id}
-            elData={el.elData}
-          />
+          <item.Data key={item.id} elData={el.elData} />
         ) : null
       )}
     </>
@@ -61,7 +59,9 @@ const Dashboard = () => {
         >
           {layout.elements.map(el => (
             <div
-              className={`element-wrapper ${el.elId === layout.activeEl.id ? "element-wrapper-active" : ""}`}
+              className={`element-wrapper ${
+                el.elId === layout.activeEl.id ? "element-wrapper-active" : ""
+              }`}
               key={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >

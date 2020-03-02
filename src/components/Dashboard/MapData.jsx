@@ -4,8 +4,6 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { areEqual } from "../../utils/comparision";
 
 const MapData = ({ elData }) => {
-  console.log("elData", elData);
-
   const onClick = param => console.log("onClick", param);
   const onMapLoad = param => console.log("onMapLoad", param);
 
@@ -54,9 +52,9 @@ const MapData = ({ elData }) => {
             mapContainerStyle={{
               position: "absolute",
               height: "100%",
-              width: "100%",
+              width: "100%"
             }}
-            zoom={elData ? elData.zoom : 0}
+            zoom={elData.zoom}
             center={center}
             onClick={onClick}
             onLoad={onMapLoad}

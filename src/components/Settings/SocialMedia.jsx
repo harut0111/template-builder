@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import uuid from "uuid";
 
 import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
@@ -28,24 +28,6 @@ const SocialMedia = () => {
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
-
-  const memoizedCallback = useCallback(() => {
-    if (!SMD) {
-      const elements = els.map(obj => {
-        if (obj.elId === activeElId) {
-          return Object.assign({}, obj, {
-            elData: [{ socialMedia: "Facebook", url: "", id: uuid() }]
-          });
-        }
-        return obj;
-      });
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
-    }
-  }, [SMD, els, dispatch, activeElId]);
-
-  useEffect(() => {
-    memoizedCallback();
-  }, [memoizedCallback]);
 
   const handleOnRemove = i => {
     if (SMD.length > 1) {

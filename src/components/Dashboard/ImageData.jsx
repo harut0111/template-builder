@@ -14,7 +14,7 @@ const ImageData = ({ elData, active }) => {
       // className={`imageData element ${active ? "element-active" : ""}`}
     >
       <div>
-        {elData && elData.imgSrc ? (
+        {elData.imgSrc ? (
           <a
             href={elData.url.value}
             target="_blank"

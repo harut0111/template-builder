@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../../configs/constants";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
-import { updateElementData } from '../../utils/updateElData'
+import { updateElementData } from "../../utils/updateElData";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -38,7 +38,7 @@ const Video = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(handleOnChange, []);
+  // useEffect(handleOnChange, []);
 
   return (
     <div className="videoSettings">
@@ -47,7 +47,7 @@ const Video = () => {
         <div className="videoSettings-provider">
           <label>Provider: </label>
           <select
-            value={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
+            value={VD.provider}
             onChange={handleOnChange}
             ref={providerRef}
             allowFullScreen
@@ -67,7 +67,7 @@ const Video = () => {
             placeholder="URL"
             ref={urlRef}
             onChange={handleOnChange}
-            value={VD ? VD.url : ""}
+            value={VD.url}
           />
         </div>
         <div className="videoSettings-format">
@@ -75,11 +75,7 @@ const Video = () => {
             <span
               key={item.id}
               style={{
-                display: item.for.includes(
-                  VD ? VD.provider : VIDEO_PROVIDER_LIST[0]
-                )
-                  ? "flex"
-                  : "none"
+                display: item.for.includes(VD.provider) ? "flex" : "none"
               }}
             >
               <label>{item.label}</label>
@@ -87,7 +83,7 @@ const Video = () => {
                 type="checkbox"
                 name={item.name}
                 onChange={handleOnChange}
-                checked={VD ? VD.videoFormat[item.name] : item.defaultVal}
+                checked={VD.videoFormat[item.name]}
                 ref={arrOfRefs[i]}
               />
             </span>

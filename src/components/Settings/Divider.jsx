@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import uuid from "uuid";
 
 import { BORDER_TYPE_LIST } from "../../configs/constants";
@@ -29,7 +29,7 @@ const Divider = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(handleOnChange, []);
+  // useEffect(handleOnChange, []);
   
   const DD = getActiveEl(layout).elData;
 
@@ -39,7 +39,7 @@ const Divider = () => {
       <form>
         <select
           onChange={handleOnChange}
-          value={DD ? DD.borderType : "solid"}
+          value={DD.borderType}
           ref={borderTypeRef}
         >
           {BORDER_TYPE_LIST.map(value => (
@@ -52,7 +52,7 @@ const Divider = () => {
           <input
             type="number"
             onChange={handleOnChange}
-            value={DD ? +DD.borderWidth : "1"}
+            value={+DD.borderWidth}
             ref={borderWidthRef}
           />
           <span>px</span>
@@ -60,7 +60,7 @@ const Divider = () => {
         <input
           type="color"
           onChange={handleOnChange}
-          value={DD ? DD.borderColor : "#000000"}
+          value={DD.borderColor}
           ref={borderColorRef}
         />
       </form>

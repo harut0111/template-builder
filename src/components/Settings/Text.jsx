@@ -27,7 +27,7 @@ const Text = () => {
   return (
     <div>
       <Editor
-        defaultEditorState={htmlToDraftJs(TD ? TD.markup : "<p></p>")}
+        defaultEditorState={htmlToDraftJs(TD.markup)}
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={handleOnChange}

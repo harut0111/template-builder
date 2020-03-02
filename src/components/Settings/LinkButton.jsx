@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { BORDER_TYPE_LIST } from "../../configs/constants";
 import { updateElementData } from '../../utils/updateElData'
 import { UPDATE_ELEMENT } from "../../context/actions";
@@ -35,8 +35,6 @@ const LinkButton = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(handleOnChange, []);
-
   return (
     <div className="Link_Button">
       <h3>Link/Button</h3>
@@ -45,13 +43,13 @@ const LinkButton = () => {
           <input
             type="text"
             placeholder="Button Text"
-            value={LBD ? LBD.btnText : ""}
+            value={LBD.btnText}
             onChange={handleOnChange}
             ref={btnTextRef}
           />
           <input
             type="color"
-            value={LBD ? LBD.btnColor : "#ffffff"}
+            value={LBD.btnColor}
             onChange={handleOnChange}
             ref={btnColorRef}
           />
@@ -61,7 +59,7 @@ const LinkButton = () => {
             type="url"
             placeholder="URL"
             required
-            value={LBD ? LBD.url : ""}
+            value={LBD.url}
             onChange={handleOnChange}
             ref={urlRef}
           />
@@ -71,12 +69,12 @@ const LinkButton = () => {
           <label>Background Color: </label>
           <input
             type="color"
-            value={LBD ? LBD.bgColor : "#000000"}
+            value={LBD.bgColor}
             onChange={handleOnChange}
             ref={bgColorRef}
           />
           <select
-            value={LBD ? LBD.borderType : "solid"}
+            value={LBD.borderType}
             onChange={handleOnChange}
             ref={borderTypeRef}
           >

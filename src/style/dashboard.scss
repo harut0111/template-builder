@@ -37,7 +37,7 @@
 
       .resizable-container {
         .videoData {
-          .YtPlayer {
+          &-responsive {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -57,7 +57,7 @@
         // &-active {
         //   background: rgb(238, 238, 238);
         //   opacity: 1;
-        // }
+        // }  
 
         &-wrapper {
      

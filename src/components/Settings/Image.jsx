@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
+import React, { useRef } from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
 import { updateElementData } from '../../utils/updateElData'
@@ -14,8 +14,6 @@ const Image = () => {
   const urlRef = useRef(null);
   const fileRef = useRef(null);
 
-  const [urlWarning, setUrlWarning] = useState(false);
-
   const ID = getActiveEl(layout).elData;
 
   const handleOnFileChanage = () => {
@@ -27,29 +25,18 @@ const Image = () => {
         const elements = updateElementData(els, activeElId, {
           imgSrc: reader.result
         });
-        dispatch({ type: UPDATE_ELEMENT, payload: elements });
+        dispatch(updateElState(elements));
       };
     }
   };
 
   const handleOnURLChanage = () => {
     const url = urlRef.current.value.trim();
-    setUrlWarning(!isUrlValid(url));
     const elements = updateElementData(els, activeElId, {
       url: { value: url, validity: isUrlValid(url) }
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
-
-  const firstDispatch = useCallback(() => {
-    const elements = updateElementData(els, activeElId, {
-      url: { value: "", validity: false },
-      imgSrc: ""
-    });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
-  }, [dispatch, activeElId, els]);
-
-  useEffect(firstDispatch, []);
 
   return (
     <div className="image">
@@ -62,13 +49,13 @@ const Image = () => {
             placeholder="URL"
             ref={urlRef}
             onChange={handleOnURLChanage}
-            value={ID ? ID.url.value : ""}
-            style={{ borderBottomColor: urlWarning ? "red" : "#ddd" }}
-          />
+            value={ID.url.value}
+            style={{ borderBottomColor: ID.url.validity ? "#ddd" : "red"}}
+          />  
         </div>
       </form>
       <div className="image-preview">
-        {ID && ID.imgSrc ? (
+        {ID.imgSrc ? (
           <img src={ID.imgSrc} width="130" height="80" alt="img" />
         ) : (
           <div className="icon-wrapper">

@@ -1,12 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import uuid from "uuid";
 
-import {
-  VIDEO_PROVIDER_LIST,
-  FORMAT_LIST,
-  AUDIO_PROVIDER_LIST,
-} from "../../configs/constants";
-import { updateElementData } from '../../utils/updateElData'
+import { FORMAT_LIST, AUDIO_PROVIDER_LIST } from "../../configs/constants";
+import { updateElementData } from "../../utils/updateElData";
 import { useStateValue } from "../../context";
 import { UPDATE_ELEMENT } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
@@ -44,8 +40,6 @@ const Audio = () => {
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
 
-  useEffect(handleOnChange, []);
-
   return (
     <div className="audioSettings">
       <h3>Audio</h3>
@@ -54,7 +48,7 @@ const Audio = () => {
           <label>Provider: </label>
           <select
             onChange={handleOnChange}
-            value={VD ? VD.provider : VIDEO_PROVIDER_LIST[0]}
+            value={VD.provider}
             ref={providerRef}
             className="select-box"
           >
@@ -71,7 +65,7 @@ const Audio = () => {
           <input
             placeholder="URL"
             ref={urlRef}
-            value={VD ? VD.url : ""}
+            value={VD.url}
             onChange={handleOnChange}
           />
         </div>
@@ -82,7 +76,7 @@ const Audio = () => {
               <input
                 type="checkbox"
                 name={item.name}
-                checked={VD ? VD.videoFormat[item.name] : item.defaultVal}
+                checked={VD.videoFormat[item.name]}
                 onChange={handleOnChange}
                 ref={arrOfRefs[i]}
               />

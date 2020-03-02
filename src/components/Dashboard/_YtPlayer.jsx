@@ -11,9 +11,8 @@ const YtPlayer = ({ elData }) => {
   
   const id = youtubePrser(url);
   return (
-    <div className="YtPlayer">
-      {elData ? (
-        <iframe
+    <div className="YtPlayer videoData-responsive">
+      <iframe
           title="youtube-video"
           width="100%"
           height="100%"
@@ -23,7 +22,6 @@ const YtPlayer = ({ elData }) => {
           src={`https://www.youtube.com/embed/${id}?version=3&controls=${Number(control)}&autoplay=${Number(autoplay)}${loop ? 
           `&loop=${Number(loop)}&playlist=${id}` : ""}`}
         />
-      ) : null}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const SliderData = ({ elData }) => {
-  const list = elData && elData.imgSrc.filter(imgSrc => imgSrc.value);
+  const list = elData.imgSrc.filter(imgSrc => imgSrc.value);
 
   const emptyDivStyle = {
     height: "150px",
@@ -18,24 +18,22 @@ const SliderData = ({ elData }) => {
       className="sliderData"
       // className={`sliderData element ${active ? "element-active" : ""}`}
     >
-      {elData ? (
-        list.length ? (
-          <Carousel
-            interval={elData.duration}
-            autoPlay={true}
-            infiniteLoop={true}
-            showThumbs={false}
-          >
-            {list.map(imgSrc => (
-              <div key={imgSrc.id}>
-                <img src={imgSrc.value} alt="img" />
-              </div>
-            ))}
-          </Carousel>
-        ) : (
-          <div style={emptyDivStyle}>Choose image from assets</div>
-        )
-      ) : null}
+      {list.length ? (
+        <Carousel
+          interval={elData.duration}
+          autoPlay={true}
+          infiniteLoop={true}
+          showThumbs={false}
+        >
+          {list.map(imgSrc => (
+            <div key={imgSrc.id}>
+              <img src={imgSrc.value} alt="img" />
+            </div>
+          ))}
+        </Carousel>
+      ) : (
+        <div style={emptyDivStyle}>Choose image from assets</div>
+      )}
     </div>
   );
 };

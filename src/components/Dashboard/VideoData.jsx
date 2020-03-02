@@ -6,18 +6,19 @@ import YtPlayer from "./_YtPlayer";
 import FbPlayer from "./_FbPlayer";
 
 const VideoData = ({ elData }) => {
-  if (elData) {
-    const { provider } = elData;
-
+  if (elData.url) {
     let Player = YtPlayer;
 
-    switch (provider) {
+    switch (elData.provider) {
+
       case VIDEO_PROVIDER_LIST[0].name:
         Player = YtPlayer;
         break;
+
       case VIDEO_PROVIDER_LIST[1].name:
         Player = FbPlayer;
         break;
+
       default:
         break;
     }
@@ -30,7 +31,7 @@ const VideoData = ({ elData }) => {
         enable={{ top: false, bottom: true }}
         defaultSize={{
           // width: "98%",
-          height: 200
+          height: "350"
         }}
       >
         <div className="videoData">
@@ -42,7 +43,7 @@ const VideoData = ({ elData }) => {
 
   return (
     <div className="videoData" style={{ height: "150px", color: "red" }}>
-      Set Video Settings
+      Set Video URL
     </div>
   );
 };

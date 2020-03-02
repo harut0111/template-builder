@@ -23,7 +23,6 @@ const AudioData = ({ elData, active }) => {
 export default React.memo(AudioData, (p, n) => areEqual(p, n));
 
 // https://developers.soundcloud.com/
-
 // return (
 //   <div className={`element ${active ? "element-active" : ""}`}>
 //     <audio src="horse.ogg" controls>

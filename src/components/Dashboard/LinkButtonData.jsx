@@ -2,9 +2,7 @@ import React from "react";
 import { areEqual } from "../../utils/comparision";
 
 const LinkButtonData = ({ elData }) => {
-  //   console.log("LinkBtnData", elData);
-
-  if (elData) {
+  if (elData.url) {
     const { btnText, btnColor, url, bgColor, borderType } = elData;
 
     const style = {
@@ -15,7 +13,7 @@ const LinkButtonData = ({ elData }) => {
     return (
       <div className="linkButtonData" style={{ padding: "10px" }}>
         <a
-          href={url ? url : "#"}
+          href={url}
           style={style}
           target="_blank"
           rel="noopener noreferrer"
@@ -26,7 +24,7 @@ const LinkButtonData = ({ elData }) => {
       </div>
     );
   }
-  return <div>Add button settigns</div>;
+  return <div>Add button URL</div>;
 };
 
 export default React.memo(LinkButtonData, (p, n) => areEqual(p, n));
