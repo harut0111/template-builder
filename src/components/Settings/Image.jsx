@@ -3,8 +3,7 @@ import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
-import { updateElementData } from "../../utils/updateElData";
-import { setUrlVal } from "../../utils/setStateValues"
+import { setUrlVal, setImageVal } from "../../utils/setStateValues";
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -16,18 +15,8 @@ const Image = () => {
 
   const ID = getActiveEl(layout).elData;
 
-  const handleOnFileChanage = () => {
-    const file = fileRef.current.files[0];
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        const elements = updateElementData(els, activeElId, {
-          imgSrc: reader.result
-        });
-        dispatch(updateElState(elements));
-      };
-    }
+  const handleOnFileChanage = async () => {
+    dispatch(updateElState(await setImageVal(fileRef, els, activeElId)));
   };
 
   const handleOnURLChanage = () => {
@@ -37,7 +26,7 @@ const Image = () => {
   return (
     <div className="image">
       <h3>Image</h3>
-      <form onKeyDown={e => console.log("e", e)}>
+      <form>
         <div className="image-source">
           <label>Link Image: </label>
           <input

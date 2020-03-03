@@ -7,7 +7,6 @@ import { IoIosImages, IoMdShare } from "react-icons/io";
 import { FiHeadphones, FiLink2, FiMapPin } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
-
 import Text from "../../components/Settings/Text";
 import Video from "../../components/Settings/Video";
 import Image from "../../components/Settings/Image";
@@ -39,15 +38,15 @@ const SOCIAL_MEDIA_ICONS = [FaFacebook, FaTwitter, FaInstagram, FaYoutube];
 export const BORDER_TYPE_LIST = ["solid", "dotted", "dashed", "double", "none"];
 export const BAR_LIST = ["Elements", "Component Settings"];
 
-export const EL_LIST = LABELS.map((label, i) => ({label: label, Icon: ICONS[i]}));
-export const EL_SETS_LIST = LABELS.map((label, i) => ({label: label, Sets: SETS[i]}));
-export const EL_DATA_LIST = LABELS.map((label, i) => ({label: label, Data: DATA[i], id: uuid.v4()}));
+export const EL_LIST = LABELS.map((label, i) => ({label, Icon: ICONS[i]}));
+export const EL_SETS_LIST = LABELS.map((label, i) => ({label, Sets: SETS[i]}));
+export const EL_DATA_LIST = LABELS.map((label, i) => ({label, Data: DATA[i], id: uuid.v4()}));
 export const VIDEO_PROVIDER_LIST = VIDEO_PROVIDERS.map((provider) => ({name: provider, id: uuid.v4()}))
 export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
-export const SOCIAL_MEDIA_LIST = SOCIAL_MEDIAS.map((label, i) => ({label: label, Icon: SOCIAL_MEDIA_ICONS[i], id: uuid.v4()}))
+export const SOCIAL_MEDIA_LIST = SOCIAL_MEDIAS.map((label, i) => ({label, Icon: SOCIAL_MEDIA_ICONS[i], id: uuid.v4()}))
 
 export const FORMAT_LIST = [
-  {
+  { 
     label: "Autoplay: ",
     id: uuid.v4(),
     name: "autoplay",

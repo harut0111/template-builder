@@ -5,6 +5,13 @@ import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
 import { updateElState } from "../../context/actions";
 import { updateElementData } from "../../utils/updateElData";
+import {
+  setDurationVal,
+  setRemoveImage,
+  setAddImage
+} from "../../utils/setStateValues";
+import { imageReader } from "../../utils/imageReader";
+import { setSliderImageVal } from "../../utils/setStateValues";
 
 const Slider = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -16,55 +23,26 @@ const Slider = () => {
 
   const SD = getActiveEl(layout).elData;
 
-  const handleOnImgSrcChange = id => {
-    const reader = new FileReader();
-    const file = fileRef.filter(file => file.id === id)[0].files[0];
-
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        let elData;
-        els.forEach((element, i) => {
-          if (element.elId === layout.activeEl.id) {
-            elData = Object.assign({}, SD, {
-              imgSrc: els[i].elData.imgSrc.map(imgSrc =>
-                imgSrc.id === id ? { ...imgSrc, value: reader.result } : imgSrc
-              )
-            });
-          }
-        });
-        const elements = updateElementData(els, activeElId, { ...elData });
-        dispatch(updateElState(elements));
-      };
-    }
+  const handleOnImgSrcChange = async id => {
+    dispatch(
+      updateElState(
+        await setSliderImageVal(fileRef, els, activeElId, id, SD, layout)
+      )
+    );
   };
 
   const handleOnDurationChange = () => {
-    const duration = +durRef.current.value;
-    const elements = updateElementData(els, activeElId, { ...SD, duration });
-    dispatch(updateElState(elements));
+    dispatch(updateElState(setDurationVal(durRef, els, activeElId, SD)));
   };
 
   const handleOnAddImage = () => {
-    const elements = updateElementData(els, activeElId, {
-      ...SD,
-      imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
-    });
-    dispatch(updateElState(elements));
+    dispatch(updateElState(setAddImage(els, activeElId, SD)));
   };
 
   const handleOnRemoveImage = id => {
-    if (SD.imgSrc.length > 2) {
-      const duration = +durRef.current.value;
-
-      const elements = updateElementData(els, activeElId, {
-        duration,
-        imgSrc: SD.imgSrc.filter(item => item.id !== id)
-      });
-      dispatch(updateElState(elements));
-    }
+    if (SD.imgSrc.length > 2)
+      dispatch(updateElState(setRemoveImage(id, els, activeElId, SD)));
   };
-
   return (
     <div className="slider">
       <h3>Slider</h3>
