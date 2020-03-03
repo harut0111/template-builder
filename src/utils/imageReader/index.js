@@ -1,5 +1,4 @@
-export const imageReader = (file) => {
-  
+export const imageReader = file => {
   const reader = new FileReader();
   return new Promise((resolve, reject) => {
     reader.readAsDataURL(file);

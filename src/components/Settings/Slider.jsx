@@ -1,16 +1,13 @@
 import React, { useRef } from "react";
-import uuid from "uuid";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
 import { updateElState } from "../../context/actions";
-import { updateElementData } from "../../utils/updateElData";
 import {
   setDurationVal,
   setRemoveImage,
   setAddImage
 } from "../../utils/setStateValues";
-import { imageReader } from "../../utils/imageReader";
 import { setSliderImageVal } from "../../utils/setStateValues";
 
 const Slider = () => {
@@ -19,7 +16,7 @@ const Slider = () => {
   const activeElId = layout.activeEl.id;
 
   const durRef = useRef(null);
-  let fileRef = [];
+  const fileRef = [];
 
   const SD = getActiveEl(layout).elData;
 
