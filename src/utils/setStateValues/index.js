@@ -91,3 +91,58 @@ export const setSliderImageVal = async (
 
   return updateElementData(els, activeElId, { ...elData });
 };
+
+export const setSocialMediaVal = (socialMediaRef, els, activeElId, i, SMD) => {
+  const socialMedia = socialMediaRef[i].value;
+  console.log("socialMedia", socialMedia);
+  const elements = els.map(obj => {
+    if (obj.elId === activeElId) {
+      const CSMD = [...SMD];
+      CSMD[i] = { ...CSMD[i], socialMedia };
+      return Object.assign({}, obj, {
+        elData: CSMD
+      });
+    }
+    return obj;
+  });
+  return elements;
+};
+
+export const setSocialMediaUrlVal = (urlRef, els, activeElId, i, SMD) => {
+  const url = urlRef[i].value;
+  const elements = els.map(obj => {
+    if (obj.elId === activeElId) {
+      const CSMD = [...SMD];
+      CSMD[i] = { ...CSMD[i], url };
+      return Object.assign({}, obj, {
+        elData: CSMD
+      });
+    }
+    return obj;
+  });
+  return elements;
+};
+
+export const setRemoveSocialMedia = (els, activeElId, i) => {
+  const elements = els.map(obj => {
+    if (obj.elId === activeElId) {
+      return Object.assign({}, obj, {
+        elData: obj.elData.filter((item, index) => index !== i)
+      });
+    }
+    return obj;
+  });
+  return elements;
+};
+
+export const setAddSocialMedia = (els, activeElId, SMD) => {
+  const elements = els.map(obj => {
+    if (obj.elId === activeElId) {
+      return Object.assign({}, obj, {
+        elData: [...SMD, { socialMedia: "Facebook", url: "", id: uuid() }]
+      });
+    }
+    return obj;
+  });
+  return elements;
+};

@@ -1,11 +1,16 @@
 import React from "react";
-import uuid from "uuid";
 
 import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
+import {
+  setSocialMediaVal,
+  setSocialMediaUrlVal,
+  setRemoveSocialMedia,
+  setAddSocialMedia
+} from "../../utils/setStateValues";
 
 const SocialMedia = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -18,60 +23,37 @@ const SocialMedia = () => {
   const SMD = getActiveEl(layout).elData;
 
   const handleOnAdd = () => {
-    const elements = els.map(obj => {
-      if (obj.elId === activeElId) {
-        return Object.assign({}, obj, {
-          elData: [...SMD, { socialMedia: "Facebook", url: "", id: uuid() }]
-        });
-      }
-      return obj;
-    });
-    dispatch(updateElState(elements));
+    dispatch(updateElState(setAddSocialMedia(els, activeElId, SMD)));
   };
 
   const handleOnRemove = i => {
-    if (SMD.length > 1) {
-      const elements = els.map(obj => {
-        if (obj.elId === activeElId) {
-          return Object.assign({}, obj, {
-            elData: obj.elData.filter((item, index) => index !== i)
-          });
-        }
-        return obj;
-      });
-      console.log("elements", elements);
-      dispatch(updateElState(elements));
-    }
+    if (SMD.length > 1)
+      dispatch(updateElState(setRemoveSocialMedia(els, activeElId, i)));
   };
 
-  const handleOnChange = i => {
-    const socialMedia = socialMediaRef[i].value;
-    const url = urlRef[i].value;
+  const handleOnSocialMediaChange = i => {
+    dispatch(
+      updateElState(setSocialMediaVal(socialMediaRef, els, activeElId, i, SMD))
+    );
+  };
 
-    const elements = els.map(obj => {
-      if (obj.elId === activeElId) {
-        const CSMD = [...SMD];
-        CSMD[i] = { ...CSMD[i], socialMedia, url };
-        return Object.assign({}, obj, {
-          elData: CSMD
-        });
-      }
-      return obj;
-    });
-    dispatch(updateElState(elements));
+  const handleOnUrlChange = i => {
+    dispatch(
+      updateElState(setSocialMediaUrlVal(urlRef, els, activeElId, i, SMD))
+    );
   };
 
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
-      {SMD?.map(({ socialMedia, url, id }, i) => (
+      {SMD.map(({ socialMedia, url, id }, i) => (
         <div className="socialMedia-main" key={id} id={id}>
           {getSocialMediaIcon(socialMedia)}
           <form onSubmit={e => e.preventDefault()}>
             <select
               value={socialMedia}
               ref={el => socialMediaRef.push(el)}
-              onChange={() => handleOnChange(i)}
+              onChange={() => handleOnSocialMediaChange(i)}
             >
               {SOCIAL_MEDIA_LIST.map(({ label, id }) => (
                 <option key={id} value={label}>
@@ -83,7 +65,7 @@ const SocialMedia = () => {
               type="url"
               placeholder="URL"
               ref={el => urlRef.push(el)}
-              onChange={() => handleOnChange(i)}
+              onChange={() => handleOnUrlChange(i)}
               value={url}
             />
             <hr />
