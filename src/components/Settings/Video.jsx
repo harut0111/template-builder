@@ -37,9 +37,7 @@ const Video = () => {
     });
     dispatch({ type: UPDATE_ELEMENT, payload: elements });
   };
-
-  // useEffect(handleOnChange, []);
-
+  
   return (
     <div className="videoSettings">
       <h3>Video</h3>
