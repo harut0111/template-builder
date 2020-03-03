@@ -50,7 +50,7 @@ const Image = () => {
       </div>
       <div>
         <label htmlFor="file-upload" className="custom-file-upload">
-          {ID ? "Change" : "Insert"}
+          {ID.imgSrc ? "Change" : "Insert"}
         </label>
         <input
           id="file-upload"
