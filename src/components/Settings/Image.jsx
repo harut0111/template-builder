@@ -3,8 +3,8 @@ import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
-import { updateElementData } from '../../utils/updateElData'
-import { isUrlValid } from '../../utils/urlValidation'
+import { updateElementData } from "../../utils/updateElData";
+import { setUrlVal } from "../../utils/setStateValues"
 
 const Image = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -31,17 +31,13 @@ const Image = () => {
   };
 
   const handleOnURLChanage = () => {
-    const url = urlRef.current.value.trim();
-    const elements = updateElementData(els, activeElId, {
-      url: { value: url, validity: isUrlValid(url) }
-    });
-    dispatch(updateElState(elements));
+    dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
   };
 
   return (
     <div className="image">
       <h3>Image</h3>
-      <form>
+      <form onKeyDown={e => console.log("e", e)}>
         <div className="image-source">
           <label>Link Image: </label>
           <input
@@ -50,8 +46,8 @@ const Image = () => {
             ref={urlRef}
             onChange={handleOnURLChanage}
             value={ID.url.value}
-            style={{ borderBottomColor: ID.url.validity ? "#ddd" : "red"}}
-          />  
+            style={{ borderBottomColor: ID.url.validity ? "#ddd" : "red" }}
+          />
         </div>
       </form>
       <div className="image-preview">

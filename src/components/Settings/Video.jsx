@@ -1,9 +1,13 @@
 import React, { useRef } from "react";
 import { VIDEO_PROVIDER_LIST, FORMAT_LIST } from "../../configs/constants";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
-import { updateElementData } from "../../utils/updateElData";
+import {
+  setUrlVal,
+  setVideoProviderVal,
+  setVideoFormatVals
+} from "../../utils/setStateValues";
 
 const Video = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -22,22 +26,26 @@ const Video = () => {
   const arrOfRefs = [autoplayRef, loopRef, controlRef];
   const VD = getActiveEl(layout).elData;
 
-  const handleOnChange = () => {
-    const provider = providerRef.current.value;
-    const url = urlRef.current.value.trim();
-
-    const autoplay = autoplayRef.current.checked;
-    const loop = loopRef.current.checked;
-    const control = controlRef.current.checked;
-
-    const elements = updateElementData(els, activeElId, {
-      provider,
-      url,
-      videoFormat: { autoplay, loop, control }
-    });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+  const handleOnVideoFormatChange = () => {
+    dispatch(
+      updateElState(
+        setVideoFormatVals(
+          { autoplayRef, loopRef, controlRef },
+          els,
+          activeElId
+        )
+      )
+    );
   };
-  
+
+  const handleOnVideoProvChange = () => {
+    dispatch(updateElState(setVideoProviderVal(providerRef, els, activeElId)));
+  };
+
+  const handleOnURLChanage = () => {
+    dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
+  };
+
   return (
     <div className="videoSettings">
       <h3>Video</h3>
@@ -46,7 +54,7 @@ const Video = () => {
           <label>Provider: </label>
           <select
             value={VD.provider}
-            onChange={handleOnChange}
+            onChange={handleOnVideoProvChange}
             ref={providerRef}
             allowFullScreen
             className="select-box"
@@ -64,8 +72,9 @@ const Video = () => {
           <input
             placeholder="URL"
             ref={urlRef}
-            onChange={handleOnChange}
-            value={VD.url}
+            onChange={handleOnURLChanage}
+            value={VD.url.value}
+            style={{ borderBottomColor: VD.url.validity ? "#ddd" : "red" }}
           />
         </div>
         <div className="videoSettings-format">
@@ -80,7 +89,7 @@ const Video = () => {
               <input
                 type="checkbox"
                 name={item.name}
-                onChange={handleOnChange}
+                onChange={handleOnVideoFormatChange}
                 checked={VD.videoFormat[item.name]}
                 ref={arrOfRefs[i]}
               />
@@ -89,6 +98,7 @@ const Video = () => {
         </div>
       </form>
       <p>https://www.youtube.com/watch?v=mWZ6b_I-Djg</p>
+      <p>https://www.facebook.com/FBE/videos/460127321372461/</p>
     </div>
   );
 };

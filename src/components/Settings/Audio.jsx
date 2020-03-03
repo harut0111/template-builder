@@ -4,7 +4,7 @@ import uuid from "uuid";
 import { FORMAT_LIST, AUDIO_PROVIDER_LIST } from "../../configs/constants";
 import { updateElementData } from "../../utils/updateElData";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
 
 const Audio = () => {
@@ -37,7 +37,7 @@ const Audio = () => {
       url,
       videoFormat: { autoplay, loop, control }
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   return (

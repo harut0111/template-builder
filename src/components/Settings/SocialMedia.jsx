@@ -4,7 +4,7 @@ import uuid from "uuid";
 import { SOCIAL_MEDIA_LIST } from "../../configs/constants";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
 
 const SocialMedia = () => {
@@ -26,7 +26,7 @@ const SocialMedia = () => {
       }
       return obj;
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   const handleOnRemove = i => {
@@ -40,7 +40,7 @@ const SocialMedia = () => {
         return obj;
       });
       console.log("elements", elements);
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      dispatch(updateElState(elements));
     }
   };
 
@@ -58,7 +58,7 @@ const SocialMedia = () => {
       }
       return obj;
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   return (

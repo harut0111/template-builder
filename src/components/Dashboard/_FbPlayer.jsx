@@ -4,7 +4,7 @@ const FbPlayer = ({ elData }) => {
   const { videoFormat } = elData;
   const { autoplay } = videoFormat;
 
-  const id = elData.url.split(/\/|=/g).filter(el => /^\d+$/.test(el))[0];
+  const id = elData.url.value.split(/\/|=/g).filter(el => /^\d+$/.test(el))[0];
 
   return (
     <div className="FbPlayer videoData-responsive">

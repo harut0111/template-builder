@@ -8,8 +8,7 @@ const YtPlayer = ({ elData }) => {
     const match = url.match(regExp);
     return match && match[7].length === 11 ? match[7] : "";
   };
-  
-  const id = youtubePrser(url);
+  const id = youtubePrser(url.value);
   return (
     <div className="YtPlayer videoData-responsive">
       <iframe

@@ -11,10 +11,10 @@ export const formElData = type => {
       case LABELS[1]:
         return {
           provider: "YouTube",
-          url: "",
+          url: { value: "", validity: false },
           videoFormat: { autoplay: false, loop: false, control: true }
         };
-      // 
+      // Image
       case LABELS[2]:
         return { url: { value: "", validity: false }, imgSrc: "" };
       // Slider

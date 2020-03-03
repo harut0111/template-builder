@@ -1,6 +1,6 @@
 import React from "react";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { updateElementData } from "../../utils/updateElData";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -21,7 +21,7 @@ const Text = () => {
     const elements = updateElementData(els, activeElId, {
       markup
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   return (

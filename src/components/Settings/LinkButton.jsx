@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { BORDER_TYPE_LIST } from "../../configs/constants";
 import { updateElementData } from '../../utils/updateElData'
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../../utils/getActiveEl";
 
@@ -32,7 +32,7 @@ const LinkButton = () => {
       bgColor,
       borderType
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "./_Slider";
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { updateElementData } from '../../utils/updateElData'
 import { getActiveEl } from "../../utils/getActiveEl";
 
@@ -25,7 +25,7 @@ const Map = () => {
       address,
       zoom
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   const tempStyle = {

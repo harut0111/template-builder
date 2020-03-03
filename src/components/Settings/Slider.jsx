@@ -3,7 +3,7 @@ import uuid from "uuid";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { FaRegImage } from "react-icons/fa";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 import { updateElementData } from "../../utils/updateElData";
 
 const Slider = () => {
@@ -34,7 +34,7 @@ const Slider = () => {
           }
         });
         const elements = updateElementData(els, activeElId, { ...elData });
-        dispatch({ type: UPDATE_ELEMENT, payload: elements });
+        dispatch(updateElState(elements));
       };
     }
   };
@@ -42,7 +42,7 @@ const Slider = () => {
   const handleOnDurationChange = () => {
     const duration = +durRef.current.value;
     const elements = updateElementData(els, activeElId, { ...SD, duration });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   const handleOnAddImage = () => {
@@ -50,7 +50,7 @@ const Slider = () => {
       ...SD,
       imgSrc: [...SD.imgSrc, { id: uuid.v4(), value: null }]
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   const handleOnRemoveImage = id => {
@@ -61,7 +61,7 @@ const Slider = () => {
         duration,
         imgSrc: SD.imgSrc.filter(item => item.id !== id)
       });
-      dispatch({ type: UPDATE_ELEMENT, payload: elements });
+      dispatch(updateElState(elements));
     }
   };
 

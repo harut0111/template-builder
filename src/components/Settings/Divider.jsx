@@ -5,7 +5,7 @@ import { BORDER_TYPE_LIST } from "../../configs/constants";
 import { getActiveEl } from "../../utils/getActiveEl";
 import { updateElementData } from '../../utils/updateElData'
 import { useStateValue } from "../../context";
-import { UPDATE_ELEMENT } from "../../context/actions";
+import { updateElState } from "../../context/actions";
 
 const Divider = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -26,7 +26,7 @@ const Divider = () => {
       borderWidth,
       borderColor
     });
-    dispatch({ type: UPDATE_ELEMENT, payload: elements });
+    dispatch(updateElState(elements));
   };
 
   // useEffect(handleOnChange, []);
