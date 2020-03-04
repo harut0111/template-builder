@@ -7,7 +7,7 @@ const Main = () => {
   const state = useStateValue()[0];
 
   React.useEffect(() => {
-    console.log("state changed", state.layout);
+    // console.log("state changed", state.layout);
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 

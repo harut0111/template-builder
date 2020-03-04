@@ -4,8 +4,8 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { areEqual } from "../../utils/comparision";
 
 const MapData = ({ elData }) => {
-  const onClick = param => console.log("onClick", param);
-  const onMapLoad = param => console.log("onMapLoad", param);
+  const onClick = param => "";
+  const onMapLoad = param => "";
 
   const center = {
     lat: 40.1872,
