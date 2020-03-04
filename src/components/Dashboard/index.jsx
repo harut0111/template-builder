@@ -6,7 +6,7 @@ import {
   CHANGE_ACTIVE_ELEMENT
 } from "../../context/actions";
 import uuid from "uuid";
-import { EL_LIST, EL_DATA_LIST } from "../../configs/constants";
+import { EL_LIST, EL_DATA_LIST, initialState } from "../../configs/constants";
 import { filterElement } from "../../utils/filterElement";
 import Toolbar from "../../core/Toolbar";
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
       payload: {
         elLabel: el.label,
         elId: uuid.v4(),
-        elData: null
+        elData: initialState(el.label)
       }
     });
   };

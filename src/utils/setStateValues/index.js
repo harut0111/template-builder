@@ -109,7 +109,7 @@ export const setSocialMediaVal = (socialMediaRef, els, activeElId, i, SMD) => {
 };
 
 export const setSocialMediaUrlVal = (urlRef, els, activeElId, i, SMD) => {
-  const url = urlRef[i].value;
+  const url = urlRef[i].value.trim();
   const elements = els.map(obj => {
     if (obj.elId === activeElId) {
       const CSMD = [...SMD];

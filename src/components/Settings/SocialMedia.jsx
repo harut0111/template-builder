@@ -66,7 +66,7 @@ const SocialMedia = () => {
               placeholder="URL"
               ref={el => urlRef.push(el)}
               onChange={() => handleOnUrlChange(i)}
-              defaultValue={url.value}
+              value={url.value}
               style={{ borderBottomColor: url.validity ? "#ddd" : "red" }}
             />
             <hr />
