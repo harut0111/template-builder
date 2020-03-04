@@ -124,7 +124,7 @@ export const FORMAT_LIST = [
 ];
 
 // all state initial data
-export const formElData = type => {
+export const initialState = type => {
   switch (type) {
     // Text
     case LABELS[0]:

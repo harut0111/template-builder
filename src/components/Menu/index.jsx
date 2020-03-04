@@ -3,8 +3,7 @@ import uuid from "uuid";
 import Settings from "../Settings";
 import { useStateValue } from "../../context";
 import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/actions";
-import { EL_LIST, BAR_LIST } from "../../configs/constants";
-import { formElData } from "../../utils/formElData";
+import { EL_LIST, BAR_LIST, initialState } from "../../configs/constants";
 
 const Menu = () => {
   const [{ layout }, dispatchLayouts] = useStateValue();
@@ -15,7 +14,7 @@ const Menu = () => {
       payload: {
         elLabel: el.label,
         elId: uuid.v4(),
-        elData: formElData(el.label)
+        elData: initialState(el.label)
       }
     });
   };

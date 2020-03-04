@@ -43,8 +43,6 @@ const SocialMedia = () => {
     );
   };
 
-  console.log("SMD", SMD);
-
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
