@@ -97,8 +97,18 @@ const Video = () => {
           ))}
         </div>
       </form>
-      <p>https://www.youtube.com/watch?v=mWZ6b_I-Djg</p>
-      <p>https://www.facebook.com/FBE/videos/460127321372461/</p>
+      <p>
+        <a target="_blank" href="https://www.youtube.com/watch?v=Uy2PzVtUEEU">
+          Youtube Video Link
+        </a>
+      </p>
+
+      <p>
+        {" "}
+        <a target="_blank" href="https://www.facebook.com/Armeniantouroperator/videos/457300855141378/">
+          Facebook Video Link
+        </a>
+      </p>
     </div>
   );
 };

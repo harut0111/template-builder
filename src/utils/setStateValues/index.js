@@ -181,3 +181,24 @@ export const setBorderColorVal = (borderColorRef, els, activeElId) => {
     borderColor
   });
 };
+
+export const setBtnTextVal = (btnTextRef, els, activeElId) => {
+  const btnText = btnTextRef.current.value;
+  return updateElementData(els, activeElId, {
+    btnText
+  });
+};
+
+export const setBtnColorVal = (btnColorRef, els, activeElId) => {
+  const btnColor = btnColorRef.current.value;
+  return updateElementData(els, activeElId, {
+    btnColor
+  });
+};
+
+export const setBgColorVal = (bgColorRef, els, activeElId) => {
+  const bgColor = bgColorRef.current.value;
+  return updateElementData(els, activeElId, {
+    bgColor
+  });
+};

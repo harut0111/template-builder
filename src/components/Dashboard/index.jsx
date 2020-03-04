@@ -29,7 +29,6 @@ const Dashboard = () => {
 
   const handleOnToolClick = (ev, id) => {
     ev.stopPropagation();
-    console.log("id", id);
     const filteredEls = filterElement(layout, id);
     dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
   };

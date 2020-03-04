@@ -1,9 +1,16 @@
 import React, { useRef } from "react";
 import { BORDER_TYPE_LIST } from "../../configs/constants";
-import { updateElementData } from '../../utils/updateElData'
+import { updateElementData } from "../../utils/updateElData";
 import { updateElState } from "../../context/actions";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../../utils/getActiveEl";
+import {
+  setBtnTextVal,
+  setBtnColorVal,
+  setUrlVal,
+  setBgColorVal,
+  setBorderTypeVal
+} from "../../utils/setStateValues";
 
 const LinkButton = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -26,13 +33,33 @@ const LinkButton = () => {
     const borderType = borderTypeRef.current.value;
 
     const elements = updateElementData(els, activeElId, {
-      btnText,
-      btnColor,
-      url,
-      bgColor,
-      borderType
+      
     });
     dispatch(updateElState(elements));
+  };
+
+  // const handleOnBorderTypeChange = () => {
+  //   dispatch(updateElState(setBorderTypeVal(borderTypeRef, els, activeElId)));
+  // };
+
+  const handleOnSetBtnTextChange = () => {
+    dispatch(updateElState(setBtnTextVal(btnTextRef, els, activeElId)));
+  };
+
+  const handleOnBtnColorChange = () => {
+    dispatch(updateElState(setBtnColorVal(btnColorRef, els, activeElId)));
+  };
+
+  const handleOnURLChange = () => {
+    dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
+  };
+
+  const handleOnBgColorChange = () => {
+    dispatch(updateElState(setBgColorVal(bgColorRef, els, activeElId)));
+  };
+
+  const handleOnBorderTypeChange = () => {
+    dispatch(updateElState(setBorderTypeVal(borderTypeRef, els, activeElId)));
   };
 
   return (
@@ -44,13 +71,13 @@ const LinkButton = () => {
             type="text"
             placeholder="Button Text"
             value={LBD.btnText}
-            onChange={handleOnChange}
+            onChange={handleOnSetBtnTextChange}
             ref={btnTextRef}
           />
           <input
             type="color"
             value={LBD.btnColor}
-            onChange={handleOnChange}
+            onChange={handleOnBtnColorChange}
             ref={btnColorRef}
           />
         </div>
@@ -59,9 +86,10 @@ const LinkButton = () => {
             type="url"
             placeholder="URL"
             required
-            value={LBD.url}
-            onChange={handleOnChange}
+            onChange={handleOnURLChange}
             ref={urlRef}
+            defaultValue={LBD.url.value}
+            style={{ borderBottomColor: LBD.url.validity ? "#ddd" : "red" }}
           />
         </div>
 
@@ -70,12 +98,12 @@ const LinkButton = () => {
           <input
             type="color"
             value={LBD.bgColor}
-            onChange={handleOnChange}
+            onChange={handleOnBgColorChange}
             ref={bgColorRef}
           />
           <select
             value={LBD.borderType}
-            onChange={handleOnChange}
+            onChange={handleOnBorderTypeChange}
             ref={borderTypeRef}
           >
             {BORDER_TYPE_LIST.map((value, i) => (

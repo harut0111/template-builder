@@ -2,7 +2,7 @@ import React from "react";
 import { areEqual } from "../../utils/comparision";
 
 const LinkButtonData = ({ elData }) => {
-  if (elData.url) {
+  if (elData.url.value) {
     const { btnText, btnColor, url, bgColor, borderType } = elData;
 
     const style = {
@@ -13,11 +13,11 @@ const LinkButtonData = ({ elData }) => {
     return (
       <div className="linkButtonData" style={{ padding: "10px" }}>
         <a
-          href={url}
+          href={url.value}
           style={style}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={url ? null : e => e.preventDefault()}
+          onClick={url.value ? null : e => e.preventDefault()}
         >
           {btnText ? btnText : "Button"}
         </a>
