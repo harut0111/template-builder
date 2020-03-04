@@ -2,8 +2,8 @@ import React from "react";
 import Slider from "./_Slider";
 import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
-import { updateElementData } from '../../utils/updateElData'
 import { getActiveEl } from "../../utils/getActiveEl";
+import { setZoomVal, setAddressVal } from "../../utils/setStateValues";
 
 const Map = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -15,17 +15,13 @@ const Map = () => {
 
   const addressRef = React.useRef(null);
   const sliderRef = React.useRef(null);
-  
 
-  const handleOnChange = () => {
-    const zoom = sliderRef.current.state.value;
-    const address = addressRef.current.value;
+  const handleOnAddressChange = () => {
+    dispatch(updateElState(setAddressVal(addressRef, els, activeElId)));
+  };
 
-    const elements = updateElementData(els, activeElId, {
-      address,
-      zoom
-    });
-    dispatch(updateElState(elements));
+  const handleOnZoomChange = () => {
+    dispatch(updateElState(setZoomVal(sliderRef, els, activeElId)));
   };
 
   const tempStyle = {
@@ -41,16 +37,20 @@ const Map = () => {
         <div className="address">
           <label>Address: </label>
           <input
-          value={MD.address}
+            value={MD.address}
             type="text"
             placeholder="type address"
-            onChange={handleOnChange}
+            onChange={handleOnAddressChange}
             ref={addressRef}
           />
         </div>
         <div className="zoom" style={tempStyle}>
           <label>Zoom: </label>
-          <Slider ref={sliderRef} defaultZoom={MD.zoom} onChange={handleOnChange} />
+          <Slider
+            ref={sliderRef}
+            defaultZoom={MD.zoom}
+            onChange={handleOnZoomChange}
+          />
         </div>
       </form>
     </div>

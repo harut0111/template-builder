@@ -113,7 +113,7 @@ export const setSocialMediaUrlVal = (urlRef, els, activeElId, i, SMD) => {
   const elements = els.map(obj => {
     if (obj.elId === activeElId) {
       const CSMD = [...SMD];
-      CSMD[i] = { ...CSMD[i], url };
+      CSMD[i] = { ...CSMD[i], url: { value: url, validity: isUrlValid(url) } };
       return Object.assign({}, obj, {
         elData: CSMD
       });
@@ -145,4 +145,18 @@ export const setAddSocialMedia = (els, activeElId, SMD) => {
     return obj;
   });
   return elements;
+};
+
+export const setZoomVal = (addressRef, els, activeElId) => {
+  const zoom = addressRef.current.state.value;
+  return updateElementData(els, activeElId, {
+    zoom
+  });
+};
+
+export const setAddressVal = (addressRef, els, activeElId) => {
+  const address = addressRef.current.value;
+  return updateElementData(els, activeElId, {
+    address
+  });
 };

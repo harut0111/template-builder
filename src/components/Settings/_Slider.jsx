@@ -4,7 +4,7 @@ import "rc-slider/assets/index.css";
 
 const _Slider = React.forwardRef((props, ref) => {
   const wrapperStyle = {
-    width: "100px",
+    width: "200px",
     margin: "0 10px"
   };
 

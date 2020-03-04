@@ -19,7 +19,7 @@ const Image = () => {
     dispatch(updateElState(await setImageVal(fileRef, els, activeElId)));
   };
 
-  const handleOnURLChanage = () => {
+  const handleOnURLChange = () => {
     dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
   };
 
@@ -33,7 +33,7 @@ const Image = () => {
             type="url"
             placeholder="URL"
             ref={urlRef}
-            onChange={handleOnURLChanage}
+            onChange={handleOnURLChange}
             value={ID.url.value}
             style={{ borderBottomColor: ID.url.validity ? "#ddd" : "red" }}
           />

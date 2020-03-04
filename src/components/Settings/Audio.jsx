@@ -2,10 +2,14 @@ import React, { useRef } from "react";
 import uuid from "uuid";
 
 import { FORMAT_LIST, AUDIO_PROVIDER_LIST } from "../../configs/constants";
-import { updateElementData } from "../../utils/updateElData";
 import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
 import { getActiveEl } from "../../utils/getActiveEl";
+import {
+  setUrlVal,
+  setVideoProviderVal,
+  setVideoFormatVals
+} from "../../utils/setStateValues";
 
 const Audio = () => {
   const [{ layout }, dispatch] = useStateValue();
@@ -24,20 +28,24 @@ const Audio = () => {
   const arrOfRefs = [autoplayRef, loopRef, controlRef];
   const VD = getActiveEl(layout).elData;
 
-  const handleOnChange = () => {
-    const provider = providerRef.current.value;
-    const url = urlRef.current.value.trim();
+  const handleOnVideoFormatChange = () => {
+    dispatch(
+      updateElState(
+        setVideoFormatVals(
+          { autoplayRef, loopRef, controlRef },
+          els,
+          activeElId
+        )
+      )
+    );
+  };
 
-    const autoplay = autoplayRef.current.checked;
-    const loop = loopRef.current.checked;
-    const control = controlRef.current.checked;
+  const handleOnVideoProvChange = () => {
+    dispatch(updateElState(setVideoProviderVal(providerRef, els, activeElId)));
+  };
 
-    const elements = updateElementData(els, activeElId, {
-      provider,
-      url,
-      videoFormat: { autoplay, loop, control }
-    });
-    dispatch(updateElState(elements));
+  const handleOnURLChange = () => {
+    dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
   };
 
   return (
@@ -47,7 +55,7 @@ const Audio = () => {
         <div className="audioSettings-provider">
           <label>Provider: </label>
           <select
-            onChange={handleOnChange}
+            onChange={handleOnVideoProvChange}
             value={VD.provider}
             ref={providerRef}
             className="select-box"
@@ -65,8 +73,9 @@ const Audio = () => {
           <input
             placeholder="URL"
             ref={urlRef}
-            value={VD.url}
-            onChange={handleOnChange}
+            onChange={handleOnURLChange}
+            value={VD.url.value}
+            style={{ borderBottomColor: VD.url.validity ? "#ddd" : "red" }}
           />
         </div>
         <div className="audioSettings-format">
@@ -77,7 +86,7 @@ const Audio = () => {
                 type="checkbox"
                 name={item.name}
                 checked={VD.videoFormat[item.name]}
-                onChange={handleOnChange}
+                onChange={handleOnVideoFormatChange}
                 ref={arrOfRefs[i]}
               />
             </span>

@@ -43,6 +43,8 @@ const SocialMedia = () => {
     );
   };
 
+  console.log("SMD", SMD);
+
   return (
     <div className="socialMedia">
       <h3>Social Media</h3>
@@ -51,7 +53,7 @@ const SocialMedia = () => {
           {getSocialMediaIcon(socialMedia)}
           <form onSubmit={e => e.preventDefault()}>
             <select
-              value={socialMedia}
+              defaultValue={socialMedia}
               ref={el => socialMediaRef.push(el)}
               onChange={() => handleOnSocialMediaChange(i)}
             >
@@ -66,7 +68,8 @@ const SocialMedia = () => {
               placeholder="URL"
               ref={el => urlRef.push(el)}
               onChange={() => handleOnUrlChange(i)}
-              value={url}
+              defaultValue={url.value}
+              style={{ borderBottomColor: url.validity ? "#ddd" : "red" }}
             />
             <hr />
             <input

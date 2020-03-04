@@ -42,7 +42,7 @@ const Video = () => {
     dispatch(updateElState(setVideoProviderVal(providerRef, els, activeElId)));
   };
 
-  const handleOnURLChanage = () => {
+  const handleOnURLChange = () => {
     dispatch(updateElState(setUrlVal(urlRef, els, activeElId)));
   };
 
@@ -72,7 +72,7 @@ const Video = () => {
           <input
             placeholder="URL"
             ref={urlRef}
-            onChange={handleOnURLChanage}
+            onChange={handleOnURLChange}
             value={VD.url.value}
             style={{ borderBottomColor: VD.url.validity ? "#ddd" : "red" }}
           />
