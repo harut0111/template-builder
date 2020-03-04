@@ -98,14 +98,22 @@ const Video = () => {
         </div>
       </form>
       <p>
-        <a target="_blank" href="https://www.youtube.com/watch?v=Uy2PzVtUEEU">
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://www.youtube.com/watch?v=Uy2PzVtUEEU"
+        >
           Youtube Video Link
         </a>
       </p>
 
       <p>
         {" "}
-        <a target="_blank" href="https://www.facebook.com/Armeniantouroperator/videos/457300855141378/">
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://www.facebook.com/Armeniantouroperator/videos/457300855141378/"
+        >
           Facebook Video Link
         </a>
       </p>

@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { BORDER_TYPE_LIST } from "../../configs/constants";
-import { updateElementData } from "../../utils/updateElData";
 import { updateElState } from "../../context/actions";
 import { useStateValue } from "../../context";
 import { getActiveEl } from "../../utils/getActiveEl";
@@ -24,23 +23,6 @@ const LinkButton = () => {
   const borderTypeRef = useRef(null);
 
   const LBD = getActiveEl(layout).elData;
-
-  const handleOnChange = () => {
-    const btnText = btnTextRef.current.value;
-    const btnColor = btnColorRef.current.value;
-    const url = urlRef.current.value.trim();
-    const bgColor = bgColorRef.current.value;
-    const borderType = borderTypeRef.current.value;
-
-    const elements = updateElementData(els, activeElId, {
-      
-    });
-    dispatch(updateElState(elements));
-  };
-
-  // const handleOnBorderTypeChange = () => {
-  //   dispatch(updateElState(setBorderTypeVal(borderTypeRef, els, activeElId)));
-  // };
 
   const handleOnSetBtnTextChange = () => {
     dispatch(updateElState(setBtnTextVal(btnTextRef, els, activeElId)));
