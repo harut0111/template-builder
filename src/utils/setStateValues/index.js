@@ -160,3 +160,24 @@ export const setAddressVal = (addressRef, els, activeElId) => {
     address
   });
 };
+
+export const setBorderTypeVal = (borderTypeRef, els, activeElId) => {
+  const borderType = borderTypeRef.current.value;
+  return updateElementData(els, activeElId, {
+    borderType
+  });
+};
+
+export const setBorderWidthVal = (borderWidthRef, els, activeElId) => {
+  const borderWidth = borderWidthRef.current.value;
+  return updateElementData(els, activeElId, {
+    borderWidth
+  });
+};
+
+export const setBorderColorVal = (borderColorRef, els, activeElId) => {
+  const borderColor = borderColorRef.current.value;
+  return updateElementData(els, activeElId, {
+    borderColor
+  });
+};

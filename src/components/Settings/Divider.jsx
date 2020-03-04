@@ -3,42 +3,45 @@ import uuid from "uuid";
 
 import { BORDER_TYPE_LIST } from "../../configs/constants";
 import { getActiveEl } from "../../utils/getActiveEl";
-import { updateElementData } from '../../utils/updateElData'
 import { useStateValue } from "../../context";
 import { updateElState } from "../../context/actions";
+import {
+  setBorderTypeVal,
+  setBorderWidthVal,
+  setBorderColorVal
+} from "../../utils/setStateValues";
 
 const Divider = () => {
   const [{ layout }, dispatch] = useStateValue();
   const els = layout.elements;
   const activeElId = layout.activeEl.id;
 
-  const borderTypeRef = useRef(null);
-  const borderWidthRef = useRef(null);
-  const borderColorRef = useRef(null);
+  const [borderTypeRef, borderWidthRef, borderColorRef] = [
+    useRef(null),
+    useRef(null),
+    useRef(null)
+  ];
 
-  const handleOnChange = () => {
-    const borderType = borderTypeRef.current.value;
-    const borderWidth = borderWidthRef.current.value;
-    const borderColor = borderColorRef.current.value;
+  const DD = getActiveEl(layout).elData;
 
-    const elements = updateElementData(els, activeElId, {
-      borderType,
-      borderWidth,
-      borderColor
-    });
-    dispatch(updateElState(elements));
+  const handleOnBorderTypeChange = () => {
+    dispatch(updateElState(setBorderTypeVal(borderTypeRef, els, activeElId)));
   };
 
-  // useEffect(handleOnChange, []);
-  
-  const DD = getActiveEl(layout).elData;
+  const handleOnBorderWidthChange = () => {
+    dispatch(updateElState(setBorderWidthVal(borderWidthRef, els, activeElId)));
+  };
+
+  const handleOnBorderColorChange = () => {
+    dispatch(updateElState(setBorderColorVal(borderColorRef, els, activeElId)));
+  };
 
   return (
     <div className="Divider">
       <h3>DIVIDER</h3>
       <form>
         <select
-          onChange={handleOnChange}
+          onChange={handleOnBorderTypeChange}
           value={DD.borderType}
           ref={borderTypeRef}
         >
@@ -51,15 +54,15 @@ const Divider = () => {
         <div>
           <input
             type="number"
-            onChange={handleOnChange}
-            value={+DD.borderWidth}
+            onChange={handleOnBorderWidthChange}
+            value={Number(DD.borderWidth)}
             ref={borderWidthRef}
           />
           <span>px</span>
         </div>
         <input
           type="color"
-          onChange={handleOnChange}
+          onChange={handleOnBorderColorChange}
           value={DD.borderColor}
           ref={borderColorRef}
         />

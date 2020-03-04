@@ -60,7 +60,7 @@ const Video = () => {
             className="select-box"
           >
             {VIDEO_PROVIDER_LIST.map(provider => (
-              <option key={provider.id} value={provider.name}>
+              <option key={provider.id} defaultValue={provider.name}>
                 {provider.name}
               </option>
             ))}
@@ -73,7 +73,7 @@ const Video = () => {
             placeholder="URL"
             ref={urlRef}
             onChange={handleOnURLChange}
-            value={VD.url.value}
+            defaultValue={VD.url.value}
             style={{ borderBottomColor: VD.url.validity ? "#ddd" : "red" }}
           />
         </div>
