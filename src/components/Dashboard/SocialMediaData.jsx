@@ -8,20 +8,18 @@ const SocialMediaData = ({ elData, active }) => {
       className="socialMediaData"
       // className={`socialMediaData element ${active ? "element-active" : ""}`}
     >
-      <div>
-        {elData.map((el, i) => (
-          <a
-            key={i}
-            href={el.url}
-            target="_blank"
-            onClick={el.url ? null : e => e.preventDefault()}
-            rel="noopener noreferrer"
-            style={{ color: "inherit" }}
-          >
-            {getSocialMediaIcon(el.socialMedia)}
-          </a>
-        ))}
-      </div>
+      {elData.map((el, i) => (
+        <a
+          key={i}
+          href={el.url}
+          target="_blank"
+          onClick={el.url ? null : e => e.preventDefault()}
+          rel="noopener noreferrer"
+          style={{ color: "blue", fontSize: "25px", margin: "5px" }}
+        >
+          {getSocialMediaIcon(el.socialMedia)}
+        </a>
+      ))}
     </div>
   );
 };
