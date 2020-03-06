@@ -48,33 +48,39 @@ const SocialMedia = () => {
       <h3>Social Media</h3>
       {SMD.map(({ socialMedia, url, id }, i) => (
         <div className="socialMedia-main" key={id} id={id}>
-          {getSocialMediaIcon(socialMedia)}
           <form onSubmit={e => e.preventDefault()}>
-            <select
-              defaultValue={socialMedia}
-              ref={el => socialMediaRef.push(el)}
-              onChange={() => handleOnSocialMediaChange(i)}
-            >
-              {SOCIAL_MEDIA_LIST.map(({ label, id }) => (
-                <option key={id} value={label}>
-                  {label}
-                </option>
-              ))}
-            </select>
+            <div className="socialMedia-row-1">
+              <div className="socialMedia-icon">
+                {getSocialMediaIcon(socialMedia)}
+              </div>
+              <select
+                defaultValue={socialMedia}
+                ref={el => socialMediaRef.push(el)}
+                onChange={() => handleOnSocialMediaChange(i)}
+              >
+                {SOCIAL_MEDIA_LIST.map(({ label, id }) => (
+                  <option key={id} value={label}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {}
             <input
               type="url"
               placeholder="URL"
               ref={el => urlRef.push(el)}
               onChange={() => handleOnUrlChange(i)}
-              value={url.value}
+              defaultValue={url.value}
               style={{ borderBottomColor: url.validity ? "#ddd" : "red" }}
             />
-            <hr />
-            <input
-              type="button"
-              value="Delete"
-              onClick={() => handleOnRemove(i)}
-            />
+            <div>
+              <input
+                type="button"
+                value="Delete"
+                onClick={() => handleOnRemove(i)}
+              />
+            </div>
           </form>
           <hr />
         </div>

@@ -26,6 +26,24 @@ $CUSTOM_LIGHTBLUE: rgb(102, 196, 228);
   }
 }
 
+@mixin select-box {
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  padding: 2px;
+  font-size: 14px;
+  line-height: 1em;
+  border: none;
+  text-align: left;
+  line-height: 1em;
+  width: 180px;
+  height: 25px;
+  overflow: hidden;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
 @mixin custom_input {
   color: inherit;
   border: none;

@@ -190,32 +190,9 @@
             label {
               margin-right: 5px;
             }
-            .select-box {
-              color: inherit;
-              cursor: pointer;
-              outline: none;
-              background: transparent;
-              padding: 2px;
-              font-size: 14px;
-              line-height: 1em;
-              border: none;
-              text-align: left;
-              line-height: 1em;
-              width: 180px;
-              height: 25px;
-              overflow: hidden;
-              background-color: #fff;
-              border-bottom: 1px solid #ddd;
-              // border-radius: 0;
-              // padding-right: 0;
-              // -webkit-appearance: none;
-              // vertical-align: top !important;
-              // border-radius: 3px 5px 5px 3px;
-              option {
-                &:hover {
-                  background-color: seashell;
-                }
-              }
+
+            select {
+              @include select-box;
             }
           }
 
@@ -258,6 +235,58 @@
         }
 
         .socialMedia {
+          position: relative;
+
+          &-main {
+            position: relative;
+          }
+
+          form {
+            display: flex;
+            flex-direction: column;
+          }
+
+          &-icon {
+            font-size: 20px;
+            color: rgb(59, 59, 204);
+            margin-right: 5px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+          }
+
+          &-row-1 {
+            margin: 5px 0;
+            // padding: 5px 0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            select {
+              @include select-box;
+              width: 150px;
+            }
+          }
+
+          input[type="url"] {
+            @include custom_input;
+            border-bottom: 1px solid #ddd;
+            margin: 5px 5px 5px 25px;
+            width: 92.5%;
+          }
+
+          input[type="button"] {
+            @include custom-button;
+            width: 85px;
+            height: 30px;
+            margin: 5px 0;
+            float: right;
+            padding: 8px;
+            color: #676767;
+            border: 1px solid #707070;
+            opacity: 1;
+            background-color: white;
+          }
+
           button {
             @include custom-button;
             text-align: center;
