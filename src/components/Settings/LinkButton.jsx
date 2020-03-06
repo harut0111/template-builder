@@ -45,10 +45,10 @@ const LinkButton = () => {
   };
 
   return (
-    <div className="Link_Button">
+    <div className="link-button">
       <h3>Link/Button</h3>
       <form>
-        <div>
+        <div className="link-button-row-1">
           <input
             type="text"
             placeholder="Button Text"
@@ -63,7 +63,7 @@ const LinkButton = () => {
             ref={btnColorRef}
           />
         </div>
-        <div>
+        <div className="link-button-row-2">
           <input
             type="url"
             placeholder="URL"
@@ -75,7 +75,7 @@ const LinkButton = () => {
           />
         </div>
 
-        <div>
+        <div className="link-button-row-3">
           <label>Background Color: </label>
           <input
             type="color"

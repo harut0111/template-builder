@@ -3,13 +3,13 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 const _Slider = React.forwardRef((props, ref) => {
-  const wrapperStyle = {
-    width: "200px",
-    margin: "0 10px"
-  };
+  // const wrapperStyle = {
+  //   width: "200px",
+  //   margin: "0 10px"
+  // };
 
   return (
-    <div className="_slider" style={wrapperStyle}>
+    <div className="_slider" >
       <Slider
         min={0}
         max={20}

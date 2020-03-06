@@ -24,14 +24,8 @@ const Map = () => {
     dispatch(updateElState(setZoomVal(sliderRef, els, activeElId)));
   };
 
-  const tempStyle = {
-    display: "flex",
-    justifyContent: "left",
-    textAligne: "center"
-  };
-
   return (
-    <div className="Map">
+    <div className="map">
       <h3>Map</h3>
       <form>
         <div className="address">
@@ -39,12 +33,12 @@ const Map = () => {
           <input
             value={MD.address}
             type="text"
-            placeholder="type address"
+            placeholder="Type address"
             onChange={handleOnAddressChange}
             ref={addressRef}
           />
         </div>
-        <div className="zoom" style={tempStyle}>
+        <div className="zoom" >
           <label>Zoom: </label>
           <Slider
             ref={sliderRef}
