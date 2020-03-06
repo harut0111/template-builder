@@ -40,6 +40,7 @@ const Slider = () => {
     if (SD.imgSrc.length > 2)
       dispatch(updateElState(setRemoveImage(id, els, activeElId, SD)));
   };
+
   return (
     <div className="slider">
       <h3>Slider</h3>
@@ -60,9 +61,11 @@ const Slider = () => {
             <div className="image-uploader" key={imgSrc.id}>
               <div className="image-preview">
                 {imgSrc.value ? (
-                  <img src={imgSrc.value} width="100" height="100" alt="img" />
+                  <img src={imgSrc.value} width="130" height="80" alt="img" />
                 ) : (
-                  <FaRegImage size="100px" />
+                  <div className="icon-wrapper">
+                    <FaRegImage size="70px" />
+                  </div>
                 )}
               </div>
               <div className="image-tools">

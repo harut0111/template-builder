@@ -5,7 +5,7 @@
   &-main {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: fit-content;
-    
+
     display: flex;
     flex-direction: column;
 
@@ -37,7 +37,7 @@
 
     &-body {
       // min-height: 265px;
-      
+
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -103,14 +103,8 @@
             }
 
             input {
-              color: inherit;
-              border: none;
+              @include custom_input;
               border-bottom: 1px solid #ddd;
-              outline: none;
-              text-align: left;
-              line-height: 1em;
-              font-size: 14px;
-              padding: 5px;
               width: 240px;
             }
           }
@@ -124,6 +118,12 @@
         }
 
         .slider {
+          .slider-row-1 {
+            input {
+              @include custom_input;
+            }
+          }
+
           .image-uploader {
             display: flex;
             flex-direction: column;
@@ -146,8 +146,18 @@
             flex-flow: wrap;
 
             .image-uploader {
-              margin: 0 5px;
+              margin: 5px 5px 5px 0;
             }
+          }
+
+          input[type="button"] {
+            @include custom-button;
+            text-align: center;
+            font: Regular 13px/23px Palanquin;
+            letter-spacing: 0;
+            color: #ffffff;
+            background: #67676799 0% 0% no-repeat padding-box;
+            opacity: 1;
           }
         }
 
@@ -220,14 +230,8 @@
             }
 
             input {
-              color: inherit;
-              border: none;
+              @include custom_input;
               border-bottom: 1px solid #ddd;
-              outline: none;
-              text-align: left;
-              line-height: 1em;
-              font-size: 14px;
-              padding: 5px;
               width: 240px;
             }
           }
@@ -250,6 +254,18 @@
                 height: 15px;
               }
             }
+          }
+        }
+
+        .socialMedia {
+          button {
+            @include custom-button;
+            text-align: center;
+            font: Regular 13px/23px Palanquin;
+            letter-spacing: 0;
+            color: #ffffff;
+            background: #67676799 0% 0% no-repeat padding-box;
+            opacity: 1;
           }
         }
       }
