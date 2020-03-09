@@ -24,7 +24,7 @@ const LinkButtonData = ({ elData }) => {
       </div>
     );
   }
-  return <div style={{height: "52px"}}>Add button URL</div>;
+  return <div className="linkButtonData-initial">Add button URL</div>;
 };
 
 export default React.memo(LinkButtonData, (p, n) => areEqual(p, n));

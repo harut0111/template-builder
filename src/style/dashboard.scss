@@ -106,10 +106,18 @@
 
           .linkButtonData {
             padding: 10px;
+            height: 52px;
             a {
               display: inline-block;
               padding: 5px;
               text-decoration: none;
+            }
+
+            &-initial {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 52px;
             }
           }
 

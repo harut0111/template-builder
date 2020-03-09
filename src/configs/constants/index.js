@@ -104,21 +104,18 @@ export const FORMAT_LIST = [
     label: "Autoplay: ",
     id: uuid.v4(),
     name: "autoplay",
-    // defaultVal: false,
     for: ["YouTube", "Facebook", "Twitter", "Instagram"]
   },
   {
     label: "Loop: ",
     id: uuid.v4(),
     name: "loop",
-    // defaultVal: false,
     for: ["YouTube"]
   },
   {
     label: "Control: ",
     id: uuid.v4(),
     name: "control",
-    // defaultVal: true,
     for: ["YouTube"]
   }
 ];
