@@ -24,9 +24,8 @@
     }
 
     &-body {
-
       @include scroll-bar;
-      
+
       padding: 0px 5px;
       height: 90%;
       border-bottom: 1px dashed gray;
@@ -43,26 +42,11 @@
             height: 100%;
           }
         }
-        // margin: 10px 5px;
       }
 
       .element {
-        // min-height: 40px;
-        // border: 1px solid gray;
-        // margin: 5px;
-        // border-radius: 5px;
-        // transition: all 1s;
-        // opacity: 0.5;
-
-        // &-active {
-        //   background: rgb(238, 238, 238);
-        //   opacity: 1;
-        // }  
-
         &-wrapper {
-     
-          // display: flex;
-          // flex-direction: column;
+          overflow-x: hidden;
 
           margin: 15px 0px;
           border: 1px solid transparent;
@@ -82,7 +66,7 @@
 
           .textData {
             all: initial;
-            
+
             padding: 0 15px;
             display: contents;
 
