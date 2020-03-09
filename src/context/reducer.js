@@ -41,7 +41,7 @@ export const reducer = (state, { type, payload }) => {
           activeEl: {
             id: payload.els.length && payload.els[payload.i - 1].elId
           },
-          activeBarIndex: payload.length ? 1 : 0
+          activeBarIndex: payload.els.length ? 1 : 0
         }
       };
     }
