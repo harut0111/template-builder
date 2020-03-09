@@ -37,9 +37,9 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         layout: {
           ...state.layout,
-          elements: payload,
+          elements: payload.els,
           activeEl: {
-            id: payload.length && payload[payload.length - 1].elId
+            id: payload.els.length && payload.els[payload.i - 1].elId
           },
           activeBarIndex: payload.length ? 1 : 0
         }

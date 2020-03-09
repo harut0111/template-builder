@@ -35,15 +35,17 @@ const Dashboard = () => {
     const activeCard = [...cardsHTMLCollection].filter(
       card => card.id === layout.activeEl.id
     );
-    const currentOffset = activeCard[0].offsetTop;
-    dashMainBodyRef.current.scrollTop =
-      currentOffset - (100 + dashMainRef.current.offsetTop);
+    if (layout.activeEl.id) {
+      const currentOffset = activeCard[0].offsetTop;
+      dashMainBodyRef.current.scrollTop =
+        currentOffset - (100 + dashMainRef.current.offsetTop);
+    }
   }, [layout.activeEl]);
 
-  const handleOnToolClick = (ev, id) => {
+  const handleOnToolClick = (ev, id, i) => {
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
-    dispatch({ type: REMOVE_ELEMENT, payload: filteredEls });
+    dispatch({ type: REMOVE_ELEMENT, payload: {els: filteredEls, i} });
   };
 
   const handleOnElementClick = id => {
@@ -70,7 +72,7 @@ const Dashboard = () => {
           onDragOver={e => e.preventDefault()}
           ref={dashMainBodyRef}
         >
-          {layout.elements.map(el => (
+          {layout.elements.map((el,i) => (
             <div
               className={`element-wrapper ${
                 el.elId === layout.activeEl.id ? "element-wrapper-active" : ""
@@ -81,7 +83,7 @@ const Dashboard = () => {
             >
               <Toolbar
                 className={"toolbar"}
-                onClick={ev => handleOnToolClick(ev, el.elId)}
+                onClick={ev => handleOnToolClick(ev, el.elId, i)}
               />
               {getElementData(el)}
             </div>
