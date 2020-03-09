@@ -14,10 +14,7 @@ const SliderData = ({ elData }) => {
   };
 
   return (
-    <div
-      className="sliderData"
-      // className={`sliderData element ${active ? "element-active" : ""}`}
-    >
+    <div className="sliderData">
       {list.length ? (
         <Carousel
           interval={elData.duration}

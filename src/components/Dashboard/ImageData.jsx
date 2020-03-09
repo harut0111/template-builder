@@ -9,10 +9,7 @@ const ImageData = ({ elData, active }) => {
     alignItems: "center"
   };
   return (
-    <div
-      className="imageData"
-      // className={`imageData element ${active ? "element-active" : ""}`}
-    >
+    <div className="imageData">
       <div>
         {elData.imgSrc ? (
           <a

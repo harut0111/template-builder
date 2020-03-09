@@ -11,7 +11,7 @@ const LinkButtonData = ({ elData }) => {
       backgroundColor: bgColor
     };
     return (
-      <div className="linkButtonData" style={{ padding: "10px" }}>
+      <div className="linkButtonData">
         <a
           href={url.value}
           style={style}
@@ -24,7 +24,7 @@ const LinkButtonData = ({ elData }) => {
       </div>
     );
   }
-  return <div>Add button URL</div>;
+  return <div style={{height: "52px"}}>Add button URL</div>;
 };
 
 export default React.memo(LinkButtonData, (p, n) => areEqual(p, n));

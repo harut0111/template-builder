@@ -82,8 +82,15 @@
 
           .textData {
             all: initial;
-            min-height: 150px;
+            
             padding: 0 15px;
+            display: contents;
+
+            &-container {
+              padding: 0 10px;
+              min-height: 100px;
+              word-break: break-all;
+            }
 
             ul {
               margin: 1em 0;
@@ -98,6 +105,7 @@
           }
 
           .linkButtonData {
+            padding: 10px;
             a {
               display: inline-block;
               padding: 5px;

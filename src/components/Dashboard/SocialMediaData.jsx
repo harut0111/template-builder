@@ -2,12 +2,9 @@ import React from "react";
 import { areEqual } from "../../utils/comparision";
 import { getSocialMediaIcon } from "../../utils/getSocialMediaIcon";
 
-const SocialMediaData = ({ elData, active }) => {
+const SocialMediaData = ({ elData }) => {
   return (
-    <div
-      className="socialMediaData"
-      // className={`socialMediaData element ${active ? "element-active" : ""}`}
-    >
+    <div className="socialMediaData">
       {elData.map((el, i) => (
         <a
           key={i}

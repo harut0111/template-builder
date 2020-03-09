@@ -167,12 +167,8 @@
           text-transform: uppercase;
         }
         .textSettings {
-          // height: 100%;
-          width: 100%;
-          .textEditor {
-            width: 100%;
-            min-height: 200px;
-            height: fit-content;
+          .DraftEditor-root {
+            word-break: break-all;
           }
         }
 
@@ -340,6 +336,7 @@
               }
 
               @include custom-color-input;
+              
             }
 
             .link-button-row-2 {
@@ -358,8 +355,9 @@
               label {
                 font-size: 13px;
               }
+
               @include custom-color-input;
-              
+
               select {
                 @include select-box;
                 width: 70px;

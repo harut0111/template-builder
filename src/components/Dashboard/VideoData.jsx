@@ -10,7 +10,6 @@ const VideoData = ({ elData }) => {
     let Player = YtPlayer;
 
     switch (elData.provider) {
-
       case VIDEO_PROVIDER_LIST[0].name:
         Player = YtPlayer;
         break;

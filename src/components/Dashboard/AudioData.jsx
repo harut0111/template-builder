@@ -1,12 +1,9 @@
 import React from "react";
 import { areEqual } from "../../utils/comparision";
 
-const AudioData = ({ elData, active }) => {
+const AudioData = ({ elData }) => {
   return (
-    <div
-      className="audioData"
-      // className={`element ${active ? "element-active" : ""}`}
-    >
+    <div className="audioData">
       <iframe
         title="audio"
         width="100%"
