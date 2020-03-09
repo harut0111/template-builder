@@ -329,29 +329,41 @@
             align-items: left;
 
             .link-button-row-1 {
+              display: flex;
+              justify-content: left;
+              align-items: center;
               margin: 7px 0;
+
               input[type="text"] {
                 @include custom_input;
-                width: 150px;
+                width: 80%;
               }
+
+              @include custom-color-input;
             }
 
             .link-button-row-2 {
               margin: 7px 0;
               input[type="url"] {
                 @include custom_input;
-                width: 150px;
+                width: 80%;
               }
             }
 
             .link-button-row-3 {
+              display: flex;
+              justify-content: left;
+              align-items: center;
               margin: 7px 0;
               label {
-                font-size: 15px;
+                font-size: 13px;
               }
-
+              @include custom-color-input;
+              
               select {
-                @include select-box
+                @include select-box;
+                width: 70px;
+                margin-left: 10px;
               }
             }
           }
