@@ -60,9 +60,9 @@ const Audio = () => {
             ref={providerRef}
             className="select-box"
           >
-            {AUDIO_PROVIDER_LIST.map((provider, i) => (
-              <option key={i} value={provider}>
-                {provider}
+            {AUDIO_PROVIDER_LIST.map((provider) => (
+              <option key={provider.id} value={provider.name}>
+                {provider.name}
               </option>
             ))}
           </select>

@@ -72,6 +72,7 @@ const DATA = [
   DividerData
 ];
 const VIDEO_PROVIDERS = ["YouTube", "Facebook"];
+const AUDIO_PROVIDERS = ["Soundcloud"];
 const SOCIAL_MEDIAS = ["Facebook", "Twitter", "Instagram", "YouTube"];
 const SOCIAL_MEDIA_ICONS = [FaFacebook, FaTwitter, FaInstagram, FaYoutube];
 
@@ -92,7 +93,10 @@ export const VIDEO_PROVIDER_LIST = VIDEO_PROVIDERS.map(provider => ({
   name: provider,
   id: uuid.v4()
 }));
-export const AUDIO_PROVIDER_LIST = ["Soundcloud"];
+export const AUDIO_PROVIDER_LIST = AUDIO_PROVIDERS.map(provider => ({
+  name: provider,
+  id: uuid.v4()
+}));
 export const SOCIAL_MEDIA_LIST = SOCIAL_MEDIAS.map((label, i) => ({
   label,
   Icon: SOCIAL_MEDIA_ICONS[i],
