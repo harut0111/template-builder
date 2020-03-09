@@ -33,6 +33,7 @@
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
+      overflow-y: scroll;
 
       .resizable-container {
         .videoData {
@@ -46,7 +47,7 @@
 
       .element {
         &-wrapper {
-          overflow-x: hidden;
+          overflow: unset;
 
           margin: 15px 0px;
           border: 1px solid transparent;

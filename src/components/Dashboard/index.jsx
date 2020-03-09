@@ -12,6 +12,8 @@ import Toolbar from "../../core/Toolbar";
 
 const Dashboard = () => {
   const [{ layout }, dispatch] = useStateValue();
+  const dashMainBodyRef = React.useRef(null);
+  const dashMainRef = React.useRef(null);
 
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
@@ -26,6 +28,17 @@ const Dashboard = () => {
       }
     });
   };
+
+  // handle scroll bar positiono based on active card's position
+  React.useEffect(() => {
+    const cardsHTMLCollection = dashMainBodyRef.current.children;
+    const activeCard = [...cardsHTMLCollection].filter(
+      card => card.id === layout.activeEl.id
+    );
+    const currentOffset = activeCard[0].offsetTop;
+    dashMainBodyRef.current.scrollTop =
+      currentOffset - (100 + dashMainRef.current.offsetTop);
+  }, [layout.activeEl]);
 
   const handleOnToolClick = (ev, id) => {
     ev.stopPropagation();
@@ -49,12 +62,13 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="dashboard-main">
+      <div className="dashboard-main" ref={dashMainRef}>
         <div className="dashboard-main-header">Header</div>
         <div
           className="dashboard-main-body"
           onDrop={handleOnDrop}
           onDragOver={e => e.preventDefault()}
+          ref={dashMainBodyRef}
         >
           {layout.elements.map(el => (
             <div
@@ -62,6 +76,7 @@ const Dashboard = () => {
                 el.elId === layout.activeEl.id ? "element-wrapper-active" : ""
               }`}
               key={el.elId}
+              id={el.elId}
               onClick={() => handleOnElementClick(el.elId)}
             >
               <Toolbar
