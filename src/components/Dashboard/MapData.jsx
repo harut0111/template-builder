@@ -29,7 +29,6 @@ const MapData = ({ elData }) => {
   return (
     <Resizable
       className="resizable-container"
-      // style={style}
       minHeight={150}
       maxHeight={800}
       enable={{ top: false, bottom: true }}
@@ -40,14 +39,17 @@ const MapData = ({ elData }) => {
     >
       <div
         className="mapData"
-        // className={`mapData element ${active ? "element-active" : ""}`}
       >
         <LoadScript
           id="script-loader"
-          googleMapsApiKey="AIzaSyCnB2E_TdpTGGrc2LaSsb_v8jdXWJZICdU"
+          // googleMapsApiKey="AIzaSyCnB2E_TdpTGGrc2LaSsb_v8jdXWJZICdU"
+          // googleMapsApiKey="AIzaSyCjaQxxopHkHSxOYAoP1ayk74jmBUBKCzE"
+          googleMapsApiKey="AIzaSyDXKCIYOOJvmlcX1kx12RrFj18rc22iGu0"
+          // googleMapsApiKey="ABNF54VM7YJEFKSRYAPN"
         >
           <GoogleMap
-            id="example-map"
+            id="beeweb-214120"
+            // key="AIzaSyCjaQxxopHkHSxOYAoP1ayk74jmBUBKCzE"
             // mapContainerStyle={styles.container}
             mapContainerStyle={{
               position: "absolute",
