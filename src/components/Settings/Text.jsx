@@ -20,6 +20,7 @@ const Text = () => {
 
   return (
     <div className="textSettings">
+       <h3>Video</h3>
       <Editor
         defaultEditorState={htmlToDraftJs(TD.markup)}
         wrapperClassName="demo-wrapper"
