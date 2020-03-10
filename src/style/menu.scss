@@ -336,7 +336,6 @@
               }
 
               @include custom-color-input;
-              
             }
 
             .link-button-row-2 {
@@ -364,6 +363,27 @@
                 margin-left: 10px;
               }
             }
+          }
+        }
+
+        .divider {
+          form {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            select {
+              @include select-box;
+              width: 100px;
+              margin-right: 10px;
+              padding: 0;
+            }
+
+            input {
+              @include custom_input;
+              width: 100px;
+            }
+
+            @include custom-color-input;
           }
         }
       }

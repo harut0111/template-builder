@@ -37,7 +37,7 @@ const Divider = () => {
   };
 
   return (
-    <div className="Divider">
+    <div className="divider">
       <h3>DIVIDER</h3>
       <form>
         <select
@@ -51,15 +51,12 @@ const Divider = () => {
             </option>
           ))}
         </select>
-        <div>
-          <input
+        <input
             type="number"
             onChange={handleOnBorderWidthChange}
             value={Number(DD.borderWidth)}
             ref={borderWidthRef}
           />
-          <span>px</span>
-        </div>
         <input
           type="color"
           onChange={handleOnBorderColorChange}
