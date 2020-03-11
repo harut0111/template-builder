@@ -108,6 +108,11 @@
 
           .socialMediaData {
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include social-media-icons;
           }
         }
       }

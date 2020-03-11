@@ -51,7 +51,7 @@ const SocialMedia = () => {
           <form onSubmit={e => e.preventDefault()}>
             <div className="socialMedia-row-1">
               <div className="socialMedia-icon">
-                {getSocialMediaIcon(socialMedia)}
+                <a className={socialMedia}>{getSocialMediaIcon(socialMedia)}</a>
               </div>
               <select
                 defaultValue={socialMedia}

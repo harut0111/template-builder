@@ -7,12 +7,12 @@ const SocialMediaData = ({ elData }) => {
     <div className="socialMediaData">
       {elData.map((el, i) => (
         <a
+          className={el.socialMedia}
           key={i}
-          href={el.url}
+          href={el.url.value}
           target="_blank"
-          onClick={el.url ? null : e => e.preventDefault()}
+          onClick={el.url.validity ? null : e => e.preventDefault()}
           rel="noopener noreferrer"
-          style={{ color: "blue", fontSize: "25px", margin: "5px" }}
         >
           {getSocialMediaIcon(el.socialMedia)}
         </a>

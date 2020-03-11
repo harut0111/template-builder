@@ -242,12 +242,12 @@
           }
 
           &-icon {
-            font-size: 20px;
-            color: rgb(59, 59, 204);
-            margin-right: 5px;
-            display: flex;
-            justify-content: left;
-            align-items: center;
+            @include social-media-icons;
+            a {
+              font-size: 20px;
+              margin: 0;
+              margin-right: 5px;
+            }
           }
 
           &-row-1 {
@@ -265,8 +265,8 @@
           input[type="url"] {
             @include custom_input;
             border-bottom: 1px solid #ddd;
-            margin: 5px 5px 5px 25px;
-            width: 92.5%;
+            margin: 5px 5px 5px 30px;
+            width: 85%;
           }
 
           input[type="button"] {
@@ -371,6 +371,8 @@
             display: flex;
             justify-content: left;
             align-items: center;
+            padding: 20px 0;
+
             select {
               @include select-box;
               width: 100px;
@@ -378,7 +380,7 @@
               padding: 0;
             }
 
-            input {
+            input[type="number"] {
               @include custom_input;
               width: 100px;
             }
