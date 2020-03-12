@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Resizable } from "re-resizable";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { areEqual } from "../../utils/comparision";
@@ -37,15 +38,12 @@ const MapData = ({ elData }) => {
         height: 200
       }}
     >
-      <div
-        className="mapData"
-      >
+      <div className="mapData">
         <LoadScript
           id="script-loader"
           // googleMapsApiKey="AIzaSyCnB2E_TdpTGGrc2LaSsb_v8jdXWJZICdU"
           // googleMapsApiKey="AIzaSyCjaQxxopHkHSxOYAoP1ayk74jmBUBKCzE"
           googleMapsApiKey="AIzaSyDXKCIYOOJvmlcX1kx12RrFj18rc22iGu0"
-          // googleMapsApiKey="ABNF54VM7YJEFKSRYAPN"
         >
           <GoogleMap
             id="beeweb-214120"
@@ -68,5 +66,4 @@ const MapData = ({ elData }) => {
     </Resizable>
   );
 };
-
 export default React.memo(MapData, (p, n) => areEqual(p, n));

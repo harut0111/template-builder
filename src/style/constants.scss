@@ -85,7 +85,7 @@ $CUSTOM_LIGHTBLUE: rgb(102, 196, 228);
 }
 
 @mixin social-media-icons {
-  a {
+  a, span {
     margin: 5px;
     line-height: 18px;
     display: inline-block;
