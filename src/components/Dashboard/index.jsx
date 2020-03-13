@@ -1,12 +1,12 @@
 import React from "react";
 import { useStateValue } from "../../context";
 import {
-  ADD_NEW_ELEMENT,
-  REMOVE_ELEMENT,
-  CHANGE_ACTIVE_ELEMENT
+  changeActiveElement,
+  addNewElement,
+  removeElement
 } from "../../context/actions";
 import uuid from "uuid";
-import { EL_LIST, EL_DATA_LIST, initialState } from "../../configs/constants";
+import { EL_LIST, EL_DATA_LIST, INITIAL_STATE } from "../../configs/constants";
 import { filterElement } from "../../utils/filterElement";
 import Toolbar from "../../core/Toolbar";
 
@@ -18,15 +18,7 @@ const Dashboard = () => {
   const handleOnDrop = e => {
     const elLabel = e.dataTransfer.getData("text/plain");
     const el = EL_LIST.filter(el => el.label === elLabel)[0];
-
-    dispatch({
-      type: ADD_NEW_ELEMENT,
-      payload: {
-        elLabel: el.label,
-        elId: uuid.v4(),
-        elData: initialState(el.label)
-      }
-    });
+    dispatch(addNewElement(el, uuid, INITIAL_STATE));
   };
 
   // handle scroll bar positiono based on active card's position
@@ -45,12 +37,12 @@ const Dashboard = () => {
   const handleOnToolClick = (ev, id, i) => {
     ev.stopPropagation();
     const filteredEls = filterElement(layout, id);
-    dispatch({ type: REMOVE_ELEMENT, payload: {els: filteredEls, i} });
+    dispatch(removeElement(filteredEls, i));
   };
 
-  const handleOnElementClick = id => {
-    dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
-  };
+  // const handleOnElementClick = id => {
+  //   dispatch({ type: CHANGE_ACTIVE_ELEMENT, payload: id });
+  // };
 
   const getElementData = el => (
     <>
@@ -72,14 +64,14 @@ const Dashboard = () => {
           onDragOver={e => e.preventDefault()}
           ref={dashMainBodyRef}
         >
-          {layout.elements.map((el,i) => (
+          {layout.elements.map((el, i) => (
             <div
               className={`element-wrapper ${
                 el.elId === layout.activeEl.id ? "element-wrapper-active" : ""
               }`}
               key={el.elId}
               id={el.elId}
-              onClick={() => handleOnElementClick(el.elId)}
+              onClick={() => dispatch(changeActiveElement(el.elId))}
             >
               <Toolbar
                 className={"toolbar"}

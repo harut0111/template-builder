@@ -2,22 +2,12 @@ import React from "react";
 import uuid from "uuid";
 import Settings from "../Settings";
 import { useStateValue } from "../../context";
-import { ADD_NEW_ELEMENT, SET_BAR_INDEX } from "../../context/actions";
-import { EL_LIST, BAR_LIST, initialState } from "../../configs/constants";
+
+import { EL_LIST, BAR_LIST, INITIAL_STATE } from "../../configs/constants";
+import { addNewElement, setBarIndex } from "../../context/actions";
 
 const Menu = () => {
   const [{ layout }, dispatchLayouts] = useStateValue();
-
-  const handleOnClick = el => {
-    dispatchLayouts({
-      type: ADD_NEW_ELEMENT,
-      payload: {
-        elLabel: el.label,
-        elId: uuid.v4(),
-        elData: initialState(el.label)
-      }
-    });
-  };
 
   return (
     <div className="menu">
@@ -32,9 +22,7 @@ const Menu = () => {
                     layout.activeBarIndex === i ? "bar-active" : ""
                   }`}
                   onClick={() =>
-                    layout.activeEl.id
-                      ? dispatchLayouts({ type: SET_BAR_INDEX, payload: i })
-                      : null
+                    layout.activeEl.id ? dispatchLayouts(setBarIndex(i)) : null
                   }
                 >
                   {text}
@@ -58,7 +46,9 @@ const Menu = () => {
                   e.dataTransfer.setData("text/plain", el.label)
                 }
                 id={el.label}
-                onClick={() => handleOnClick(el)}
+                onClick={() =>
+                  dispatchLayouts(addNewElement(el, uuid, INITIAL_STATE))
+                }
               >
                 {<el.Icon size="22px" />}
                 <span>{el.label}</span>
